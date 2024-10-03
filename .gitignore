@@ -1,0 +1,10 @@
+
+
+controllers/
+views/
+
+configs.php
+Database.php
+functions.php
+Router.php
+routes.php
