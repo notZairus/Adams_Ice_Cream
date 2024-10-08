@@ -11,25 +11,27 @@
 
 sidebar {
   background-color: #334259;
-  height: 60%;
+  height: min-content;
   width: 300px;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
   display: flex; 
   flex-direction: column;
   align-items: center;
+  box-shadow: -8px 0px 0px #243041;
+  padding-bottom: 20px;
 }
 
 sidebar h1 {
   color: white;
-  margin: 10px 0px;
+  margin-top: 16px;
 }
 
 sidebar .line {
   width: 80%;
   height: 1px;
   background-color: white;
-  margin: 8px;
+  margin: 12px 0px 16px;
 }
 
 sidebar .nav-container {
@@ -66,12 +68,22 @@ sidebar .nav-container .nav-btn .icon-container svg {
 }
 
 sidebar .nav-container .nav-btn.logout {
-  margin-top: 40px;
+  margin-top: 32px;
   font-weight: 700;
   width: 100%;
   text-align: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 40%;
+  background-color: #334259;
+  border: none;
+  cursor: pointer;
+  
+  transform: all 0.2s;
+}
+
+sidebar .nav-container .nav-btn.logout:hover {
+  background-color: #243041;
+  color: #F3F3F8;
 }
 
 section {
@@ -79,16 +91,12 @@ section {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 0px;
+  padding: 20px 0px 40px;
 }
 
 section > h1 {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   font-size: 2rem;
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
 }
 
 section main {
