@@ -90,7 +90,7 @@ main .ingredients-container h2 {
 .ingredients-tbl tr th,
 .ingredients-tbl tr td {
   padding: 8px 12px;
-  text-align:left;
+  text-align: center;
 }
 
 .modal {
@@ -175,4 +175,26 @@ main .ingredients-container h2 {
 
 .add-stock-form .text-field:nth-child(1) {
   grid-column: span 2;
+}
+
+
+.edit-ingredient-btn, 
+.delete-ingredient-btn {
+  margin: 0px 4px;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  bordeR: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+}
+
+.delete-ingredient-btn {
+  background-color: rgb(205, 15, 15);
+}
+
+.ingredient-operation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

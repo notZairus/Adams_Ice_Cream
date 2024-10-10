@@ -47,3 +47,17 @@ close_add_stock_modal.onclick = () => {
 document.querySelector('.add-stock-form').onsubmit = (event) => {
   alert("Stock Sucessfully Added!");
 }
+
+
+//DELETE INGREDIENT
+//DELETE INGREDIENT
+//DELETE INGREDIENT
+
+let deleteForms = document.querySelectorAll('.delete_ingredient_form');
+
+Array.from(deleteForms).forEach(deleteForm => {
+  deleteForm.onsubmit = (event) => {
+    let confirmed = confirm("Delete the selected ingredient? ");
+    if (! confirmed) event.preventDefault();
+  }
+});
