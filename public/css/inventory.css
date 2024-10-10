@@ -45,6 +45,9 @@ main .btn-container button {
 main .ingredients-container {
   padding: 10px 20px;
   color: var(--primary-color);
+}
+
+main .ingredients-container .tables {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -77,7 +80,7 @@ main .ingredients-container h2 {
 }
 
 .ingredients-tbl tbody tr:nth-child(even) {
-  background-color: #ddd;
+  background-color: #f1f1f1;
 }
 
 .ingredients-tbl tbody tr:hover {
@@ -110,7 +113,7 @@ main .ingredients-container h2 {
 .new-ingredient-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  column-gap: 8px;
 }
 
 .new-ingredient-form .text-field:nth-child(1) {
@@ -118,7 +121,9 @@ main .ingredients-container h2 {
 }
 
 .new-ingredient-form .text-field input,
-.new-ingredient-form .text-field select {
+.new-ingredient-form .text-field select,
+.add-stock-form .text-field input,
+.add-stock-form .text-field select {
   width: 100%;
   outline: none;
   border: 1px solid #D9D9D9;
@@ -127,17 +132,19 @@ main .ingredients-container h2 {
   padding: 8px 12px;
 }
 
-.new-ingredient-form .btn-container {
+.new-ingredient-form .btn-container,
+.add-stock-form .btn-container {
   margin-top: 8px;
   width: 100%;
-  grid-column: span 2;
+  grid-column: 2 / -1;
   display: flex;
   justify-content: end;
   align-items: end;
   gap: 8px;
 }
 
-.new-ingredient-form .btn-container button {
+.new-ingredient-form .btn-container button,
+.add-stock-form .btn-container button {
   font-size: 0.9rem;
   padding: 12px;
   border-radius: 8px;
@@ -155,4 +162,17 @@ main .ingredients-container h2 {
 
 .new-ingredient-form .btn-container button[type='submit']:hover {
   background-color: var(--dark-primary-color);
+}
+
+
+
+.add-stock-form {
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 9px;
+}
+
+.add-stock-form .text-field:nth-child(1) {
+  grid-column: span 2;
 }
