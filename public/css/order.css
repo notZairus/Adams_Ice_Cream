@@ -1,0 +1,105 @@
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+main>div:nth-child(1) {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  padding: 0px 8px 0px 0px;
+}
+
+main .orders-container {
+  background-color: black;
+  flex: 1;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: var(--primary-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container .add-order-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+.btn-container .category-btns-container {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-container .category-btns-container button {
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid #24304136;
+  color: #24304136;
+  padding: 4px;
+}
+
+.btn-container .category-btns-container button:hover {
+  border-bottom: 3px solid #24304186;
+  color: #24304186;
+}
+
+.btn-container .category-btns-container button.selected {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+main .orders-container h2 {
+  margin-bottom: 12px;
+}
+
+main .orders-container .table-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  border-radius: 8px;
+}
+
+main .orders-container .table-container .orders-tbl {
+  flex: 1;
+  border-collapse: collapse;
+}
+
+.orders-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.orders-tbl thead tr {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.orders-tbl thead tr:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.orders-tbl tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.orders-tbl tbody tr:hover {
+  background-color: #c6c2c2;
+}
+
+.orders-tbl tr th {
+  padding: 8px 12px;
+  text-align: center;
+}

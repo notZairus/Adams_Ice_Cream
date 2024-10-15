@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog with Animation</title>
+  <style>
+    /* Hidden state (no display by default) */
+    dialog {
+      display: none;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Show state when the dialog is open (added by JS) */
+    dialog.show {
+      display: block;
+    }
+
+    /* Animation for when the dialog is fully open */
+    dialog.opening {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animation for closing */
+    dialog.closing {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    /* Optional styling for the dialog */
+    dialog {
+      border: none;
+      border-radius: 8px;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Backdrop for the dialog */
+    dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dialog element -->
+  <dialog id="myDialog">
+    <p>This is a dialog box with animation!</p>
+    <button id="closeBtn">Close</button>
+  </dialog>
+
+  <!-- Trigger button -->
+  <button id="openBtn">Open Dialog</button>
+
+  <!-- JavaScript to control dialog with animations -->
+  <script>
+    const dialog = document.getElementById('myDialog');
+    const openBtn = document.getElementById('openBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open the dialog with animation
+    openBtn.addEventListener('click', () => {
+      dialog.classList.add('show');
+      dialog.showModal();
+      requestAnimationFrame(() => {
+        dialog.classList.add('opening');
+      });
+    });
+
+    // Close the dialog with a fade-out animation
+    closeBtn.addEventListener('click', () => {
+      dialog.classList.remove('opening');
+      dialog.classList.add('closing');
+      
+      // Wait for the animation to finish before closing
+      dialog.addEventListener('transitionend', () => {
+        dialog.classList.remove('closing');
+        dialog.classList.remove('show');
+        dialog.close();
+      }, { once: true });
+    });
+  </script>
+
+</body>
+</html>

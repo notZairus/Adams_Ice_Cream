@@ -4,7 +4,7 @@ main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(7, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 main .btn-container {
@@ -42,7 +42,10 @@ main .btn-container button {
   color: white;
 }
 
-main .ingredients-container {
+main .ingredients-container, 
+main .restock-container {
+  display: flex;
+  flex-direction: column;
   padding: 10px 20px;
   color: var(--primary-color);
 }
@@ -53,14 +56,21 @@ main .ingredients-container .tables {
   gap: 16px;
 }
 
-.table-container {
-  flex: 1;
+.ingredients-container .table-container {
+  min-height: 200px;
   max-height: 200px;
   overflow-y: auto;
   border-radius: 8px;
 }
 
-main .ingredients-container h2 {
+.restock-container .table-container {
+  overflow-y: auto;
+  border-radius: 8px;
+  flex: 1;
+}
+
+main .ingredients-container h2, 
+main .restock-container h2 {
   margin-bottom: 12px;
 }
 
@@ -93,37 +103,60 @@ main .ingredients-container h2 {
   text-align: center;
 }
 
-.modal {
+dialog {
+  display: none;
+  opacity: 0;
   background-color: white;
   border: none;
   outline: none;
   border-radius: 8px;
   padding: 16px 32px;
-
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
+  transition: all 0.3s ease-out;
 }
 
-.modal h2 {
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.15);
+}
+
+dialog.open {
+  display: block;
+}
+
+dialog.showing {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+dialog.closing {
+  transform: translate(-50%, -60%);
+  opacity: 0;
+}
+
+dialog h2 {
   margin-bottom: 12px;
 }
 
 .new-ingredient-form {
+  max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 16px;
 }
 
 .new-ingredient-form .text-field:nth-child(1) {
-  grid-column: span 2;
+  grid-column: span 3;
 }
 
 .new-ingredient-form .text-field input,
 .new-ingredient-form .text-field select,
 .add-stock-form .text-field input,
-.add-stock-form .text-field select {
+.add-stock-form .text-field select,
+.edit-ingredient-form .text-field input,
+.edit-ingredient-form .text-field select {
   width: 100%;
   outline: none;
   border: 1px solid #D9D9D9;
@@ -133,8 +166,8 @@ main .ingredients-container h2 {
 }
 
 .new-ingredient-form .btn-container,
-.add-stock-form .btn-container {
-  margin-top: 8px;
+.add-stock-form .btn-container,
+.edit-ingredient-form .btn-container {
   width: 100%;
   grid-column: 2 / -1;
   display: flex;
@@ -144,37 +177,53 @@ main .ingredients-container h2 {
 }
 
 .new-ingredient-form .btn-container button,
-.add-stock-form .btn-container button {
+.add-stock-form .btn-container button,
+.edit-ingredient-form .btn-container button {
   font-size: 0.9rem;
   padding: 12px;
   border-radius: 8px;
   border: none;
 }
 
-.new-ingredient-form .btn-container button[type='button']:hover {
+.new-ingredient-form .btn-container button[type='button']:hover,
+.add-stock-form .btn-container button[type='button']:hover
+.edit-ingredient-form .btn-container button[type='button']:hover {
   background-color: #c6c2c2;
 }
 
-.new-ingredient-form .btn-container button[type='submit'] {
+.new-ingredient-form .btn-container button[type='submit'],
+.add-stock-form .btn-container button[type='submit']
+.edit-ingredient-form .btn-container button[type='submit'] {
   background-color: var(--primary-color);
   color: white;
 }
 
-.new-ingredient-form .btn-container button[type='submit']:hover {
+.new-ingredient-form .btn-container button[type='submit']:hover,
+.add-stock-form .btn-container button[type='submit']:hover
+.edit-ingredient-form .btn-container button[type='submit']:hover {
   background-color: var(--dark-primary-color);
 }
 
-
-
 .add-stock-form {
-  max-width: 400px;
+  max-width: 600px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 9px;
+  gap: 8px 16px;
 }
 
 .add-stock-form .text-field:nth-child(1) {
   grid-column: span 2;
+}
+
+.edit-ingredient-form {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 16px;
+}
+
+.edit-ingredient-form .text-field:nth-child(1) {
+  grid-column: span 3;
 }
 
 

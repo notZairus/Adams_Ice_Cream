@@ -2,7 +2,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 main > div {
