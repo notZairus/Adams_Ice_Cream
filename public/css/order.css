@@ -65,21 +65,16 @@ main .orders-container h2 {
 }
 
 main .orders-container .table-container {
-  flex: 1;
+  width: 100%;
+  max-height: 470px;
   overflow-y: auto;
   display: flex;
   border-radius: 8px;
 }
 
 main .orders-container .table-container .orders-tbl {
-  flex: 1;
-  border-collapse: collapse;
-}
-
-.orders-tbl {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
+  border-collapse:collapse;
 }
 
 .orders-tbl thead tr {
@@ -99,7 +94,124 @@ main .orders-container .table-container .orders-tbl {
   background-color: #c6c2c2;
 }
 
-.orders-tbl tr th {
+.orders-tbl tr th,
+.orders-tbl tr td {
+  max-height: 40px;
   padding: 8px 12px;
   text-align: center;
+}
+
+
+
+dialog {
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 16px 32px 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  transition: all 0.3s ease-out;
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.15);
+}
+
+dialog.open {
+  display: block;
+}
+
+dialog.showing {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+dialog.closing {
+  transform: translate(-50%, -60%);
+  opacity: 0;
+}
+
+dialog > h2 {
+  margin-bottom: 30px;
+}
+
+dialog .add-order-form {
+  width: 700px;
+  display: flex;
+  gap: 20px;
+}
+
+dialog .add-order-form .customer-info,
+dialog .add-order-form .order-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+dialog .add-order-form .customer-info > div,
+dialog .add-order-form .order-info > div {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.add-order-form .input-field input,
+.add-order-form .input-field select {
+  width: 100%;
+  outline: none;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+.add-order-form .btn-container {
+  padding-top: 12px;
+  width: 100%;
+  grid-column: 2 / -1;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  gap: 8px;
+  flex: 1;
+}
+
+.add-order-form .btn-container button {
+  font-size: 0.9rem;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+}
+
+.add-order-form-form .btn-container button[type='button']:hover {
+  background-color: #c6c2c2;
+}
+
+.add-order-form .btn-container button[type='submit'] {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.add-order-form .btn-container button[type='submit']:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.datetime-field {
+  display: flex;
+  gap: 8px;
+}
+
+.datetime-field input:nth-child(1) {
+  flex: 2;
+}
+
+.datetime-field input:nth-child(2) {
+  flex: 1;
 }

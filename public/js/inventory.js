@@ -1,26 +1,4 @@
 
-function showDialog(modal) {
-  modal.classList.add('open');
-  modal.showModal();
-  requestAnimationFrame(() => {
-    modal.classList.add('showing');
-  });
-}
-
-function closeDialog(modal) {
-  modal.close();
-  modal.classList.remove('showing');
-  modal.classList.add('closing');
-
-  modal.addEventListener('transitionend', () => {
-    modal.classList.remove('open');
-    modal.classList.remove('closing');
-    modal.close();
-  }, {once : true})
-}
-
-
-
 //NEW INGREDIENT
 //NEW INGREDIENT
 //NEW INGREDIENT
@@ -33,9 +11,6 @@ document.getElementById('show_new_ingredient_modal').addEventListener('click', (
 
 document.getElementById('close_new_ingredient_modal').onclick = () => {
   closeDialog(new_ingredient_modal);
-  document.getElementById('ingredient_name').value = "";
-  document.getElementById('ingredient_price').value = "";
-  document.getElementById('ingredient_unit').value = "";
 };
 
 document.querySelector('.new-ingredient-form').onsubmit = (event) => {
@@ -55,9 +30,6 @@ document.getElementById('show_add_stock_modal').addEventListener('click', () => 
 
 document.getElementById('close_add_stock_modal').onclick = () => {
   closeDialog(add_stock_modal);
-  document.getElementById('ingredient_id').value = "";
-  document.getElementById('new_stocks').value = "";
-  document.getElementById('ingredient_unit').value = "";
 };
 
 document.querySelector('.add-stock-form').onsubmit = (event) => {

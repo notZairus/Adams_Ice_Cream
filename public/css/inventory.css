@@ -35,7 +35,7 @@ main .btn-container {
   padding: 16px 0px 0px;
 }
 
-main .btn-container button {
+main > .btn-container button {
   flex: 1;
   background-color: var(--primary-color);
   border-radius: 8px;
@@ -179,6 +179,7 @@ dialog h2 {
 .new-ingredient-form .btn-container button,
 .add-stock-form .btn-container button,
 .edit-ingredient-form .btn-container button {
+  width: 100%;
   font-size: 0.9rem;
   padding: 12px;
   border-radius: 8px;
@@ -192,7 +193,7 @@ dialog h2 {
 }
 
 .new-ingredient-form .btn-container button[type='submit'],
-.add-stock-form .btn-container button[type='submit']
+.add-stock-form .btn-container button[type='submit'],
 .edit-ingredient-form .btn-container button[type='submit'] {
   background-color: var(--primary-color);
   color: white;
