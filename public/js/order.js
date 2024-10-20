@@ -10,7 +10,7 @@ category_btns.forEach((button) => {
     clearOrderTbl();
 
     let orders = await getOrders(target);
-    displayOrders(orders)
+    displayOrders(orders, target);
   })
 })
 
@@ -37,7 +37,7 @@ async function getOrders(target) {
     category: target.textContent
   };
 
-  let response = await fetch('phpAjax/changeCategory.php', {
+  let response = await fetch('orderAjax/changeCategory.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -52,11 +52,14 @@ async function getOrders(target) {
   return await response.json();
 }
 
-function displayOrders(orders) {
+function displayOrders(orders, target) {
   let orders_tbl = document.querySelector('.orders-tbl tbody');
 
   Array.from(orders).forEach(order => {
     let tr = document.createElement('tr');
+
+    let td9 = document.createElement('td');
+    tr.appendChild(td9);
 
     let td1 = document.createElement('td');
     td1.textContent = order.order_id;
@@ -92,9 +95,93 @@ function displayOrders(orders) {
     td8.textContent = time;
     tr.appendChild(td8);
 
+    let operations = document.createElement('div');
+    operations.classList.add('order-operations');
+    td9.appendChild(operations);
+
+    if (target.textContent == 'Upcomming') {
+      let processBtn = document.createElement('button');
+      processBtn.dataset.order_id = order.order_id;
+      processBtn.classList.add('process-order-btn');
+      processBtn.textContent = "Process";
+      operations.appendChild(processBtn);
+
+      attachEvent(processBtn, processOrder);
+      
+      let cancelBtn = document.createElement('button');
+      cancelBtn.textContent = 'Cancel';
+      cancelBtn.dataset.order_id = order.order_id;
+      cancelBtn.classList.add('cancel-order-btn');
+      operations.appendChild(cancelBtn);
+
+
+    } else if (target.textContent == 'Ongoing') {
+      let finishedBtn = document.createElement('button');
+      finishedBtn.classList.add('finish-order-btn');
+      finishedBtn.textContent = "Finish";
+      finishedBtn.dataset.order_id = order.order_id;
+      operations.appendChild(finishedBtn);
+
+      attachEvent(finishedBtn, finishOrder);
+    }
+
+    let tdstatus = document.createElement('td');
+    tdstatus.textContent = order.order_status;
+    tr.appendChild(tdstatus);
+
     orders_tbl.appendChild(tr);
   });
 }
+
+
+let processBtns = document.querySelectorAll('.process-order-btn');
+
+
+//PROCESS ORDER
+Array.from(processBtns).forEach(btn => {
+  btn.addEventListener('click', processOrder);
+});
+
+async function processOrder(event) {
+  let target = event.target;
+
+  document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
+
+  let response = await fetch('orderAjax/process-order.php', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id
+    })
+  })
+}
+
+async function finishOrder(event) {s
+  let target = event.target;
+
+  document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
+
+  let response = await fetch('orderAjax/finish-order.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id
+    })
+  });
+}
+
+
+
+
+
+
+
+
+
 
 
 let add_order_modal = document.getElementById('add_order_modal');

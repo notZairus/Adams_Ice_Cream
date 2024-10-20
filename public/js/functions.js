@@ -23,3 +23,8 @@ function closeDialog(modal) {
     input.value = "";
   })
 }
+
+
+function attachEvent(btn, callback) {
+  btn.addEventListener('click', callback);
+}

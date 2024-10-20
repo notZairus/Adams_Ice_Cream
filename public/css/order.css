@@ -215,3 +215,24 @@ dialog .add-order-form .order-info > div {
 .datetime-field input:nth-child(2) {
   flex: 1;
 }
+
+.order-operations {
+  display: flex;
+  gap: 8px;
+}
+
+.process-order-btn, 
+.finish-order-btn, 
+.cancel-order-btn {
+  margin: 0px 4px;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  bordeR: none;
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+.cancel-order-btn {
+  background-color: rgb(205, 15, 15);
+}

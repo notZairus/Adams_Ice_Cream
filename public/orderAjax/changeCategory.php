@@ -1,6 +1,6 @@
 <?php 
 
-require('core.php');
+require('../requires.php');
 
 $configs = require(base_path('configs.php'));
 
