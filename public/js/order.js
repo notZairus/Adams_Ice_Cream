@@ -1,4 +1,81 @@
 
+let orders;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  orders = await getAllOrders();
+  displayUpcommingOrders(orders);
+})
+
+async function getAllOrders() {
+  let response = await fetch('orderAjax/get-orders.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  let result = response.json();
+
+  return result;
+}
+
+function displayUpcommingOrders(orders) {
+  let orders_tbl = document.querySelector('.orders-tbl tbody');
+  orders.forEach(order => {
+    if (order.order_status == 'Upcomming') {
+      orders_tbl.appendChild(createOrderRow(order))
+    }
+  }) 
+}
+
+function createOrderRow(order) {
+  const tr = document.createElement('tr'); // Create the table row
+
+  // Create the first cell with buttons
+  const tdOperations = document.createElement('td');
+  const divOperations = document.createElement('div');
+  divOperations.classList.add('order-operations');
+  
+  const processBtn = document.createElement('button');
+  processBtn.classList.add('process-order-btn');
+  processBtn.textContent = 'Process';
+  processBtn.dataset.order_id = order.order_id; // Set data attribute for order ID
+  attachEvent(processBtn, processOrder);
+  divOperations.appendChild(processBtn);
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.classList.add('cancel-order-btn');
+  cancelBtn.textContent = 'Cancel';
+  divOperations.appendChild(cancelBtn);
+
+  tdOperations.appendChild(divOperations);
+  tr.appendChild(tdOperations);
+
+  // Create the delivery DateTime
+  const deliveryDateTime = new Date(order.order_delivery_datetime);
+
+  // Helper function to create a table cell with text content
+  function createCell(text) {
+      const td = document.createElement('td');
+      td.textContent = text;
+      return td;
+  }
+
+  // Append the other table cells
+  tr.appendChild(createCell(order.order_id));
+  tr.appendChild(createCell(order.customer_name));
+  tr.appendChild(createCell(order.customer_contact));
+  tr.appendChild(createCell(order.order_size));
+  tr.appendChild(createCell(order.order_flavor));
+  tr.appendChild(createCell(order.order_delivery_address));
+  tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0])); // Delivery date (Y-m-d)
+  tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0])); // Delivery time (H:i:s)
+  tr.appendChild(createCell(order.order_status));
+
+  return tr; // Return the constructed row
+}
+
+
 
 let category_btns = Array.from(document.querySelectorAll('.btn-container .category-btns-container button'));
 
@@ -7,9 +84,10 @@ category_btns.forEach((button) => {
     let target = event.target;
 
     changeCategoryBtn(target);
-    clearOrderTbl();
 
     let orders = await getOrders(target);
+    
+    clearOrderTbl();
     displayOrders(orders, target);
   })
 })
@@ -158,7 +236,7 @@ async function processOrder(event) {
   })
 }
 
-async function finishOrder(event) {s
+async function finishOrder(event) {
   let target = event.target;
 
   document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
