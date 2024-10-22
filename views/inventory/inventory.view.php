@@ -16,9 +16,9 @@
 
 <main>
   <!-- MODALS -->
-  <?php require(base_path('views/inventory/new-ingredient-modal.php')) ?>
-  <?php require(base_path('views/inventory/add-stock-modal.php')) ?>
-  <?php require(base_path('views/inventory/edit-ingredient-modal.php')) ?>
+  <?php require(base_path('views/inventory/modals/new-ingredient-modal.php')) ?>
+  <?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>
+  <?php require(base_path('views/inventory/modals/edit-ingredient-modal.php')) ?>
   
 
   <div class="btn-container">

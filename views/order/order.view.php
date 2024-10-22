@@ -6,21 +6,30 @@
 <link rel="stylesheet" href="./css/order.css">
 
 <!-- SCRIPTS -->
-<script defer src="./js/functions.js"></script>
-<script defer src="./js/order.js"></script>
+<script defer src="/js/functions.js"></script>
+<script defer src="/js/order.js"></script>
 
 
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 
 <!-- MODALS -->
-<?php require(base_path('views/order/add-order-modal.php')) ?>
+<?php require(base_path('views/order/modals/add-order-modal.php')) ?>
 
 <main>
   <div class="btn-container">
-    <button class="add-order-btn" id="show_add_order_modal">
-      Add Order
-    </button>
+    <div>
+      
+      <button class="add-order-btn" id="show_add_order_modal" style="margin-right: 8px;">
+        Add Order
+      </button>
+
+      <a href="/orders/flavors">
+        <button class="add-order-btn" id="show_add_order_modal">
+          Flavors
+        </button>
+      </a>
+    </div>
     <div>
       <div class="category-btns-container">
         <button class="upcomming-btn selected">Upcomming</button>

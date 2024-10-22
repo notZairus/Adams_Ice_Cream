@@ -19,6 +19,8 @@ async function getAllOrders() {
   return result;
 }
 
+
+
 function displayUpcommingOrders(orders) {
   let orders_tbl = document.querySelector('.orders-tbl tbody');
   orders.forEach(order => {
@@ -264,8 +266,30 @@ async function finishOrder(event) {
 
 let add_order_modal = document.getElementById('add_order_modal');
 
-document.getElementById('show_add_order_modal').addEventListener('click', (event) => {
+document.getElementById('show_add_order_modal').addEventListener('click', async (event) => {
   showDialog(add_order_modal);
+
+  let flavors = await (async function () {
+    let res = await fetch('orderAjax/get-flavors.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  
+    let rs = await res.json();
+    return rs;
+  })();
+
+  let flavorSelect = add_order_modal.querySelector('#flavor');
+
+  Array.from(flavors).forEach(flavor => {
+    let option = document.createElement('option');
+    option.value = flavor.flavor_id;
+    option.textContent = flavor.flavor_name;
+
+    flavorSelect.appendChild(option);
+  })
 })
 
 document.getElementById('close_add_order_modal').addEventListener('click', () => {

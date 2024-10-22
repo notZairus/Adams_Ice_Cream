@@ -25,7 +25,7 @@ if (! $customer) {
 
 $db->query('INSERT INTO order_tbl (
   customer_id, 
-  order_flavor, 
+  flavor_id, 
   order_size, 
   order_delivery_address, 
   order_delivery_datetime, 

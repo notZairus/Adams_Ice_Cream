@@ -35,11 +35,6 @@
           <label for="flavor">Flavor: </label>
           <br>
           <select name="flavor" id="flavor" required>
-            <option value="Chocolate">Chocolate</option>
-            <option value="Chocolate">Chocolate</option>
-            <option value="Chocolate">Chocolate</option>
-            <option value="Chocolate">Chocolate</option>
-            <option value="Chocolate">Chocolate</option>
           </select>
         </div>
 
