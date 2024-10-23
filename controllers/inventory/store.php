@@ -15,10 +15,23 @@ if ($_POST['action'] == 'add_ingredient') {
   
 } 
 else if ($_POST['action'] == 'add_stock') {
+
+  $ingredient = $db->query('SELECT ingredient_price, ingredient_name FROM ingredient_tbl WHERE ingredient_id = :id', [
+    'id' => $_POST['ingredient_id']
+  ])->fetch();
+
+  $db->query('INSERT INTO transaction_tbl (transaction_amount, transaction_type, transaction_info, transaction_datetime) VALUES (:amount, :typee, :info, :datetimee)', [
+    'amount' => $ingredient['ingredient_price'] * $_POST['new_stocks'],
+    'typee' => 'Expense',
+    'info' => 'Restock ' . $ingredient['ingredient_name'] . '.',
+    'datetimee' =>  date('Y-m-d H:i:s')
+  ]);
+
   $db->query('UPDATE ingredient_tbl SET ingredient_stock = ingredient_stock + :stock WHERE ingredient_id = :id', [
     'stock' => $_POST['new_stocks'],
     'id' => $_POST['ingredient_id']
   ]);
+
 }
 
 header('Location: /inventory');

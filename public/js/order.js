@@ -294,4 +294,4 @@ document.getElementById('show_add_order_modal').addEventListener('click', async 
 
 document.getElementById('close_add_order_modal').addEventListener('click', () => {
   closeDialog(add_order_modal);
-})
+});

@@ -44,7 +44,7 @@ function createIngredientRow(ingredient) {
   tr.appendChild(d2);
 
   let d3 = document.createElement('td');
-  d3.textContent = ingredient.ingredient_stock;
+  d3.textContent = isNaN(parseInt(ingredient.ingredient_stock)) ? 0 : parseInt(ingredient.ingredient_stock);
   tr.appendChild(d3);
 
   let d4 = document.createElement('td');
