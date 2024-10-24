@@ -55,7 +55,7 @@
             <th>Address</th>
             <th>Delivery Date</th>
             <th>Delivery Time</th>
-            <th>Status</th>
+            <th>Payment</th>
           </tr>
         </thead>
         <tbody>

@@ -5,15 +5,36 @@ $config = require(base_path('configs.php'));
 $db = new Database($config['Database']);
 
 
-// check if there is a sufficient ingredient
+// Calculate required quantity of ingredients based on order size (in gallons)
+$requiredQuantity = $_POST['size'] / 4;
 
-$size = $_POST['size'];
-
+// Fetch all ingredients from the database
 $ingredients = $db->query("SELECT * from ingredient_tbl")->fetchAll();
 
-dd($ingredients);
+// Array to store ingredients with insufficient stock
+$insufficient = [];
 
+// Check if there's enough stock for each ingredient
+foreach($ingredients as $ingredient) {
+  if ($requiredQuantity * $ingredient['ingredient_usage_per_4_gallon n cnbcs'] > $ingredient['ingredient_stock']) {
+    $insufficient[] = [
+      'ingredient' => $ingredient['ingredient_name'],
+      'quantity' => $requiredQuantity * $ingredient['ingredient_usage_per_4_gallons'] - $ingredient['ingredient_stock']
+    ];
+  }
+}
 
+// If there are insufficient ingredients, alert user and redirect to inventory page
+if (! empty($insufficient)) {
+  echo "<script> alert('Insufficient ingredient.') </script>";
+  header("location: /inventory");
+  die();
+}
+
+// Update ingredient stock levels by subtracting required quantities
+$db->query('UPDATE ingredient_tbl SET ingredient_stock = ingredient_stock - (:size * ingredient_usage_per_4_gallons)', [
+  'size' => $requiredQuantity
+]);
 
 // Check if customer exists in database by email
 $customer = $db->query('SELECT * FROM customer_tbl WHERE customer_email = :email', [
@@ -61,7 +82,7 @@ $order = $db->query('SELECT order_tbl.*, flavor_tbl.*, customer_tbl.* FROM order
   ORDER BY order_tbl.order_id DESC LIMIT 1')->fetch();
 
 
-// identify if there is a downpayment
+// Record it on transaction_tbl if there is a downpayment
 if ($_POST['payment'] != 0) {
   // record downpayment
   $db->query('INSERT INTO transaction_tbl (transaction_amount, transaction_type, transaction_info, transaction_datetime) VALUES (:amount, :type, :info, :datetime)', [
@@ -71,22 +92,6 @@ if ($_POST['payment'] != 0) {
     'datetime' => date('Y-m-d H:i:s')
   ]);
 }
-
-// identify the size and deminish the ingredients according to it.
-$size = $order['order_size'];
-
-$db->query('UPDATE ingredient_tbl SET ingredient_amount = ingredient_amount - (:size * (ingredient_usage_per_4_gallons % 4))', [
-  'size' => $size
-]);
-
-
-
-// update the ingredients
-
-// record cost on transaction_tbl;
-
-
-
 
 // Redirect to orders page and stop script execution
 header('Location: /orders');

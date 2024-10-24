@@ -191,6 +191,10 @@ function editIngredient(event) {
   showDialog(edit_ingredient_modal);
 }
 
+document.querySelector('.edit-ingredient-form').onsubmit = (event) => {
+  alert('Ingredient Updated Successfully!');
+}
+
 document.querySelectorAll('.show_edit_ingredient_modal').forEach(btn => {
   btn.addEventListener('click', editIngredient);
 })

@@ -4,12 +4,12 @@ $config = require(base_path('configs.php'));
 
 $db = new Database($config['Database']);
 
-
 $ingredient = $db->query("SELECT * FROM ingredient_tbl WHERE ingredient_id = :id", [
   'id' => $_POST['ingredient_id']
 ])->fetch();
 
 
+//INSERT A TRANSACTION BASED ON THE INCREASE OR DECREASE OF INGREDIENT STOCK
 if ($_POST['ingredient_stock'] < $ingredient['ingredient_stock']) {
 
   $difference = $ingredient['ingredient_stock'] - $_POST['ingredient_stock'];
@@ -22,7 +22,8 @@ if ($_POST['ingredient_stock'] < $ingredient['ingredient_stock']) {
     'datetimee' => date('Y-m-d H:i:s')
   ]);
 
-} else if ($_POST['ingredient_stock'] > $ingredient['ingredient_stock']) {
+} 
+else if ($_POST['ingredient_stock'] > $ingredient['ingredient_stock']) {
 
   $difference = $_POST['ingredient_stock'] - $ingredient['ingredient_stock'];
   $amount = $difference * $ingredient['ingredient_price'];
@@ -36,6 +37,7 @@ if ($_POST['ingredient_stock'] < $ingredient['ingredient_stock']) {
 
 }
 
+//INSERT A TRANSACTION BASED ON THE INCREASE OR DECREASE OF INGREDIENT PRICE
 if ($_POST['ingredient_price'] < $ingredient['ingredient_price']) {
 
   $difference = $ingredient['ingredient_price'] - $_POST['ingredient_price'];
@@ -48,7 +50,8 @@ if ($_POST['ingredient_price'] < $ingredient['ingredient_price']) {
     'datetimee' => date('Y-m-d H:i:s')
   ]);
 
-} else if ($_POST['ingredient_price'] > $ingredient['ingredient_price']) {
+} 
+else if ($_POST['ingredient_price'] > $ingredient['ingredient_price']) {
 
   $difference = $_POST['ingredient_price'] - $ingredient['ingredient_price'];
   $amount = $difference * $ingredient['ingredient_stock'];
@@ -62,14 +65,8 @@ if ($_POST['ingredient_price'] < $ingredient['ingredient_price']) {
 
 }
 
-
-$db->query('UPDATE ingredient_tbl SET
-    ingredient_name = :name,
-    ingredient_price = :price,
-    ingredient_stock = :stock,
-    ingredient_unit = :unit
-  WHERE ingredient_id = :id
-', [
+// UPDATE THE SELECTED INGREDIENT
+$db->query('UPDATE ingredient_tbl SET ingredient_name = :name, ingredient_price = :price, ingredient_stock = :stock, ingredient_unit = :unit WHERE ingredient_id = :id', [
   'name' => $_POST['ingredient_name'],
   'price' => $_POST['ingredient_price'],
   'stock' => $_POST['ingredient_stock'],
@@ -77,7 +74,7 @@ $db->query('UPDATE ingredient_tbl SET
   'id' => $_POST['ingredient_id']
 ]);
 
-
-
-header('Location: /inventory');
-die();
+ob_clean();
+header('Location: /inventory', true, 302);
+header('Location: /inventory', true, 302);
+exit();

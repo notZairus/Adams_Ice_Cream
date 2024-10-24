@@ -3,7 +3,7 @@ let orders;
 
 document.addEventListener('DOMContentLoaded', async () => {
   orders = await getAllOrders();
-  displayUpcommingOrders(orders);
+  displayOrdersByCategory(orders, "Upcomming");
 })
 
 async function getAllOrders() {
@@ -19,36 +19,48 @@ async function getAllOrders() {
   return result;
 }
 
-
-
-function displayUpcommingOrders(orders) {
+function displayOrdersByCategory(orders, category) {
   let orders_tbl = document.querySelector('.orders-tbl tbody');
   orders.forEach(order => {
-    if (order.order_status == 'Upcomming') {
-      orders_tbl.appendChild(createOrderRow(order))
+    if (order.order_status == category) {
+      orders_tbl.appendChild(createOrderRow(order, category))
     }
   }) 
 }
 
-function createOrderRow(order) {
+function createOrderRow(order, category) {
   const tr = document.createElement('tr'); // Create the table row
 
   // Create the first cell with buttons
   const tdOperations = document.createElement('td');
   const divOperations = document.createElement('div');
   divOperations.classList.add('order-operations');
-  
-  const processBtn = document.createElement('button');
-  processBtn.classList.add('process-order-btn');
-  processBtn.textContent = 'Process';
-  processBtn.dataset.order_id = order.order_id; // Set data attribute for order ID
-  attachEvent(processBtn, processOrder);
-  divOperations.appendChild(processBtn);
 
-  const cancelBtn = document.createElement('button');
-  cancelBtn.classList.add('cancel-order-btn');
-  cancelBtn.textContent = 'Cancel';
-  divOperations.appendChild(cancelBtn);
+
+  if (category == 'Upcomming') {
+    let processBtn = document.createElement('button');
+    processBtn.dataset.order_id = order.order_id;
+    processBtn.classList.add('process-order-btn');
+    processBtn.textContent = "Process";
+    divOperations.appendChild(processBtn);
+
+    attachEvent(processBtn, processOrder);
+    
+    let cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.dataset.order_id = order.order_id;
+    cancelBtn.classList.add('cancel-order-btn');
+    divOperations.appendChild(cancelBtn);
+
+  } else if (category == 'Ongoing') {
+    let finishedBtn = document.createElement('button');
+    finishedBtn.classList.add('finish-order-btn');
+    finishedBtn.textContent = "Finish";
+    finishedBtn.dataset.order_id = order.order_id;
+    divOperations.appendChild(finishedBtn);
+
+    attachEvent(finishedBtn, finishOrder);
+  }
 
   tdOperations.appendChild(divOperations);
   tr.appendChild(tdOperations);
@@ -72,7 +84,8 @@ function createOrderRow(order) {
   tr.appendChild(createCell(order.order_delivery_address));
   tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0])); // Delivery date (Y-m-d)
   tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0])); // Delivery time (H:i:s)
-
+  tr.appendChild(createCell(`₱${order.order_payment}/₱${order.order_price}`));
+  
   return tr; // Return the constructed row
 }
 
@@ -81,20 +94,17 @@ function createOrderRow(order) {
 let category_btns = Array.from(document.querySelectorAll('.btn-container .category-btns-container button'));
 
 category_btns.forEach((button) => {
-  button.addEventListener('click', async (event) => {
+  button.addEventListener('click', (event) => {
     let target = event.target;
 
-    changeCategoryBtn(target);
-
-    let orders = await getOrders(target);
+    changeCategoryBtnStyle(target);
     
     clearOrderTbl();
-    displayOrders(orders, target);
+    displayOrdersByCategory(orders, target.textContent);
   })
 })
 
-
-function changeCategoryBtn(target) {
+function changeCategoryBtnStyle(target) {
   category_btns.forEach(btn => {
     btn.classList.remove('selected');
   })
@@ -111,118 +121,12 @@ function clearOrderTbl() {
   }
 }
 
-async function getOrders(target) {
-  let data = {
-    category: target.textContent
-  };
-
-  let response = await fetch('orderAjax/changeCategory.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  }); 
-
-  if (! response.ok) {
-    alert('Response is not okay!');
-  }
-
-  return await response.json();
-}
-
-function displayOrders(orders, target) {
-  let orders_tbl = document.querySelector('.orders-tbl tbody');
-
-  Array.from(orders).forEach(order => {
-    let tr = document.createElement('tr');
-
-    let td9 = document.createElement('td');
-    tr.appendChild(td9);
-
-    let td1 = document.createElement('td');
-    td1.textContent = order.order_id;
-    tr.appendChild(td1);
-    
-    let td2 = document.createElement('td');
-    td2.textContent = order.customer_name;
-    tr.appendChild(td2);
-
-    let td3 = document.createElement('td');
-    td3.textContent = order.customer_contact;
-    tr.appendChild(td3);
-
-    let td4 = document.createElement('td');
-    td4.textContent = order.order_size;
-    tr.appendChild(td4);
-
-    let td5 = document.createElement('td');
-    td5.textContent = order.order_flavor;
-    tr.appendChild(td5);
-
-    let td6 = document.createElement('td');
-    td6.textContent = order.order_delivery_address;
-    tr.appendChild(td6);
-
-    let [date, time] = order.order_delivery_datetime.split(" ");
-
-    let td7 = document.createElement('td');
-    td7.textContent = date;
-    tr.appendChild(td7);
-
-    let td8 = document.createElement('td');
-    td8.textContent = time;
-    tr.appendChild(td8);
-
-    let operations = document.createElement('div');
-    operations.classList.add('order-operations');
-    td9.appendChild(operations);
-
-    if (target.textContent == 'Upcomming') {
-      let processBtn = document.createElement('button');
-      processBtn.dataset.order_id = order.order_id;
-      processBtn.classList.add('process-order-btn');
-      processBtn.textContent = "Process";
-      operations.appendChild(processBtn);
-
-      attachEvent(processBtn, processOrder);
-      
-      let cancelBtn = document.createElement('button');
-      cancelBtn.textContent = 'Cancel';
-      cancelBtn.dataset.order_id = order.order_id;
-      cancelBtn.classList.add('cancel-order-btn');
-      operations.appendChild(cancelBtn);
-
-
-    } else if (target.textContent == 'Ongoing') {
-      let finishedBtn = document.createElement('button');
-      finishedBtn.classList.add('finish-order-btn');
-      finishedBtn.textContent = "Finish";
-      finishedBtn.dataset.order_id = order.order_id;
-      operations.appendChild(finishedBtn);
-
-      attachEvent(finishedBtn, finishOrder);
-    }
-
-    let tdstatus = document.createElement('td');
-    tdstatus.textContent = order.order_status;
-    tr.appendChild(tdstatus);
-
-    orders_tbl.appendChild(tr);
-  });
-}
-
-
-let processBtns = document.querySelectorAll('.process-order-btn');
 
 
 //PROCESS ORDER
-Array.from(processBtns).forEach(btn => {
-  btn.addEventListener('click', processOrder);
-});
-
 async function processOrder(event) {
   let target = event.target;
+  let currentCategory = document.querySelector('.category-btns-container .selected').textContent;
 
   document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
 
@@ -235,10 +139,14 @@ async function processOrder(event) {
       order_id: target.dataset.order_id
     })
   })
+
+  orders = await getAllOrders();
 }
 
+//FINISH ORDER
 async function finishOrder(event) {
   let target = event.target;
+  let currentCategory = document.querySelector('.category-btns-container .selected').textContent;
 
   document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
 
@@ -251,6 +159,8 @@ async function finishOrder(event) {
       order_id: target.dataset.order_id
     })
   });
+
+  orders = await getAllOrders();
 }
 
 
