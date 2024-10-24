@@ -23,9 +23,3 @@ $db->query('DELETE FROM ingredient_tbl WHERE ingredient_id = :id', [
 
 header('Location: /inventory');
 die();
-
-
-
-// SELECT SUM(transaction_type //i want this to be the transaction_type = EXPENSES) - SUM(transaction_type //i want this to be the transaction_type = REDUCE EXPENSES) as Expenses FROM transaction_tbl;
-
-// look at the comment //
