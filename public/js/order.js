@@ -68,11 +68,10 @@ function createOrderRow(order) {
   tr.appendChild(createCell(order.customer_name));
   tr.appendChild(createCell(order.customer_contact));
   tr.appendChild(createCell(order.order_size));
-  tr.appendChild(createCell(order.order_flavor));
+  tr.appendChild(createCell(order.flavor_name));
   tr.appendChild(createCell(order.order_delivery_address));
   tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0])); // Delivery date (Y-m-d)
   tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0])); // Delivery time (H:i:s)
-  tr.appendChild(createCell(order.order_status));
 
   return tr; // Return the constructed row
 }
@@ -282,6 +281,10 @@ document.getElementById('show_add_order_modal').addEventListener('click', async 
   })();
 
   let flavorSelect = add_order_modal.querySelector('#flavor');
+
+  while(flavorSelect.firstChild) {
+    flavorSelect.removeChild(flavorSelect.firstChild);
+  }
 
   Array.from(flavors).forEach(flavor => {
     let option = document.createElement('option');

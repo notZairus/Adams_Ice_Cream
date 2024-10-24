@@ -6,11 +6,12 @@ $db = new Database($config['Database']);
 
 if ($_POST['action'] == 'add_ingredient') {
 
-  $db->query('INSERT INTO ingredient_tbl (ingredient_name, ingredient_price,ingredient_unit,ingredient_reminder) VALUES (:ingredient_name, :ingredient_price,:ingredient_unit,:ingredient_reminder)', [
+  $db->query('INSERT INTO ingredient_tbl (ingredient_name, ingredient_price,ingredient_unit,ingredient_reminder, ingredient_usage_per_4_gallons) VALUES (:ingredient_name, :ingredient_price,:ingredient_unit,:ingredient_reminder, :ingredient_usage_per_4_gallons)', [
     'ingredient_name' => $_POST['ingredient_name'],
     'ingredient_price' => $_POST['ingredient_price'],
     'ingredient_unit' => $_POST['ingredient_unit'],
-    'ingredient_reminder' => $_POST['ingredient_reminder']
+    'ingredient_reminder' => $_POST['ingredient_reminder'],
+    'ingredient_usage_per_4_gallons' => $_POST['ingredient_usage_per_4_gallons'],
   ]);
   
 } 

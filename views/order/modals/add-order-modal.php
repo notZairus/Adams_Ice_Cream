@@ -62,6 +62,11 @@
           </div>
         </div>
 
+        <div class="input-field" style="margin-top: 12px;">
+          <label for="payment">Payment: </label>
+          <br>  
+          <input type="number" id="payment" name="payment" pattern="/^\d+$/" min="0" required>
+        </div>
 
         <div class="btn-container">
           <button type="button" id="close_add_order_modal">Cancel</button>

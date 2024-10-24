@@ -17,15 +17,15 @@ class Database {
   }
 
   public function find() {
-    return $this->cmd->fetch();
+    return $this->cmd->fetch(PDO::FETCH_ASSOC);
   }
 
   public function fetch() {
-    return $this->cmd->fetch();
+    return $this->cmd->fetch(PDO::FETCH_ASSOC);
   }
 
   public function fetchOrFail() {
-    $result = $this->cmd->fetch();
+    $result = $this->cmd->fetch(PDO::FETCH_ASSOC);
 
     if (! $result) {
       //abort

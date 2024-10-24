@@ -48,15 +48,19 @@ function createIngredientRow(ingredient) {
   tr.appendChild(d3);
 
   let d4 = document.createElement('td');
-  d4.textContent = ingredient.ingredient_price;
+  d4.textContent = "₱" + ingredient.ingredient_price;
   tr.appendChild(d4);
 
   let d5 = document.createElement('td');
+  d5.textContent = ingredient.ingredient_usage_per_4_gallons;
   tr.appendChild(d5);
+
+  let d6 = document.createElement('td');
+  tr.appendChild(d6);
 
   let div = document.createElement('div');
   div.classList.add('ingredient-operation-container');
-  d5.appendChild(div);
+  d6.appendChild(div);
 
   let editBtn = document.createElement('button');
   editBtn.classList.add('edit-ingredient-btn');
@@ -107,8 +111,12 @@ function displayToRestocks(ingredients) {
       tr.appendChild(nameCell);
 
       const stockCell = document.createElement('td');
-      stockCell.textContent = ingredient.ingredient_stock;
+      stockCell.textContent = isNaN(parseInt(ingredient.ingredient_stock)) ? 0 : parseInt(ingredient.ingredient_stock);
       tr.appendChild(stockCell);
+
+      const reminderCell = document.createElement('td');
+      reminderCell.textContent = ingredient.ingredient_reminder;
+      tr.appendChild(reminderCell);
 
       toRestock.appendChild(tr);
     }

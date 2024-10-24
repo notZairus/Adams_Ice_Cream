@@ -26,6 +26,11 @@
       </select>
     </div>
 
+    <div class="text-field">
+      <label for="ingredient_usage_per_4_gallons">4gals usage:</label><br>
+      <input type="number" name="ingredient_usage_per_4_gallons" id="ingredient_usage_per_4_gallons" required step="0.1" min="0">
+    </div>
+
     <input type="hidden" name="ingredient_id" id="ingredient_id" value="add_ingredient">
     <input type="hidden" name="_method" value="PATCH">
 

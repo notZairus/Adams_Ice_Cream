@@ -37,7 +37,8 @@
               <th>IID</th>
               <th>Name</th>
               <th>Stock (kg)</th>
-              <th>Price (per kg)</th>
+              <th>Price (kg)</th>
+              <th>Usage per 4 gallons (kg)</th>
               <th></th>
             </tr>
           </thead>
@@ -57,6 +58,7 @@
               <th>Name</th>
               <th>Stock (pc)</th>
               <th>Price (per pc)</th>
+              <th>Usage per 4 gallons (pc)</th>
               <th></th>
             </tr>
           </thead>
@@ -79,7 +81,8 @@
           <tr>
             <th>IID</th>
             <th>Name</th>
-            <th>Stock (kg)</th>
+            <th>Stock</th>
+            <th>Minimum Stock</th>
           </tr>
         </thead>
         <tbody class="to-restock">

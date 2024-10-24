@@ -143,12 +143,12 @@ dialog h2 {
 .new-ingredient-form {
   max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px 16px;
 }
 
 .new-ingredient-form .text-field:nth-child(1) {
-  grid-column: span 3;
+  grid-column: span 4;
 }
 
 .new-ingredient-form .text-field input,
@@ -219,12 +219,12 @@ dialog h2 {
 .edit-ingredient-form {
   max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px 16px;
 }
 
 .edit-ingredient-form .text-field:nth-child(1) {
-  grid-column: span 3;
+  grid-column: span 4;
 }
 
 
