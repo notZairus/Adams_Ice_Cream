@@ -20,6 +20,8 @@ $router->patch('/inventory', './controllers/inventory/update.php');
 //ORDERS
 $router->get('/orders', './controllers/order/index.php');
 $router->post('/orders', './controllers/order/store.php');
+$router->patch('/orders', './controllers/order/update.php');
+
 
 //ORDERS?FLAVORS
 $router->get('/orders/flavors', './controllers/order/flavor/index.php');

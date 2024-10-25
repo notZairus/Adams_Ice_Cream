@@ -1,239 +1,261 @@
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
+    main>div:nth-child(1) {
+      width: 100%;
+      min-height: 60px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: end;
+      padding: 0px 8px 0px 0px;
+    }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    main .orders-container {
+      flex: 1;
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px 20px;
+      color: var(--primary-color);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
 
-main>div:nth-child(1) {
-  width: 100%;
-  min-height: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: end;
-  padding: 0px 8px 0px 0px;
-}
+    .btn-container .add-order-btn {
+      background-color: var(--primary-color);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
 
-main .orders-container {
-  background-color: black;
-  flex: 1;
-  background-color: white;
-  border-radius: 8px;
-  padding: 10px 20px;
-  color: var(--primary-color);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-}
+    .btn-container .category-btns-container {
+      display: flex;
+      gap: 16px;
+    }
 
-.btn-container .add-order-btn {
-  background-color: var(--primary-color);
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  padding: 12px 20px;
-  border-radius: 8px;
-}
+    .btn-container .category-btns-container button {
+      background-color: transparent;
+      border: none;
+      border-bottom: 3px solid #24304136;
+      color: #24304136;
+      padding: 4px;
+    }
 
-.btn-container .category-btns-container {
-  display: flex;
-  gap: 16px;
-}
+    .btn-container .category-btns-container button:hover {
+      border-bottom: 3px solid #24304186;
+      color: #24304186;
+    }
 
-.btn-container .category-btns-container button {
-  background-color: transparent;
-  border: none;
-  border-bottom: 3px solid #24304136;
-  color: #24304136;
-  padding: 4px;
-}
+    .btn-container .category-btns-container button.selected {
+      border-bottom-color: var(--primary-color);
+      color: var(--primary-color);
+    }
 
-.btn-container .category-btns-container button:hover {
-  border-bottom: 3px solid #24304186;
-  color: #24304186;
-}
+    main .orders-container h2 {
+      margin-bottom: 12px;
+    }
 
-.btn-container .category-btns-container button.selected {
-  border-bottom-color: var(--primary-color);
-  color: var(--primary-color);
-}
+    main .orders-container .table-container {
+      width: 100%;
+      max-height: 470px;
+      overflow-y: auto;
+      display: flex;
+      border-radius: 8px;
+    }
 
-main .orders-container h2 {
-  margin-bottom: 12px;
-}
+    main .orders-container .table-container .orders-tbl {
+      width: 100%;
+      border-collapse: collapse;
+    }
 
-main .orders-container .table-container {
-  width: 100%;
-  max-height: 470px;
-  overflow-y: auto;
-  display: flex;
-  border-radius: 8px;
-}
+    .orders-tbl thead tr {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-main .orders-container .table-container .orders-tbl {
-  width: 100%;
-  border-collapse:collapse;
-}
+    .orders-tbl thead tr:hover {
+      background-color: var(--dark-primary-color);
+    }
 
-.orders-tbl thead tr {
-  background-color: var(--primary-color);
-  color: white;
-}
+    .orders-tbl tbody tr:nth-child(even) {
+      background-color: #f1f1f1;
+    }
 
-.orders-tbl thead tr:hover {
-  background-color: var(--dark-primary-color);
-}
+    .orders-tbl tbody tr:hover {
+      background-color: #c6c2c2;
+    }
 
-.orders-tbl tbody tr:nth-child(even) {
-  background-color: #f1f1f1;
-}
+    .orders-tbl tr th,
+    .orders-tbl tr td {
+      max-height: 40px;
+      padding: 8px 12px;
+      text-align: center;
+    }
 
-.orders-tbl tbody tr:hover {
-  background-color: #c6c2c2;
-}
+    dialog {
+      background-color: white;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      padding: 16px 32px 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      transition: all 0.3s ease-out;
+      display: none;
+    }
 
-.orders-tbl tr th,
-.orders-tbl tr td {
-  max-height: 40px;
-  padding: 8px 12px;
-  text-align: center;
-}
+    dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
 
+    dialog.open {
+      display: block;
+    }
 
+    dialog.showing {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
 
-dialog {
-  background-color: white;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  padding: 16px 32px 16px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  transition: all 0.3s ease-out;
-  display: none;
-}
+    dialog.closing {
+      transform: translate(-50%, -60%);
+      opacity: 0;
+    }
 
-dialog::backdrop {
-  background-color: rgb(0, 0, 0, 0.15);
-}
+    dialog > h2 {
+      margin-bottom: 30px;
+    }
 
-dialog.open {
-  display: block;
-}
+    dialog .add-order-form {
+      width: 700px;
+      display: flex;
+      gap: 20px;
+    }
 
-dialog.showing {
-  transform: translate(-50%, -50%);
-  opacity: 1;
-}
+    dialog .add-order-form .customer-info,
+    dialog .add-order-form .order-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
-dialog.closing {
-  transform: translate(-50%, -60%);
-  opacity: 0;
-}
+    dialog .add-order-form .customer-info > div,
+    dialog .add-order-form .order-info > div {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
 
-dialog > h2 {
-  margin-bottom: 30px;
-}
+    .update_payment_modal > h2 {
+      margin-bottom: 12px;
+    }
 
-dialog .add-order-form {
-  width: 700px;
-  display: flex;
-  gap: 20px;
-}
+    .add-order-form .input-field input,
+    .add-order-form .input-field select,
+    .update-payment-form .input-field input {
+      width: 100%;
+      outline: none;
+      border: 1px solid #D9D9D9;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
 
-dialog .add-order-form .customer-info,
-dialog .add-order-form .order-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+    .add-order-form .btn-container,
+    .update-payment-form .btn-container {
+      padding-top: 12px;
+      width: 100%;
+      grid-column: 2 / -1;
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      gap: 8px;
+      flex: 1;
+    }
 
-dialog .add-order-form .customer-info > div,
-dialog .add-order-form .order-info > div {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1;
-}
+    .add-order-form .btn-container button,
+    .update-payment-form .btn-container button {
+      font-size: 0.9rem;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+    }
 
-.add-order-form .input-field input,
-.add-order-form .input-field select {
-  width: 100%;
-  outline: none;
-  border: 1px solid #D9D9D9;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  padding: 8px 12px;
-}
+    .add-order-form .btn-container button[type='button']:hover,
+    .update-payment-form .btn-container button:hover {
+      background-color: #c6c2c2;
+    }
 
-.add-order-form .btn-container {
-  padding-top: 12px;
-  width: 100%;
-  grid-column: 2 / -1;
-  display: flex;
-  justify-content: end;
-  align-items: end;
-  gap: 8px;
-  flex: 1;
-}
+    .add-order-form .btn-container button[type='submit'],
+    .update-payment-form .btn-container button[type='submit'] {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-.add-order-form .btn-container button {
-  font-size: 0.9rem;
-  padding: 12px;
-  width: 100%;
-  border-radius: 8px;
-  border: none;
-}
+    .add-order-form .btn-container button[type='submit']:hover,
+    .update-payment-form .btn-container button[type='submit']:hover {
+      background-color: var(--dark-primary-color);
+    }
 
-.add-order-form-form .btn-container button[type='button']:hover {
-  background-color: #c6c2c2;
-}
+    .datetime-field {
+      display: flex;
+      gap: 8px;
+    }
 
-.add-order-form .btn-container button[type='submit'] {
-  background-color: var(--primary-color);
-  color: white;
-}
+    .datetime-field input:nth-child(1) {
+      flex: 2;
+    }
 
-.add-order-form .btn-container button[type='submit']:hover {
-  background-color: var(--dark-primary-color);
-}
+    .datetime-field input:nth-child(2) {
+      flex: 1;
+    }
 
-.datetime-field {
-  display: flex;
-  gap: 8px;
-}
+    .order-operations {
+      display: flex;
+      gap: 8px;
+    }
 
-.datetime-field input:nth-child(1) {
-  flex: 2;
-}
+    .process-order-btn, 
+    .finish-order-btn, 
+    .reactivate-order-btn,
+    .payment-order-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
 
-.datetime-field input:nth-child(2) {
-  flex: 1;
-}
+    .process-order-btn:hover, 
+    .finish-order-btn:hover, 
+    .reactivate-order-btn:hover,
+    .payment-order-btn:hover {
+      background-color: var(--dark-primary-color);
+    }
 
-.order-operations {
-  display: flex;
-  gap: 8px;
-}
+    .cancel-order-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
 
-.process-order-btn, 
-.finish-order-btn, 
-.cancel-order-btn, 
-.reactivate-order-btn {
-  margin: 0px 4px;
-  background-color: var(--primary-color);
-  border-radius: 4px;
-  bordeR: none;
-  color: white;
-  padding: 8px 12px;
-  font-size: 0.9rem;
-}
-
-.cancel-order-btn {
-  background-color: rgb(205, 15, 15);
-}
+    .cancel-order-btn:hover {
+      background-color: #da190b;
+    }

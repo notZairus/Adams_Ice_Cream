@@ -15,6 +15,8 @@
 
 <!-- MODALS -->
 <?php require(base_path('views/order/modals/add-order-modal.php')) ?>
+<?php require(base_path('views/order/modals/update-payment-modal.php'))  ?>
+
 
 <main>
   <div class="btn-container">
