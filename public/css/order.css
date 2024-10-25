@@ -223,7 +223,8 @@ dialog .add-order-form .order-info > div {
 
 .process-order-btn, 
 .finish-order-btn, 
-.cancel-order-btn {
+.cancel-order-btn, 
+.reactivate-order-btn {
   margin: 0px 4px;
   background-color: var(--primary-color);
   border-radius: 4px;

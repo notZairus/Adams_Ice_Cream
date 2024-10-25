@@ -13,3 +13,6 @@ $db->query('UPDATE order_tbl SET order_status = :statuss WHERE order_id = :id', 
   'statuss' => 'Ongoing',
   'id' => $data['order_id']
 ]);
+
+
+echo json_encode(['success' => true, 'status' => '202']);

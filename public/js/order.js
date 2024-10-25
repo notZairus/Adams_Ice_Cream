@@ -49,8 +49,11 @@ function createOrderRow(order, category) {
     let cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.dataset.order_id = order.order_id;
+    cancelBtn.dataset.order_size = order.order_size;
     cancelBtn.classList.add('cancel-order-btn');
     divOperations.appendChild(cancelBtn);
+
+    attachEvent(cancelBtn, cancelOrder);
 
   } else if (category == 'Ongoing') {
     let finishedBtn = document.createElement('button');
@@ -60,6 +63,16 @@ function createOrderRow(order, category) {
     divOperations.appendChild(finishedBtn);
 
     attachEvent(finishedBtn, finishOrder);
+
+  } else if (category == 'Cancelled') {
+    let reactivateBtn = document.createElement('button');
+    reactivateBtn.classList.add('reactivate-order-btn');
+    reactivateBtn.textContent = "Reactivate";
+    reactivateBtn.dataset.order_id = order.order_id;
+    divOperations.appendChild(reactivateBtn);
+
+    attachEvent(reactivateBtn, reactivateOrder);
+  
   }
 
   tdOperations.appendChild(divOperations);
@@ -94,12 +107,13 @@ function createOrderRow(order, category) {
 let category_btns = Array.from(document.querySelectorAll('.btn-container .category-btns-container button'));
 
 category_btns.forEach((button) => {
-  button.addEventListener('click', (event) => {
+  button.addEventListener('click', async (event) => {
     let target = event.target;
 
     changeCategoryBtnStyle(target);
     
     clearOrderTbl();
+    orders = await getAllOrders();
     displayOrdersByCategory(orders, target.textContent);
   })
 })
@@ -122,11 +136,10 @@ function clearOrderTbl() {
 }
 
 
+// ORDER OPERATIONS
 
-//PROCESS ORDER
 async function processOrder(event) {
   let target = event.target;
-  let currentCategory = document.querySelector('.category-btns-container .selected').textContent;
 
   document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
 
@@ -140,10 +153,49 @@ async function processOrder(event) {
     })
   })
 
-  orders = await getAllOrders();
+  let result = await response.json();
+  console.log(result);
 }
 
-//FINISH ORDER
+async function cancelOrder(event) {
+  let target = event.target;
+
+  document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
+
+  let response = await fetch('orderAjax/cancel-order.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id,
+      size: target.dataset.order_size
+    })
+  });
+
+  let result = await response.json();
+  console.log(result);
+}
+
+async function reactivateOrder(event) {
+  let target = event.target;
+
+  document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
+
+  let response = await fetch('orderAjax/reactivate-order.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id
+    })
+  });
+
+  let result = await response.json();
+  console.log(result);
+}
+
 async function finishOrder(event) {
   let target = event.target;
   let currentCategory = document.querySelector('.category-btns-container .selected').textContent;
@@ -159,8 +211,9 @@ async function finishOrder(event) {
       order_id: target.dataset.order_id
     })
   });
-
-  orders = await getAllOrders();
+  
+  let result = await response.json();
+  console.log(result);
 }
 
 
