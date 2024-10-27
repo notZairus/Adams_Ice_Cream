@@ -26,7 +26,7 @@
     <button id="show_add_stock_modal">Add Stock</button>
   </div>
 
-  <div class="ingredients-container">
+  <div class="ingredients-container grid-item">
     <h2>Ingredients</h2>
     
     <div class="tables">
@@ -72,7 +72,7 @@
     </div>          
   </div>
 
-  <div class="restock-container">
+  <div class="restock-container grid-item">
     <h2>Ingredient to Restock</h2>
 
     <div class="table-container">

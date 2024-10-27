@@ -9,11 +9,53 @@
 
 <main>
 
-  <div class="container1"></div>
-  <div class="container2"></div>
-  <div class="container3"></div>
-  <div class="container4"></div>
-  <div class="container5"></div>
+  <div class="grid-item">
+    <h1>
+      Sales Stats Overview
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+      Order Status Distributio
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+      Sales Stats Overview
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+      Top Selling Flavors
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+    Recent Transactions
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+    Low Stock Alert
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+    Sales Performance Charts
+    </h1>
+  </div>
+
+  <div class="grid-item">
+    <h1>
+    Quick Actions
+    </h1>
+  </div>
 
 </main>
 

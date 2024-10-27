@@ -41,7 +41,8 @@
       </div>
     </div>
   </div>
-  <div class="orders-container">
+
+  <div class="orders-container grid-item">
     <h2 class="category-h2">Upcomming Orders</h2>
 
     <div class="table-container">

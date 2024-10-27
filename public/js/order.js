@@ -59,7 +59,10 @@
       finishedBtn.dataset.order_id = order.order_id;
       divOperations.appendChild(finishedBtn);
 
-      paymentBtn.onclick = () => openUpdatePaymentModal(order.order_id);
+      paymentBtn.addEventListener('click', (event) => {
+        openUpdatePaymentModal(order.order_id, event.target);
+      });
+
       attachEvent(finishedBtn, finishOrder);
     } else if (category == 'Cancelled') {
       let reactivateBtn = document.createElement('button');
@@ -130,6 +133,10 @@
   }
 
 
+  // ORDER OPERATIONS
+  // ORDER OPERATIONS
+  // ORDER OPERATIONS
+  
   async function processOrder(event) {
     const target = event.target;
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
@@ -181,6 +188,16 @@
 
   async function finishOrder(event) {
     const target = event.target;
+
+    let balanceText = target.closest('tr').querySelector('td:nth-child(10)').textContent;
+    let [payment, price] = balanceText.split('/');
+    let remainingBalance = parseInt(price.replace('₱', '')) - parseInt(payment.replace('₱', ''));
+
+    if (remainingBalance != 0) {
+      alert(`Order #${target.dataset.order_id} requires full payment of ₱${remainingBalance} before completion.`)
+      return;
+    }
+
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('orderAjax/finish-order.php', {
       method: 'POST',
@@ -191,13 +208,11 @@
         order_id: target.dataset.order_id
       })
     });
+
     const result = await response.json();
     console.log(result);
   }
 
-  async function handlePayment(event) {
-    const target = event.target;
-  }
 
   const add_order_modal = document.getElementById('add_order_modal');
 
@@ -233,10 +248,22 @@
 
   const update_payment_modal = document.getElementById('update_payment_modal');
 
-  function openUpdatePaymentModal(order_id) {
+  function openUpdatePaymentModal(order_id, target) {
+
+    let balanceText = target.closest('tr').querySelector('td:nth-child(10)').textContent;
+    let [payment, price] = balanceText.split('/');
+    let balance = parseInt(price.replace('₱', '')) - parseInt(payment.replace('₱', ''));
+
+    if (balance  <= 0) {
+      alert(`Order #${order_id} is fully paid. No additional payment needed.`);
+      return;
+    }
+
     showDialog(update_payment_modal);
+
     const update_payment_form = update_payment_modal.querySelector('form');
     update_payment_form.querySelector('input[name="order_id"]').value = order_id;
+    update_payment_form.querySelector('input[name="amount"]').max = balance;
   }
 
   document.getElementById('close_update_payment_modal').addEventListener('click', () => {

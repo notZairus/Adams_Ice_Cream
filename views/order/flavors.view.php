@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="flavor-container">
+  <div class="flavor-container grid-item">
     <h2 class="category-h2">Upcomming Orders</h2>
 
     <div class="table-container">
