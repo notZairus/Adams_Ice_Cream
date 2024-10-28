@@ -5,56 +5,27 @@
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/dashboard.css">
 
+<!-- SCRIPTS -->
+<script defer src="./js/dashboard.js"></script>
+
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 <main>
 
   <div class="grid-item">
-    <h1>
-      Sales Stats Overview
-    </h1>
+    <h1>Sales Stats Overview</h1>
   </div>
 
   <div class="grid-item">
-    <h1>
-      Order Status Distributio
-    </h1>
+    <h1>Quick Controls</h1>
   </div>
 
   <div class="grid-item">
-    <h1>
-      Sales Stats Overview
-    </h1>
+    <h1>Top Selling Ice Cream Flavors</h1>
   </div>
 
   <div class="grid-item">
-    <h1>
-      Top Selling Flavors
-    </h1>
-  </div>
-
-  <div class="grid-item">
-    <h1>
-    Recent Transactions
-    </h1>
-  </div>
-
-  <div class="grid-item">
-    <h1>
-    Low Stock Alert
-    </h1>
-  </div>
-
-  <div class="grid-item">
-    <h1>
-    Sales Performance Charts
-    </h1>
-  </div>
-
-  <div class="grid-item">
-    <h1>
-    Quick Actions
-    </h1>
+    <h1>Ingredients That Need Restock</h1>
   </div>
 
 </main>

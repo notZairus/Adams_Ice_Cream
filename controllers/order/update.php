@@ -22,3 +22,4 @@ $db->query('INSERT INTO transaction_tbl (transaction_info, transaction_amount, t
 
 //redirect back to orders
 header('Location: /orders');
+header('Location: /orders');

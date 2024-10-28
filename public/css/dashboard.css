@@ -4,8 +4,8 @@ main {
   max-width: 100%;
   overflow-y: auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr));
-  grid-auto-rows: 350px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 400px;
 }
 
 main .grid-item {
@@ -15,42 +15,18 @@ main .grid-item {
   background-color: white;
 }
 
-/* Today's Orders & Revenue */
 main .grid-item:nth-child(1) {
-  grid-column: span 4;
+  grid-column: 1 / 4;
 }
 
-/* Order Status Distribution */
 main .grid-item:nth-child(2) {
-  grid-column: span 2;
+  grid-column: 4 / 6;
 }
 
-/* Sales Stats Overview */
 main .grid-item:nth-child(3) {
-  grid-column: span 2;
+  grid-column: -4 / -6;
 }
 
-/* Top Selling Flavors */
 main .grid-item:nth-child(4) {
-  grid-column: span 2;
-}
-
-/* Recent Transactions */
-main .grid-item:nth-child(5) {
-  grid-column: span 1;
-}
-
-/* Low Stock Alert */
-main .grid-item:nth-child(6) {
-  grid-column: span 1;
-}
-
-/* Sales Performance Charts */
-main .grid-item:nth-child(7) {
-  grid-column: span 2;
-}
-
-/* Quick Actions */
-main .grid-item:nth-child(8) {
-  grid-column: span 2;
+  grid-column: -1 / -4;
 }
