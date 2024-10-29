@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 });
 
 
-
 async function getSales() {
   let response = await fetch('dashboardAjax/get-sales.php', {
     method: 'POST',
@@ -18,4 +17,10 @@ async function getSales() {
 
   let result = await response.json();
   return result;
+}
+
+
+function displayChart() {
+  const myChart = document.getElementById('myChart');
+  const ctx = myChart.getContext('2d');
 }

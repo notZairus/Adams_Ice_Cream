@@ -30,11 +30,11 @@ $db->query('UPDATE order_tbl SET order_status = "Cancelled" WHERE order_id = :or
 // check if there is a downpayment
 // if there is a downpayment, make a new record about the refund on the transaction_tbl
 if ($order['order_payment'] > 0) {
-  $db->query('INSERT INTO transaction_tbl (transaction_info, transaction_amount, transaction_type, transaction_datetime) VALUES (:info, :amount, :type, :datetime)', [
-    'info' => 'Cancellation of order_id: ' . $order['order_id'] . '.',
-    'amount' => $order['order_payment'],
+  $db->query('INSERT INTO transaction_tbl (income_amount, transaction_type, transaction_datetime, order_id) VALUES (:amount, :type, :datetime, :oid)', [
+    'amount' => $order['order_payment'] * -1,
     'type' => 'REDUCE INCOME',
-    'datetime' => date('Y-m-d H:i:s')
+    'datetime' => date('Y-m-d H:i:s'),
+    'oid' => $order['order_id']
   ]);
 }
 

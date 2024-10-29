@@ -10,13 +10,12 @@ $db->query('UPDATE order_tbl SET order_payment = order_payment + :amount WHERE o
   'id' => $_POST['order_id']
 ]);
 
-
 //insert new transaction
-$db->query('INSERT INTO transaction_tbl (transaction_info, transaction_amount, transaction_type, transaction_datetime) VALUES (:info, :amount, :type, :datetime)', [
-  'info' => 'Payment of order_id: ' . $_POST['order_id'] . '.',
-  'amount' => $_POST['amount'],
+$db->query('INSERT INTO transaction_tbl (transaction_type, order_id, income_amount, transaction_datetime) VALUES (:type, :order_id, :amount, :datetime)', [
   'type' => 'INCOME',
-  'datetime' => date('Y-m-d H-i-s')
+  'order_id' => $_POST['order_id'],
+  'amount' => $_POST['amount'],
+  'datetime' => date('Y-m-d H:i:s')
 ]);
 
 

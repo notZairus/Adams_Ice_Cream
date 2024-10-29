@@ -25,18 +25,17 @@ else if ($_POST['action'] == 'add_stock') {
   // Calculate total cost of new stock
   $stockAmount = $ingredient['ingredient_price'] * $_POST['new_stocks'];
   
-  // Create description for transaction record
-  $stockInfo = 'Restock ' . $ingredient['ingredient_name'];
-  
   // Get current date and time
   $currentDateTime = date('Y-m-d H:i:s');
 
   // Insert transaction record
-  $db->query('INSERT INTO transaction_tbl (transaction_amount, transaction_type, transaction_info, transaction_datetime) VALUES (:amount, :typee, :info, :datetimee)', [
-    'amount' => $stockAmount,
-    'typee' => 'Expense',
-    'info' => $stockInfo,
-    'datetimee' => $currentDateTime
+  $db->query('INSERT INTO transaction_tbl (transaction_type, ingredient_id, ingredient_quantity, ingredient_price_per_unit, expense_amount, transaction_datetime) VALUES (:type, :ingredient_id, :quantity, :price_per_unit, :expense_amount, :transaction_datetime)', [
+    'type' => 'EXPENSE',
+    'ingredient_id' => $_POST['ingredient_id'],
+    'quantity' => $_POST['new_stocks'],
+    'price_per_unit' => $ingredient['ingredient_price'],
+    'expense_amount' => $stockAmount,
+    'transaction_datetime' => $currentDateTime
   ]);
 
   // Update ingredient stock quantity

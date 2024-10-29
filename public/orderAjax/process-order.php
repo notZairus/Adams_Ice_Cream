@@ -14,11 +14,11 @@ $order = $db->query('SELECT * FROM order_tbl JOIN flavor_tbl ON order_tbl.flavor
 ])->fetch();
 
 // record flavor cost on transaction_tbl
-$db->query('INSERT INTO transaction_tbl (transaction_info, transaction_amount, transaction_type, transaction_datetime) VALUES (:info, :amount, :type, :datetime)', [
-    'info' => 'Flavor Cost',
+$db->query('INSERT INTO transaction_tbl (expense_amount, transaction_type, transaction_datetime, order_id) VALUES (:info, :amount, :type, :datetime, :oid)', [
     'amount' => $order['flavor_cost'],
     'type' => 'EXPENSE',
-    'datetime' => date('Y-m-d H:i:s')
+    'datetime' => date('Y-m-d H:i:s'),
+    'oid' => $order['order_id']
 ]);
 
 //update the order status to Ongoing

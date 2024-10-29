@@ -85,10 +85,10 @@ $order = $db->query('SELECT order_tbl.*, flavor_tbl.*, customer_tbl.* FROM order
 // Record it on transaction_tbl if there is a downpayment
 if ($_POST['payment'] != 0) {
   // record downpayment
-  $db->query('INSERT INTO transaction_tbl (transaction_amount, transaction_type, transaction_info, transaction_datetime) VALUES (:amount, :type, :info, :datetime)', [
-    'amount' => $_POST['payment'],
+  $db->query('INSERT INTO transaction_tbl (transaction_type, order_id, income_amount, transaction_datetime) VALUES (:type, :oid, :amount, :datetime)', [
     'type' => 'INCOME',
-    'info' => 'Downpayment of order_id: ' . $order['order_id'] . ".",
+    'oid' => $order['order_id'],
+    'amount' => $_POST['payment'],
     'datetime' => date('Y-m-d H:i:s')
   ]);
 }

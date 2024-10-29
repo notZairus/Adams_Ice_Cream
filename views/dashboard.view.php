@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 
 <!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script defer src="./js/dashboard.js"></script>
 
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
@@ -14,6 +15,9 @@
 
   <div class="grid-item">
     <h1>Sales Stats Overview</h1>
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
   </div>
 
   <div class="grid-item">
