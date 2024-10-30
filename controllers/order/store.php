@@ -17,18 +17,10 @@ $insufficient = [];
 // Check if there's enough stock for each ingredient
 foreach($ingredients as $ingredient) {
   if ($requiredQuantity * $ingredient['ingredient_usage_per_4_gallon n cnbcs'] > $ingredient['ingredient_stock']) {
-    $insufficient[] = [
-      'ingredient' => $ingredient['ingredient_name'],
-      'quantity' => $requiredQuantity * $ingredient['ingredient_usage_per_4_gallons'] - $ingredient['ingredient_stock']
-    ];
+    echo "<script> alert('Insufficient ingredient.') </script>";
+    header("location: /inventory");
+    die();
   }
-}
-
-// If there are insufficient ingredients, alert user and redirect to inventory page
-if (! empty($insufficient)) {
-  echo "<script> alert('Insufficient ingredient.') </script>";
-  header("location: /inventory");
-  die();
 }
 
 // Update ingredient stock levels by subtracting required quantities

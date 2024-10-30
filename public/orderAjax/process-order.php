@@ -14,7 +14,7 @@ $order = $db->query('SELECT * FROM order_tbl JOIN flavor_tbl ON order_tbl.flavor
 ])->fetch();
 
 // record flavor cost on transaction_tbl
-$db->query('INSERT INTO transaction_tbl (expense_amount, transaction_type, transaction_datetime, order_id) VALUES (:info, :amount, :type, :datetime, :oid)', [
+$db->query('INSERT INTO transaction_tbl (expense_amount, transaction_type, transaction_datetime, order_id) VALUES (:amount, :type, :datetime, :oid)', [
     'amount' => $order['flavor_cost'],
     'type' => 'EXPENSE',
     'datetime' => date('Y-m-d H:i:s'),
