@@ -15,6 +15,8 @@
     return response.json();
   }
 
+
+
   function displayOrdersByCategory(orders, category) {
     let orders_tbl = document.querySelector('.orders-tbl tbody');
     orders.forEach(order => {
@@ -33,6 +35,7 @@
     if (category == 'Upcomming') {
       let processBtn = document.createElement('button');
       processBtn.dataset.order_id = order.order_id;
+      processBtn.dataset.order_size = order.order_size;
       processBtn.classList.add('process-order-btn');
       processBtn.textContent = "Process";
       divOperations.appendChild(processBtn);
@@ -69,6 +72,7 @@
       reactivateBtn.classList.add('reactivate-order-btn');
       reactivateBtn.textContent = "Reactivate";
       reactivateBtn.dataset.order_id = order.order_id;
+      reactivateBtn.dataset.order_size = order.order_size;
       divOperations.appendChild(reactivateBtn);
 
       attachEvent(reactivateBtn, reactivateOrder);
@@ -98,12 +102,7 @@
     return tr;
   }
 
-
-
-
-
   const category_btns = Array.from(document.querySelectorAll('.btn-container .category-btns-container button'));
-
   category_btns.forEach((button) => {
     button.addEventListener('click', async (event) => {
       const target = event.target;
@@ -114,16 +113,11 @@
     });
   });
 
-
-
-
   function changeCategoryBtnStyle(target) {
     category_btns.forEach(btn => btn.classList.remove('selected'));
     target.classList.add('selected');
     document.querySelector('.category-h2').textContent = `${target.textContent} Orders`;
   }
-
-
 
   function clearOrderTbl() {
     const orders_tbl = document.querySelector('.orders-tbl tbody');
@@ -133,12 +127,26 @@
   }
 
 
-  // ORDER OPERATIONS
-  // ORDER OPERATIONS
-  // ORDER OPERATIONS
+
+
+
+
+
+  //===================================================================================================================================
+
+    // ORDER OPERATIONS
+    // ORDER OPERATIONS
+    // ORDER OPERATIONS
   
   async function processOrder(event) {
     const target = event.target;
+
+    // CHECK IF THE INGREDIENTS IS SUFFICIENT
+    if (! await stockIsSufficient(target.dataset.order_size)) {
+      alert('Insufficient ingredients');
+      return;
+    }
+
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('orderAjax/process-order.php', {
       method: "POST",
@@ -149,12 +157,14 @@
         order_id: target.dataset.order_id
       })
     });
+
     const result = await response.json();
-    console.log(result.data);
+    console.log(result);
   }
 
   async function cancelOrder(event) {
     const target = event.target;
+
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('orderAjax/cancel-order.php', {
       method: 'POST',
@@ -166,12 +176,14 @@
         size: target.dataset.order_size
       })
     });
+
     const result = await response.json();
     console.log(result);
   }
 
   async function reactivateOrder(event) {
     const target = event.target;
+    
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('orderAjax/reactivate-order.php', {
       method: 'POST',
@@ -182,6 +194,7 @@
         order_id: target.dataset.order_id
       })
     });
+
     const result = await response.json();
     console.log(result);
   }
@@ -213,6 +226,11 @@
     console.log(result);
   }
 
+  //===================================================================================================================================
+
+    // MODALS
+    // MODALS
+    // MODALS
 
   const add_order_modal = document.getElementById('add_order_modal');
 
@@ -240,10 +258,11 @@
       flavorSelect.appendChild(option);
     });
   });
-
+    
   document.getElementById('close_add_order_modal').addEventListener('click', () => {
     closeDialog(add_order_modal);
   });
+
 
 
   const update_payment_modal = document.getElementById('update_payment_modal');
@@ -269,3 +288,5 @@
   document.getElementById('close_update_payment_modal').addEventListener('click', () => {
     closeDialog(update_payment_modal);
   });
+
+  //===================================================================================================================================

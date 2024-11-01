@@ -28,3 +28,18 @@ function closeDialog(modal) {
 function attachEvent(btn, callback) {
   btn.addEventListener('click', callback);
 }
+
+async function stockIsSufficient(size) {
+  let response = await fetch('inventoryAjax/check-stock.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      size: size
+    })
+  })
+
+  let result = await response.json();
+  return result;
+}
