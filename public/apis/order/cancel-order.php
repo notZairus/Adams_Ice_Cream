@@ -1,5 +1,5 @@
 <?php
-require('../../requires.php');
+require('../requires.php');
 
 
 $configs = require(base_path('configs.php'));

@@ -23,7 +23,6 @@ main .grid-item:nth-child(1) {
 }
 
 main .grid-item:nth-child(1) > div {
-  border: 1px solid black;
   flex: 1;
 }
 
