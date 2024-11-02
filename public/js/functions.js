@@ -30,7 +30,7 @@ function attachEvent(btn, callback) {
 }
 
 async function stockIsSufficient(size) {
-  let response = await fetch('inventoryAjax/check-stock.php', {
+  let response = await fetch('apis/inventory/check-stock.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

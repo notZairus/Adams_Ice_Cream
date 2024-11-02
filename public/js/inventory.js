@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 });
 
 async function getAllIngredients() {
-  let response = await fetch('inventoryAjax/get-ingredients.php', {
+  let response = await fetch('apis/inventory/get-ingredients.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

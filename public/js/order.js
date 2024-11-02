@@ -6,7 +6,7 @@
   });
 
   async function getAllOrders() {
-    let response = await fetch('orderAjax/get-orders.php', {
+    let response = await fetch('apis/order/get-orders.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -148,7 +148,7 @@
     }
 
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
-    const response = await fetch('orderAjax/process-order.php', {
+    const response = await fetch('apis/order/process-order.php', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -166,7 +166,7 @@
     const target = event.target;
 
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
-    const response = await fetch('orderAjax/cancel-order.php', {
+    const response = await fetch('apis/order/cancel-order.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -185,7 +185,7 @@
     const target = event.target;
     
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
-    const response = await fetch('orderAjax/reactivate-order.php', {
+    const response = await fetch('apis/order/reactivate-order.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -212,7 +212,7 @@
     }
 
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
-    const response = await fetch('orderAjax/finish-order.php', {
+    const response = await fetch('apis/order/finish-order.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -237,7 +237,7 @@
   document.getElementById('show_add_order_modal').addEventListener('click', async () => {
     showDialog(add_order_modal);
     const flavors = await (async () => {
-      const res = await fetch('orderAjax/get-flavors.php', {
+      const res = await fetch('apis/order/get-flavors.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

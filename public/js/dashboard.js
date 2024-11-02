@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
 
 async function getSales() {
-  let response = await fetch('dashboardAjax/get-sales.php', {
+  let response = await fetch('apis/dashboard/get-sales.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
