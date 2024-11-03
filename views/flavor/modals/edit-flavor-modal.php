@@ -1,7 +1,7 @@
 
 <dialog id="edit_flavor_modal" class="add_flavor_modal modal">
   <h2>Add Stock</h2>
-  <form action="/orders/flavors" method="POST" class="add-flavor-form">
+  <form action="/flavors" method="POST" class="add-flavor-form">
     
     <div class="text-field">
       <label for="flavor_name">Flavor Name:</label><br>

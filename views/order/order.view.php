@@ -26,11 +26,6 @@
         Add Order
       </button>
 
-      <a href="/orders/flavors">
-        <button class="add-order-btn" id="show_add_order_modal">
-          Flavors
-        </button>
-      </a>
     </div>
     <div>
       <div class="category-btns-container">
@@ -48,17 +43,17 @@
     <div class="table-container">
       <table class="orders-tbl">
         <thead>
-          <tr>
-            <th></th>
+          <tr height="60px">
+            <th width="180px"></th>
             <th>Order ID</th>
             <th>Customer Name</th>
-            <th>Contact #</th>
+            <th width="150px">Contact #</th>
             <th>Size</th>
             <th>Flavor</th>
-            <th>Address</th>
+            <th width="100px">Address</th>
             <th>Delivery Date</th>
             <th>Delivery Time</th>
-            <th>Payment</th>
+            <th width="180px">Payment</th>
           </tr>
         </thead>
         <tbody>

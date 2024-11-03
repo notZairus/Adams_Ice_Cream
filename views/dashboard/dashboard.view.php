@@ -14,9 +14,30 @@
 <main>
 
   <div class="grid-item">
-    <h1>Sales Stats Overview</h1>
+    <div class="h1-container">
+      <h1>Sales Stats Overview</h1>
+      <div class="toggles-container" id="time-toggles">
+        <button id="this_week" class="selected">
+          This Week
+        </button>
+        <button id="this_month">
+          This Month
+        </button>
+        <button id="this_year">
+          This Year
+        </button>
+      </div>
+    </div>
     <div class="chart-container">
       <canvas id="myChart"></canvas>
+    </div>
+  </div>
+
+  <div class="grid-item top-selling-flavor-container">
+    <h1>Top Selling Flavors</h1>
+    <div class="flavor-container" id="flavor_container">
+      <!-- DATASSSSS -->
+
     </div>
   </div>
 
@@ -25,11 +46,7 @@
   </div>
 
   <div class="grid-item">
-    <h1>Top Selling Ice Cream Flavors</h1>
-  </div>
-
-  <div class="grid-item">
-    <h1>Ingredients That Need Restock</h1>
+    <h1>Low Stock Ingredients</h1>
   </div>
 
 </main>

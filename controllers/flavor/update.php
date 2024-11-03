@@ -10,4 +10,4 @@ $db->query('UPDATE flavor_tbl SET flavor_name = :namee, flavor_cost = :cost WHER
   'id' => $_POST['flavor_id']
 ]);
 
-header('Location: /orders/flavors');
+header('Location: /flavors');

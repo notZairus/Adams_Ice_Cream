@@ -1,10 +1,23 @@
 let transactions;
+let currentChart = null;
+
+let flavors;
+
 
 
 document.addEventListener('DOMContentLoaded', async (event) => {
   transactions = await getAllTransactions();
-  displayThisYear(transactions);
+  flavors = await getAllFlavors();
+
+  displayThisWeek(transactions);
+  displayTopSellingFlavors(flavors);
 });
+
+//======================================================================================================================================
+
+// TRANSACTION STATS
+// TRANSACTION STATS
+// TRANSACTION STATS
 
 async function getAllTransactions() {
   let response = await fetch('apis/dashboard/get-all-transactions.php', {
@@ -190,12 +203,11 @@ function displayThisYear(transactions) {
   displayChart(mappedTransactions);
 }
 
-
 function displayChart(transactions) {
   let mappedTransactions = transactions;
 
   const myChart = document.getElementById('myChart');
-  new Chart(myChart, {
+  currentChart = new Chart(myChart, {
     type: 'bar',
     data: {
       labels: Array.from(mappedTransactions.incomes.keys()),
@@ -226,3 +238,65 @@ function displayChart(transactions) {
   });
 
 }
+
+//======================================================================================================================================
+
+
+//======================================================================================================================================
+
+// FLAVORS
+// FLAVORS
+// FLAVORS
+  
+async function getAllFlavors() {
+  let response = await fetch('apis/dashboard/get-all-flavors.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  let result = await response.json();
+  return Array.from(result).sort((a, b) => b.flavor_order_count - a.flavor_order_count);
+}
+
+function displayTopSellingFlavors(flavors) {
+  let flavor_container = document.getElementById('flavor_container');
+
+  flavors.forEach(flavor => {
+    let a = document.createElement('a');
+    a.classList.add('flavor');
+    a.href = `https://en.wikipedia.org/wiki/${flavor.flavor_name}`;
+    a.target = "_blank";
+    a.textContent = flavor.flavor_name;
+
+    flavor_container.appendChild(a);
+  });
+}
+
+//======================================================================================================================================
+
+
+
+
+
+
+document.getElementById('time-toggles').addEventListener('click', (e) => {
+  let target = e.target;
+  
+  Array.from(e.currentTarget.children).forEach(child => {
+    child.classList.remove('selected');
+  });
+
+  target.classList.add('selected');
+
+  if (currentChart) currentChart.destroy();
+  
+  if (target.id == "this_week") {
+    displayThisWeek(transactions);
+  } else if (target.id == "this_month") {
+    displayThisMonth(transactions);
+  } else {
+    displayThisYear(transactions);
+  }
+})

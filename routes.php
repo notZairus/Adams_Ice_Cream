@@ -23,8 +23,9 @@ $router->post('/orders', './controllers/order/store.php');
 $router->patch('/orders', './controllers/order/update.php');
 
 
-//ORDERS?FLAVORS
-$router->get('/orders/flavors', './controllers/order/flavor/index.php');
-$router->post('/orders/flavors', './controllers/order/flavor/store.php');
-$router->patch('/orders/flavors', './controllers/order/flavor/update.php');
-$router->delete('/orders/flavors', controller: './controllers/order/flavor/destroy.php');
+//FLAVORS
+$router->get('/flavors', './controllers/flavor/index.php');
+$router->post('/flavors', './controllers/flavor/store.php');
+$router->patch('/flavors', './controllers/flavor/update.php');
+$router->delete('/flavors', controller: './controllers/flavor/destroy.php');
+

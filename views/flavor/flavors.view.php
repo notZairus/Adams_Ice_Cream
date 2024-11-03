@@ -14,8 +14,8 @@
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 <!-- MODALS -->
-<?php require(base_path('views/order/modals/add-flavor-modal.php')) ?>
-<?php require(base_path('views/order/modals/edit-flavor-modal.php')) ?>
+<?php require(base_path('views/flavor/modals/add-flavor-modal.php')) ?>
+<?php require(base_path('views/flavor/modals/edit-flavor-modal.php')) ?>
 
 <main>
   <div class="btn-container">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="flavor-container grid-item">
-    <h2 class="category-h2">Upcomming Orders</h2>
+    <h2 class="category-h2">Available Flavors</h2>
 
     <div class="table-container">
       <table class="flavor-tbl">
@@ -52,7 +52,7 @@
                   <button class="edit-flavor-btn show_edit_flavor_modal" id="show_edit_flavor_modal">
                     Edit
                   </button>
-                  <form action="/orders/flavors" method="POST" class="delete_flavor_form" style="display:inline">
+                  <form action="/flavors" method="POST" class="delete_flavor_form" style="display:inline">
                     <input type="hidden" name="flavor_id" value="<?= $flavor['flavor_id'] ?>">
                     <button class="delete-flavor-btn">
                       Delete

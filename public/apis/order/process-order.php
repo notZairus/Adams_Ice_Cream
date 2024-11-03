@@ -73,6 +73,10 @@ $db->query('UPDATE customer_tbl SET customer_order_count = customer_order_count 
     'cid' => $order['customer_id']
 ]);
 
+//increment the order_count of the flavor
+$db->query('UPDATE flavor_tbl SET flavor_order_count = flavor_order_count + 1 WHERE flavor_id = :fid', [
+    'fid' => $order['flavor_id']
+]);
 
 echo json_encode([
     'success' => true,
