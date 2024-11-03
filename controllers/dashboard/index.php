@@ -1,6 +1,6 @@
 <?php
 session_start();
 
-view('dashboard.view.php', [
+view('dashboard/dashboard.view.php', [
   'heading' => 'Dashboard'
 ]);

@@ -7,7 +7,7 @@ $router->post('/login', './controllers/user/show.php');
 $router->post('/logout', './controllers/user/logout.php');
 
 
-$router->get('/dashboard', './controllers/dashboard.php');
+$router->get('/dashboard', './controllers/dashboard/index.php');
 
 
 //INVENTORY
@@ -27,4 +27,4 @@ $router->patch('/orders', './controllers/order/update.php');
 $router->get('/orders/flavors', './controllers/order/flavor/index.php');
 $router->post('/orders/flavors', './controllers/order/flavor/store.php');
 $router->patch('/orders/flavors', './controllers/order/flavor/update.php');
-$router->delete('/orders/flavors', './controllers/order/flavor/destroy.php');
+$router->delete('/orders/flavors', controller: './controllers/order/flavor/destroy.php');

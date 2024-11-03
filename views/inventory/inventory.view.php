@@ -39,7 +39,7 @@
               <th>Stock (kg)</th>
               <th>Price (kg)</th>
               <th>Usage per 4 gallons (kg)</th>
-              <th></th>
+              <th width="160px"></th>
             </tr>
           </thead>
           <tbody class="kg">
@@ -59,7 +59,7 @@
               <th>Stock (pc)</th>
               <th>Price (pcs)</th>
               <th>Usage per 4 gallons (pc)</th>
-              <th></th>
+              <th width="160px"></th>
             </tr>
           </thead>
           <tbody class="pcs">
@@ -73,7 +73,7 @@
   </div>
 
   <div class="restock-container grid-item">
-    <h2>Ingredient to Restock</h2>
+    <h2>Ingredients to Restock</h2>
 
     <div class="table-container">
       <table class="ingredients-tbl">
