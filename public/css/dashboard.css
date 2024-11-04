@@ -9,32 +9,31 @@ main {
 }
 
 main .grid-item {
-  background-color: red;
   box-shadow: var(--shadow);
   border-radius: 8px;
   background-color: white;
+  grid-row: span 2;
 }
 
-main .grid-item:nth-child(1) {
+main .sales-stats-container {
   grid-column: 1 / 5;
-  grid-row: span 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-main .grid-item:nth-child(1) .h1-container {
+main .sales-stats-container .h1-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-main .grid-item:nth-child(1) .h1-container .toggles-container {
+main .sales-stats-container .h1-container .toggles-container {
   display: flex;
   gap: 12px;
 }
 
-main .grid-item:nth-child(1) .h1-container .toggles-container button {
+main .sales-stats-container .h1-container .toggles-container button {
   background-color: transparent;
   padding: 0px 2px;
   border: none;
@@ -44,31 +43,30 @@ main .grid-item:nth-child(1) .h1-container .toggles-container button {
   transition: all 0.2s;
 }
 
-main .grid-item:nth-child(1) .h1-container .toggles-container button:hover {
+main .sales-stats-container .h1-container .toggles-container button:hover {
   cursor: pointer;
   color: var(--primary-color);
   border-bottom: 1px solid var(--primary-color  );
 }
 
-main .grid-item:nth-child(1) .h1-container .toggles-container button.selected {
+main .sales-stats-container .h1-container .toggles-container button.selected {
   font-weight: 700;
   border-bottom: 2px solid var(--primary-color);
   color: var(--primary-color);
 }
 
-main .grid-item:nth-child(1) .chart-container {
+main .sales-stats-container .chart-container {
   flex: 1;
 }
 
-main .grid-item:nth-child(2) {
-  grid-column: 5 / 6;
-  grid-row: span 2;
+
+main .top-selling-flavor-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-main .grid-item:nth-child(2) .flavor-container {
+main .top-selling-flavor-container .flavor-container {
   flex: 1;
   padding: 12px;
   display: flex;
@@ -94,19 +92,20 @@ main .flavor-container .flavor:hover {
   background-color: var(--dark-primary-color);
 }
 
-main .grid-item:nth-child(3) {
-  grid-column: -4 / -6;
-  grid-row: span 2;
+main .quick-controls-container {
+
 }
 
-
-
-main .grid-item:nth-child(4) {
-  grid-column: -1 / -4;
+main .low-stock-ingredients-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: max-content;
+  grid-column: span 3;
+}
+
+.ingredient-container {
+  flex: 1;
+  overflow: auto;
 }
 
 .ingredient-container table {

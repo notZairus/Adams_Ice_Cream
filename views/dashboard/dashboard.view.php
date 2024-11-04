@@ -13,9 +13,9 @@
 
 <main>
 
-  <div class="grid-item">
+  <div class="grid-item sales-stats-container">
     <div class="h1-container">
-      <h1>Sales Stats Overview</h1>
+      <h1>Sales Chart</h1>
       <div class="toggles-container" id="time-toggles">
         <button id="this_week" class="selected">
           This Week
@@ -33,6 +33,10 @@
     </div>
   </div>
 
+  <div class="grid-item amount-container">
+    <h1>Sales Amount</h1>
+  </div>
+
   <div class="grid-item top-selling-flavor-container">
     <h1>Top Selling Flavors</h1>
     <div class="flavor-container" id="flavor_container">
@@ -41,11 +45,11 @@
     </div>
   </div>
 
-  <div class="grid-item">
+  <div class="grid-item quick-controls-container">
     <h1>Quick Controls</h1>
   </div>
 
-  <div class="grid-item">
+  <div class="grid-item low-stock-ingredients-container">
     <h1>Low Stock Ingredients</h1>
     <div class="ingredient-container" id="ingredient_table_container">
       <table>

@@ -53,7 +53,8 @@
             <th width="100px">Address</th>
             <th>Delivery Date</th>
             <th>Delivery Time</th>
-            <th width="180px">Payment</th>
+            <th width="120px">Payment</th>
+            <th width="120px">Balance</th>
           </tr>
         </thead>
         <tbody>

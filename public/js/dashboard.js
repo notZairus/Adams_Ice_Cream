@@ -272,7 +272,8 @@ function displayTopSellingFlavors(flavors) {
   flavors.forEach(flavor => {
     let a = document.createElement('a');
     a.classList.add('flavor');
-    a.href = `https://en.wikipedia.org/wiki/${flavor.flavor_name}`;
+    //a.href = `https://en.wikipedia.org/wiki/${flavor.flavor_name}`;
+    a.href = "https://fb.com";
     a.target = "_blank";
     a.textContent = flavor.flavor_name;
 

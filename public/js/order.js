@@ -97,7 +97,8 @@
     tr.appendChild(createCell(order.order_delivery_address));
     tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0]));
     tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0]));
-    tr.appendChild(createCell(`₱${order.order_payment}/₱${order.order_price}`));
+    tr.appendChild(createCell(`₱${order.order_payment}`));
+    tr.appendChild(createCell(`₱${order.order_price - order.order_payment}`));
   
     return tr;
   }
@@ -202,12 +203,11 @@
   async function finishOrder(event) {
     const target = event.target;
 
-    let balanceText = target.closest('tr').querySelector('td:nth-child(10)').textContent;
-    let [payment, price] = balanceText.split('/');
-    let remainingBalance = parseInt(price.replace('₱', '')) - parseInt(payment.replace('₱', ''));
+    let balance = target.closest('tr').querySelector('td:nth-child(11)').textContent;
+    balance = parseFloat(balance.replace('₱', ''));
 
-    if (remainingBalance != 0) {
-      alert(`Order #${target.dataset.order_id} requires full payment of ₱${remainingBalance} before completion.`)
+    if (balance != 0) {
+      alert(`Order #${target.dataset.order_id} requires full payment of ₱${balance} before completion.`)
       return;
     }
 
@@ -269,9 +269,8 @@
 
   function openUpdatePaymentModal(order_id, target) {
 
-    let balanceText = target.closest('tr').querySelector('td:nth-child(10)').textContent;
-    let [payment, price] = balanceText.split('/');
-    let balance = parseInt(price.replace('₱', '')) - parseInt(payment.replace('₱', ''));
+    let balance = target.closest('tr').querySelector('td:nth-child(11)').textContent;
+    balance = parseFloat(balance.replace('₱', ''));
 
     if (balance  <= 0) {
       alert(`Order #${order_id} is fully paid. No additional payment needed.`);

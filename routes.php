@@ -6,7 +6,7 @@ $router->get('/', './controllers/user/index.php');
 $router->post('/login', './controllers/user/show.php');
 $router->post('/logout', './controllers/user/logout.php');
 
-
+//DASHBOARD
 $router->get('/dashboard', './controllers/dashboard/index.php');
 
 

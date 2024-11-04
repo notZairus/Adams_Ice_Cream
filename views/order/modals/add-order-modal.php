@@ -63,7 +63,7 @@
         </div>
 
         <div class="input-field" style="margin-top: 12px;">
-          <label for="payment">Payment: </label>
+          <label for="payment">Initial Payment: </label>
           <br>  
           <input type="number" id="payment" name="payment" pattern="/^\d+$/" min="0" required>
         </div>
