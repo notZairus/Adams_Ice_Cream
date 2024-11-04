@@ -99,7 +99,42 @@ main .grid-item:nth-child(3) {
   grid-row: span 2;
 }
 
+
+
 main .grid-item:nth-child(4) {
   grid-column: -1 / -4;
-  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: max-content;
+}
+
+.ingredient-container table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px 12px 0px 0px;
+  overflow: hidden;
+}
+
+.ingredient-container table thead tr {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.ingredient-container table th,
+.ingredient-container table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.ingredient-container table tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.ingredient-container table thead tr:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.ingredient-container table tbody tr:hover {
+  background-color: #c6c2c2;
 }

@@ -1,16 +1,19 @@
+
 let transactions;
-let currentChart = null;
-
 let flavors;
+let ingredients;
 
+let currentChart1 = null;
 
 
 document.addEventListener('DOMContentLoaded', async (event) => {
   transactions = await getAllTransactions();
   flavors = await getAllFlavors();
+  ingredients = await getAllIngredients();
 
   displayThisWeek(transactions);
   displayTopSellingFlavors(flavors);
+  displayLowStockIngredients(ingredients);
 });
 
 //======================================================================================================================================
@@ -204,10 +207,13 @@ function displayThisYear(transactions) {
 }
 
 function displayChart(transactions) {
+  
+  if (currentChart1) currentChart1.destroy();
+
   let mappedTransactions = transactions;
 
   const myChart = document.getElementById('myChart');
-  currentChart = new Chart(myChart, {
+  currentChart1 = new Chart(myChart, {
     type: 'bar',
     data: {
       labels: Array.from(mappedTransactions.incomes.keys()),
@@ -277,6 +283,55 @@ function displayTopSellingFlavors(flavors) {
 //======================================================================================================================================
 
 
+//======================================================================================================================================
+
+// INGREDIENTS
+// INGREDIENTS
+// INGREDIENTS
+  
+async function getAllIngredients() {
+  let response = await fetch('apis/dashboard/get-all-ingredients.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  let result = await response.json();
+  return result;
+}
+
+function displayLowStockIngredients(ingredients) {
+  let ingredient_table_body = document.querySelector('#ingredient_table_container tbody');
+
+  ingredients.forEach(ingredient => {
+    if(ingredient.ingredient_stock <= ingredient.ingredient_reminder) {
+      ingredient_table_body.appendChild(createIngredientRow(ingredient));
+    }
+  })
+}
+
+function createIngredientRow(ingredient) {
+  let tr = document.createElement('tr');
+  
+  let td1 = document.createElement('td');
+  td1.textContent = ingredient.ingredient_name;
+  tr.appendChild(td1);
+  let td2 = document.createElement('td');
+  td2.textContent = ingredient.ingredient_stock;
+  tr.appendChild(td2);
+  let td3 = document.createElement('td');
+  td3.textContent = ingredient.ingredient_reminder;
+  tr.appendChild(td3);
+  let td4 = document.createElement('td');
+  td4.textContent = ingredient.ingredient_usage_per_4_gallons;
+  tr.appendChild(td4);
+
+  return tr;
+}
+
+
+//======================================================================================================================================
 
 
 
@@ -289,8 +344,6 @@ document.getElementById('time-toggles').addEventListener('click', (e) => {
   });
 
   target.classList.add('selected');
-
-  if (currentChart) currentChart.destroy();
   
   if (target.id == "this_week") {
     displayThisWeek(transactions);

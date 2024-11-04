@@ -47,6 +47,20 @@
 
   <div class="grid-item">
     <h1>Low Stock Ingredients</h1>
+    <div class="ingredient-container" id="ingredient_table_container">
+      <table>
+        <thead>
+          <tr>
+            <th>Ingredient Name</th>
+            <th>Remaining Stock</th>
+            <th>Minimum Stock</th>
+            <th>Amount Used per 4 Gallons</th>
+          </tr>
+        </thead>
+        <tbody >
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </main>
