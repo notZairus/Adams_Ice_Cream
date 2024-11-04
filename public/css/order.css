@@ -109,7 +109,16 @@
       left: 50%;
       transform: translate(-50%, -60%);
       transition: all 0.3s ease-out;
+      display: flex;
+      gap: 32px;
+      background-color: transparent;
       display: none;
+    }
+
+    #update_payment_modal {
+      background-color: white;
+      flex-direction: column;
+      gap: 8px;
     }
 
     dialog::backdrop {
@@ -117,7 +126,7 @@
     }
 
     dialog.open {
-      display: block;
+      display: flex;
     }
 
     dialog.showing {
@@ -156,6 +165,61 @@
       flex: 1;
     }
 
+    #add_order_modal form {
+      background-color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+    }
+
+    #add_order_modal .upcomming-order-div {
+      width: 300px;
+      max-width: 300px;
+      background-color: white;
+      border-radius: 8px;
+      padding: 16px 32px;
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+    }
+
+    #add_order_modal .upcomming-order-div .upcomming-order-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .upcomming-order-container .order {
+      height: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      border: none;
+      padding: 8px 16px;
+      background-color: var(--primary-color);
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .upcomming-order-container .order:hover {
+      background-color: var(--dark-primary-color);
+    }
+    
+    .upcomming-order-container .order button {
+      border-radius: 90px;
+      border: none;
+      background-color: transparent;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .upcomming-order-container .order button:hover {
+      font-weight: 700;
+    }
+
+
     .update_payment_modal > h2 {
       margin-bottom: 12px;
     }
@@ -172,6 +236,7 @@
     }
 
     .add-order-form .btn-container,
+    .upcomming-order-div .btn-container,
     .update-payment-form .btn-container {
       padding-top: 12px;
       width: 100%;
@@ -184,6 +249,7 @@
     }
 
     .add-order-form .btn-container button,
+    .upcomming-order-div .btn-container button,
     .update-payment-form .btn-container button {
       font-size: 0.9rem;
       padding: 12px;
@@ -197,15 +263,21 @@
       background-color: #c6c2c2;
     }
 
-    .add-order-form .btn-container button[type='submit'],
+    .add-order-form .btn-container #add_order_btn,
+    .upcomming-order-div .btn-container button,
     .update-payment-form .btn-container button[type='submit'] {
       background-color: var(--primary-color);
       color: white;
     }
 
-    .add-order-form .btn-container button[type='submit']:hover,
+    .add-order-form .btn-container #add_order_btn:hover,
+    .upcomming-order-div .btn-container button:hover,
     .update-payment-form .btn-container button[type='submit']:hover {
       background-color: var(--dark-primary-color);
+    }
+
+    .upcomming-order-div .btn-container #confirm_orders {
+      font-size: 1.3rem;
     }
 
     .datetime-field {
