@@ -110,6 +110,7 @@
       changeCategoryBtnStyle(target);
       clearOrderTbl();
       orders = await getAllOrders();
+      clearOrderTbl();
       displayOrdersByCategory(orders, target.textContent);
     });
   });
@@ -235,6 +236,8 @@
   const add_order_modal = document.getElementById('add_order_modal');
   let flavors = null;
 
+
+
   document.getElementById('show_add_order_modal').addEventListener('click', async () => {
     showDialog(add_order_modal);
     flavors = await (async () => {
@@ -258,6 +261,7 @@
       option.textContent = flavor.flavor_name;
       flavorSelect.appendChild(option);
     });
+
   });
 
   document.getElementById('add_order_btn').addEventListener('click', (e) => {
@@ -274,6 +278,12 @@
       initial_payment: parseFloat(add_order_form.querySelector('#payment').value) || 0
     }  
 
+    let price = add_order_form.querySelector('#size').value == 4 ? 1400 : 2700;
+    if (order.initial_payment < 0 || order.initial_payment > price) {
+      alert('Invalid payment. Please check your payment details and try again.');
+      return;
+    }
+
     let thereIsEmptyInfo = Object.values(order).some(value => value == null);
     if (thereIsEmptyInfo) {
       alert('Some required fields are missing or contain invalid data.');
@@ -281,6 +291,40 @@
     }
 
     document.querySelector('#add_order_modal #upcomming_order_container').appendChild(createOrderDiv(order));
+  })
+
+  document.getElementById('confirm_orders').addEventListener('click', async (e) => {
+    let order_container = e.currentTarget.parentElement.previousElementSibling;
+    
+    if(e.currentTarget.parentElement.previousElementSibling.children.length == 0) {
+      alert('No orders to add.');
+      return;
+    }
+    
+    let orders = [];
+    let customer = {
+      name: add_order_modal.querySelector('#name').value,
+      contact: add_order_modal.querySelector('#contact_info').value,
+      email: add_order_modal.querySelector('#email').value,
+    }
+
+    Array.from(order_container.children).forEach(order => {
+      orders.push(Object(order.dataset));
+    })
+
+    let response = await fetch('apis/order/add-order.php', {
+      method: 'POST',
+      header: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify({
+        customer: customer,
+        orders: orders
+      })
+    })
+
+    location.reload();
+    console.log(await response.json());
   })
   
   function createOrderDiv(data) {
@@ -298,19 +342,25 @@
     order.appendChild(order_info);
 
     let flavor = document.createElement('p');
-    flavor.textContent = data.flavor.flavor_name;
+    flavor.textContent = "Flavor: " + data.flavor.flavor_name;
     order_info.appendChild(flavor);
 
     let size = document.createElement('p');
-    size.textContent = data.size + " Gallons";
+    size.textContent = "Size: " + data.size + " Gallons";
     order_info.appendChild(size);
 
+    order_info.appendChild(document.createElement('br'));
+
+    let address = document.createElement('p');
+    address.textContent = "Address: \n" + data.delivery_address;
+    order_info.appendChild(address);
+
     let date = document.createElement('p');
-    date.textContent = data.delivery_date;
+    date.textContent = "Date: \n" + data.delivery_date;
     order_info.appendChild(date);
 
     let time = document.createElement('p');
-    time.textContent = data.delivery_time;
+    time.textContent = "Time: \n" + data.delivery_time;
     order_info.appendChild(time);
 
     order_info.appendChild(document.createElement('br'));
@@ -321,8 +371,12 @@
 
     let remove_order_btn = document.createElement('button');
     remove_order_btn.classList.add('remove-order-btn');
-    remove_order_btn.textContent = "X";
+    remove_order_btn.textContent = "x";
     order.appendChild(remove_order_btn);
+
+    remove_order_btn.addEventListener('click', () => {
+      order.remove();
+    });
 
     return order;
   }

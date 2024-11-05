@@ -82,20 +82,7 @@
     <h2>Orders</h2>
 
     <div class="upcomming-order-container" id="upcomming_order_container">
-
-      <div class="order">
-        <div class="order-info">
-          <p>Flavor</p>
-          <p>Size</p>
-          <p>Delivery Address</p>
-          <p>Delivery Date</p>
-          <p>Delivery Time</p>
-          <br>
-          <p>Initial Payment</p>
-        </div>
-        <button class="remove-order-btn">x</button>
-      </div>
-
+      
     </div>
 
     <div class="btn-container">

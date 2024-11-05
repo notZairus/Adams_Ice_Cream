@@ -4,6 +4,8 @@ $config = require(base_path('configs.php'));
 
 $db = new Database($config['Database']);
 
+
+
 // Check if customer exists in database by email
 $customer = $db->query('SELECT * FROM customer_tbl WHERE customer_email = :email', [
   'email' => $_POST['email']
