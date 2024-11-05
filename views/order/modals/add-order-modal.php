@@ -4,7 +4,7 @@
 <dialog id="add_order_modal" class="add_order_modal modal">
 
   <div>
-    <form action="/orders" method="POST" class="add-order-form">
+    <form action="/orders" method="POST" class="add-order-form" id="add_order_form">
       <div class="customer-info">
         <h2>Customer Info</h2>
         <div>
@@ -69,7 +69,7 @@
           </div>
 
           <div class="btn-container">
-            <button type="button" id="close_add_order_modal">Cancel</button>
+            <button type="button" id="close_add_order_modal">Close</button>
             <button type="button" id="add_order_btn">Add Order</button>
           </div>
 
@@ -81,45 +81,26 @@
   <div class="upcomming-order-div">
     <h2>Orders</h2>
 
-    <div class="upcomming-order-container">
+    <div class="upcomming-order-container" id="upcomming_order_container">
 
       <div class="order">
         <div class="order-info">
           <p>Flavor</p>
           <p>Size</p>
+          <p>Delivery Address</p>
+          <p>Delivery Date</p>
+          <p>Delivery Time</p>
+          <br>
+          <p>Initial Payment</p>
         </div>
-        <button>x</button>
-      </div>
-
-      <div class="order">
-        <div class="order-info">
-          <p>Chocolate</p>
-          <p>8 Gallons</p>
-        </div>
-        <button>x</button>
-      </div>
-
-      <div class="order">
-        <div class="order-info">
-          <p>Flavor</p>
-          <p>Size</p>
-        </div>
-        <button>x</button>
-      </div>
-
-      <div class="order">
-        <div class="order-info">
-          <p>Flavor</p>
-          <p>Size</p>
-        </div>
-        <button>x</button>
+        <button class="remove-order-btn">x</button>
       </div>
 
     </div>
 
     <div class="btn-container">
       <button id="confirm_orders">Confirm Order</button>
-    </div>
+    </di
 
   </div>
 

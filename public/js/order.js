@@ -233,10 +233,11 @@
     // MODALS
 
   const add_order_modal = document.getElementById('add_order_modal');
+  let flavors = null;
 
   document.getElementById('show_add_order_modal').addEventListener('click', async () => {
     showDialog(add_order_modal);
-    const flavors = await (async () => {
+    flavors = await (async () => {
       const res = await fetch('apis/order/get-flavors.php', {
         method: 'POST',
         headers: {
@@ -258,10 +259,93 @@
       flavorSelect.appendChild(option);
     });
   });
+
+  document.getElementById('add_order_btn').addEventListener('click', (e) => {
+    let add_order_form = document.getElementById('add_order_form');
+
+    let order = {
+      flavor: Array.from(flavors).filter(flavor => {
+        return flavor.flavor_id == add_order_form.querySelector('#flavor').value
+      })[0],
+      size: parseFloat(add_order_form.querySelector('#size').value) || null,
+      delivery_address: add_order_form.querySelector('#delivery_adress').value || null,
+      delivery_date: add_order_form.querySelector('#delivery_date').value || null,
+      delivery_time: add_order_form.querySelector('#delivery_time').value || null,
+      initial_payment: parseFloat(add_order_form.querySelector('#payment').value) || 0
+    }  
+
+    let thereIsEmptyInfo = Object.values(order).some(value => value == null);
+    if (thereIsEmptyInfo) {
+      alert('Some required fields are missing or contain invalid data.');
+      return;
+    }
+
+    document.querySelector('#add_order_modal #upcomming_order_container').appendChild(createOrderDiv(order));
+  })
+  
+  function createOrderDiv(data) {
+    let order = document.createElement('div');
+    order.dataset.flavor = data.flavor.flavor_id;
+    order.dataset.size = data.size;
+    order.dataset.delivery_address = data.delivery_address;
+    order.dataset.delivery_date = data.delivery_date;
+    order.dataset.delivery_time = data.delivery_time;
+    order.dataset.initial_payment = data.initial_payment;
+    order.classList.add('order');
+
+    let order_info = document.createElement('div');
+    order_info.classList.add('order-info');
+    order.appendChild(order_info);
+
+    let flavor = document.createElement('p');
+    flavor.textContent = data.flavor.flavor_name;
+    order_info.appendChild(flavor);
+
+    let size = document.createElement('p');
+    size.textContent = data.size + " Gallons";
+    order_info.appendChild(size);
+
+    let date = document.createElement('p');
+    date.textContent = data.delivery_date;
+    order_info.appendChild(date);
+
+    let time = document.createElement('p');
+    time.textContent = data.delivery_time;
+    order_info.appendChild(time);
+
+    order_info.appendChild(document.createElement('br'));
+
+    let initial_payment = document.createElement('p');
+    initial_payment.textContent = "Initial Payment: ₱" + data.initial_payment;
+    order_info.appendChild(initial_payment);
+
+    let remove_order_btn = document.createElement('button');
+    remove_order_btn.classList.add('remove-order-btn');
+    remove_order_btn.textContent = "X";
+    order.appendChild(remove_order_btn);
+
+    return order;
+  }
+
+
     
   document.getElementById('close_add_order_modal').addEventListener('click', () => {
     closeDialog(add_order_modal);
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
