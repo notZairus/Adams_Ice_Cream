@@ -11,4 +11,7 @@ $db->query('INSERT INTO flavor_tbl (flavor_name, flavor_cost, flavor_order_count
   'foc' => 0
 ]);
 
+
+
+
 header('Location: /flavors');

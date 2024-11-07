@@ -1,5 +1,9 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 function dd($data) {
   echo "<pre>";
   var_dump($data);
@@ -19,4 +23,38 @@ function view($path, $data = []) {
 
 function currentUrl($url) {
   return $_SERVER['REQUEST_URI'] == $url;
+}
+
+
+function sendEmail($data) {
+
+  $keys = require(base_path('api-keys.php'));
+
+  $mail = new PHPMailer(true);
+
+  try {
+    // Server settings
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'notZairus@gmail.com'; // Replace with your Gmail address
+    $mail->Password = $keys['GMAIL_APP_PASSWORD']; // Replace with the generated app password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    // Recipients
+    $mail->setFrom('notZairus@gmail.com', 'Adam\'s Ice Cream'); // Your email
+    $mail->addAddress($data['email'], $data['name']); // Recipient's email
+
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = $data['subject'];
+    $mail->Body    = '<strong>' . $data['body'] . '</strong>';
+    $mail->AltBody = $data['body'];
+
+    $mail->send();
+
+  } catch (Exception $e) {
+      dd("Error sending email: {$mail->ErrorInfo}");
+  }
 }

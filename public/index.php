@@ -1,5 +1,7 @@
 <?php
 
+
+require('../vendor/autoload.php');
 require('../functions.php');
 
 spl_autoload_register(function($class) {
@@ -7,6 +9,7 @@ spl_autoload_register(function($class) {
     return require (base_path("{$class}.php"));
   }
 });
+
 
 
 $router = new Router();

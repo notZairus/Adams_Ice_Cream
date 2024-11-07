@@ -1,12 +1,12 @@
 <?php
 require('../requires.php');
+require(base_path('vendor/autoload.php'));
 
 
 $config = require(base_path('configs.php'));
 $db = new Database($config['Database']);
 
 $data = json_decode(file_get_contents('php://input'), true);
-
 
 
 // get the order details
@@ -77,6 +77,18 @@ $db->query('UPDATE customer_tbl SET customer_order_count = customer_order_count 
 $db->query('UPDATE flavor_tbl SET flavor_order_count = flavor_order_count + 1 WHERE flavor_id = :fid', [
     'fid' => $order['flavor_id']
 ]);
+
+$customer = $db->query('SELECT * FROM customer_tbl WHERE customer_id = :cid', [
+    'cid' => $order['customer_id']
+])->fetch();
+
+sendEmail([
+    'email' => $customer['customer_email'],
+    'name' => $customer['customer_name'],
+    'subject' => 'ADAM\'S ICE CREAM: Your order has been processed.',
+    'body' => 'Your order is now ongoing. Thank you for your order!'
+  ]);
+
 
 echo json_encode([
     'success' => true,

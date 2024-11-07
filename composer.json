@@ -1,0 +1,19 @@
+{
+    "name": "dell/adams_ice_cream",
+    "description": "a simple pos",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dell\\AdamsIceCream\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "notZairus",
+            "email": "notzairus@gmail.com"
+        }
+    ]
+}
