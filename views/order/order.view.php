@@ -44,17 +44,18 @@
       <table class="orders-tbl">
         <thead>
           <tr height="60px">
-            <th width="180px"></th>
             <th>Order ID</th>
             <th>Customer Name</th>
-            <th width="150px">Contact #</th>
+            <th>Contact #</th>
             <th>Size</th>
             <th>Flavor</th>
-            <th width="100px">Address</th>
+            <th>Address</th>
             <th>Delivery Date</th>
             <th>Delivery Time</th>
-            <th width="120px">Payment</th>
-            <th width="120px">Balance</th>
+            <th>Price</th>
+            <th>Payment</th>
+            <th>Balance</th>
+            <th width="120px"></th>
           </tr>
         </thead>
         <tbody>

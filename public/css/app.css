@@ -1,4 +1,8 @@
 
+body {
+  background-color: #F3F3F8;
+}
+
 
 .wrapper {
   background-color: #F3F3F8;
@@ -12,7 +16,7 @@
 sidebar {
   background-color: #334259;
   height: min-content;
-  width: 300px;
+  min-width: 250px;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
   display: flex; 
@@ -42,7 +46,7 @@ sidebar .nav-container {
   align-items: end;
 }
 
-sidebar .nav-container .nav-btn {
+sidebar .nav-container .navv-btn {
   width: 95%;
   text-align: left;
   padding-right: 1rem;
@@ -54,20 +58,25 @@ sidebar .nav-container .nav-btn {
   align-items: center;
   gap: 10px;
   height: 60px;
+  align-items: center;
 
   transition: all 0.2s;
 }
 
-sidebar .nav-container .nav-btn:hover {
+sidebar .nav-container .navv-btn p {
+  margin: 0px;
+}
+
+sidebar .nav-container .navv-btn:hover {
   background-color: #243041;
   color: #F3F3F8;
 }
 
-sidebar .nav-container .nav-btn .icon-container svg {
+sidebar .nav-container .navv-btn .icon-container svg {
   height: 60%;
 }
 
-sidebar .nav-container .nav-btn.logout {
+sidebar .nav-container .navv-btn.logout {
   margin-top: 32px;
   font-weight: 700;
   width: 100%;
@@ -81,7 +90,7 @@ sidebar .nav-container .nav-btn.logout {
   transform: all 0.2s;
 }
 
-sidebar .nav-container .nav-btn.logout:hover {
+sidebar .nav-container .navv-btn.logout:hover {
   background-color: #243041;
   color: #F3F3F8;
 }

@@ -29,3 +29,9 @@ $router->post('/flavors', './controllers/flavor/store.php');
 $router->patch('/flavors', './controllers/flavor/update.php');
 $router->delete('/flavors', controller: './controllers/flavor/destroy.php');
 
+
+//ACCOUNTS
+$router->get('/accounts', './controllers/account/index.php');
+$router->get('/accounts/create', './controllers/account/create.php');
+$router->post('/accounts', './controllers/account/store.php');
+$router->delete('/accounts', './controllers/account/destroy.php');

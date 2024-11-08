@@ -1,0 +1,25 @@
+
+body {
+  background-color: yellow;
+}
+
+.edit-account, 
+.delete-account,
+.transfer-ownership {
+  margin: 0px 4px;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  bordeR: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+}
+
+.delete-account {
+  background-color: rgb(205, 15, 15);
+}
+
+main .grid-item {
+  padding: 20px;
+  margin-top: 28px;
+}

@@ -79,7 +79,6 @@
     }
 
     tdOperations.appendChild(divOperations);
-    tr.appendChild(tdOperations);
 
     const deliveryDateTime = new Date(order.order_delivery_datetime);
 
@@ -97,8 +96,10 @@
     tr.appendChild(createCell(order.order_delivery_address));
     tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0]));
     tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0]));
+    tr.appendChild(createCell(`₱${order.order_price}`));
     tr.appendChild(createCell(`₱${order.order_payment}`));
     tr.appendChild(createCell(`₱${order.order_price - order.order_payment}`));
+    tr.appendChild(tdOperations);
   
     return tr;
   }
