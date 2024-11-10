@@ -1,5 +1,4 @@
 <?php 
-session_start();
 
 $config = require(base_path('configs.php'));
 $db = new Database($config['Database']);
@@ -20,15 +19,18 @@ if (!$result) {
   die();
 }
 
-if ($result['password'] != $_POST['password']) {
+if (!password_verify($password, $result['password'])) {
   view('login.view.php', [
       'error' => 'Wrong Credentials.'
   ]);
   die();
 } else {
+  
+  session_start();
   $_SESSION['user_id'] = $result['user_id'];
   $_SESSION['username'] = $result['username'];
-  $_SESSION['password'] = $result['password'];
+  $_SESSION['user_role'] = $result['user_role'];
+  $_SESSION['user_fullname'] = $result['user_fullname'];
 
   header("Location: /dashboard");
 }

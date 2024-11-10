@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 $config = require(base_path('configs.php'));
 

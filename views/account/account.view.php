@@ -11,20 +11,22 @@
 <link rel="stylesheet" href="/css/account.css">
 
 <!-- SCRIPTS -->
-<script defer src="/js/functions.js"></script>
+<script defer src="/js/functions.js"></script>  
+<script defer src="/js/account.js"></script>
+
 
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
+
+<!-- MODALS -->
+<?php require(base_path('views/account/modals/add-user-modal.php')) ?>
+
 <main>
 
-  <div class="btn-container">
-      <div>
-        <a href="/accounts/create">
-          <button class="add-flavor-btn" id="show_add_flavor_modal">
-            Add User
-          </button> 
-        </a>
-      </div>
+    <div class="btn-container">
+      <button class="add-flavor-btn" id="show_add_user_modal">
+        Add User
+      </button> 
     </div>
 
     <div class="flavor-container grid-item">
@@ -52,7 +54,7 @@
               <td><?= $user['user_role'] ?></td>
               <td style="text-align: left;">
                 
-                <button class="edit-account">Edit</button>
+                <button class="edit-account" data-user_id="<?= $user['user_id'] ?>">Edit</button>
 
                 <?php if ($user['user_role'] == 'Employee') : ?>
 

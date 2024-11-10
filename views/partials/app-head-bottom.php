@@ -60,6 +60,8 @@
             </p>
           </a>
 
+          <?php if($_SESSION['user_role'] == 'Owner') : ?>
+
           <a href="/accounts" class="navv-btn" style="<?= currentUrl('/accounts') ||  currentUrl('/accounts/create') ? 'background-color: #F3F3F8; color: #334259; font-weight: 600' : "" ?>">
             <div class="icon-container">
             <svg style="<?= currentUrl('/accounts') || currentUrl('/accounts/create') ? "fill: purple;" : "fill: white;" ?>" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +75,8 @@
               Accounts
             </p>
           </a>
+
+          <?php endif; ?>
 
           <form action="/logout" method="POST" id="logout-form">
           </form>
