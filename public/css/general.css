@@ -13,6 +13,9 @@
   
   --primary-color: #334259;
   --dark-primary-color: #243041;
+
+  --danger-color: rgb(204, 4, 4);
+  --dark-danger-color: rgb(185, 6, 6);
 }
 
 * {
@@ -52,10 +55,88 @@ button {
               0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
 table th {
   font-weight: 700;
+  height: 40px;
+}
+
+table thead tr {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+table thead tr:hover {
+  background-color: var(--dark-primary-color);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+table tbody tr:hover {
+  background-color: #c6c2c2;
+}
+
+table tr th,
+table tr td {
+  max-height: 40px;
+  padding: 8px 12px;
+  text-align: center;
 }
 
 table td {
   font-weight: 500;
 }
+
+
+.btn {
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #d4cccc;
+  border: 1px solid gray;
+}
+
+.btn.primary {
+  background-color:var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.btn.primary:hover {
+  background-color:var(--dark-primary-color);
+  color: white;
+  border-color: var(--dark-primary-color);
+}
+
+.btn.secondary {
+  background-color:gray;
+  color: white;
+  border-color: gray;
+}
+
+.btn.secondary:hover {
+  background-color:rgb(105, 105, 105);
+  color: white;
+  border-color: rgb(105, 105, 105);
+}
+
+.btn.danger {
+  background-color:rgb(204, 4, 4);
+  color: white;
+  border-color: rgb(204, 4, 4);
+}
+
+.btn.danger:hover {
+  background-color:rgb(185, 6, 6);
+  color: white;
+  border-color: rgb(185, 6, 6);
+}
+
+

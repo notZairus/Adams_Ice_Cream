@@ -34,4 +34,5 @@ $router->delete('/flavors', controller: './controllers/flavor/destroy.php');
 $router->get('/accounts', './controllers/account/index.php');
 $router->get('/accounts/create', './controllers/account/create.php');
 $router->post('/accounts', './controllers/account/store.php');
+$router->patch('/accounts', './controllers/account/update.php');
 $router->delete('/accounts', './controllers/account/destroy.php');

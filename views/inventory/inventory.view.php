@@ -33,13 +33,13 @@
       <div class="table-container">
         <table class="ingredients-tbl">
           <thead>
-            <tr height="50px">
+            <tr>
               <th>IID</th>
-              <th width="120px">Name</th>
+              <th>Name</th>
               <th>Stock (kg)</th>
               <th>Price (kg)</th>
               <th>Usage per 4 gallons (kg)</th>
-              <th width="160px"></th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="kg">
@@ -53,13 +53,13 @@
       <div class="table-container">
         <table class="ingredients-tbl">
           <thead>
-            <tr height="50px">
+            <tr>
               <th>IID</th>
-              <th width="120px">Name</th>
+              <th>Name</th>
               <th>Stock (pc)</th>
               <th>Price (pcs)</th>
               <th>Usage per 4 gallons (pc)</th>
-              <th width="160px"></th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="pcs">
@@ -80,7 +80,7 @@
         <thead>
           <tr>
             <th>IID</th>
-            <th width="200px">Name</th>
+            <th>Name</th>
             <th>Stock</th>
             <th>Minimum Stock</th>
           </tr>

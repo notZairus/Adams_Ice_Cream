@@ -14,6 +14,9 @@
 
 
 <!-- MODALS -->
+<?php require(base_path('views/app/modals/message-modal.php')) ?>
+<?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+
 <?php require(base_path('views/order/modals/add-order-modal.php')) ?>
 <?php require(base_path('views/order/modals/update-payment-modal.php'))  ?>
 
@@ -43,7 +46,7 @@
     <div class="table-container">
       <table class="orders-tbl">
         <thead>
-          <tr height="60px">
+          <tr>
             <th>Order ID</th>
             <th>Customer Name</th>
             <th>Contact #</th>
@@ -55,7 +58,7 @@
             <th>Price</th>
             <th>Payment</th>
             <th>Balance</th>
-            <th width="120px"></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -65,7 +68,6 @@
         </tbody>
       </table>
     </div>  
-  
   </div>
 </main>
 

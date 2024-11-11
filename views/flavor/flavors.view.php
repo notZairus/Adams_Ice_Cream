@@ -49,12 +49,12 @@
               <td><?= $flavor['flavor_cost'] ?></td>
               <td>
                 <div class="order-operation-container">
-                  <button class="edit-flavor-btn show_edit_flavor_modal" id="show_edit_flavor_modal">
+                  <button class="btn primary edit-flavor-btn show_edit_flavor_modal" id="show_edit_flavor_modal">
                     Edit
                   </button>
                   <form action="/flavors" method="POST" class="delete_flavor_form" style="display:inline">
                     <input type="hidden" name="flavor_id" value="<?= $flavor['flavor_id'] ?>">
-                    <button class="delete-flavor-btn">
+                    <button class="btn danger delete-flavor-btn">
                       Delete
                     </button>
                     <input type="hidden" name="_method" value="DELETE">

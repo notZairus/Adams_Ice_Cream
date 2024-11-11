@@ -69,35 +69,6 @@
       border-radius: 8px;
     }
 
-    main .orders-container .table-container .orders-tbl {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .orders-tbl thead tr {
-      background-color: var(--primary-color);
-      color: white;
-    }
-
-    .orders-tbl thead tr:hover {
-      background-color: var(--dark-primary-color);
-    }
-
-    .orders-tbl tbody tr:nth-child(even) {
-      background-color: #f1f1f1;
-    }
-
-    .orders-tbl tbody tr:hover {
-      background-color: #c6c2c2;
-    }
-
-    .orders-tbl tr th,
-    .orders-tbl tr td {
-      max-height: 40px;
-      padding: 8px 12px;
-      text-align: center;
-    }
-
     dialog {
       background-color: white;
       border: none;
@@ -307,38 +278,4 @@
     .order-operations {
       display: flex;
       gap: 8px;
-    }
-
-    .process-order-btn, 
-    .finish-order-btn, 
-    .reactivate-order-btn,
-    .payment-order-btn {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .process-order-btn:hover, 
-    .finish-order-btn:hover, 
-    .reactivate-order-btn:hover,
-    .payment-order-btn:hover {
-      background-color: var(--dark-primary-color);
-    }
-
-    .cancel-order-btn {
-      background-color: #f44336;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .cancel-order-btn:hover {
-      background-color: #da190b;
     }

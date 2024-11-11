@@ -3,22 +3,6 @@ body {
   background-color: yellow;
 }
 
-.edit-account, 
-.delete-account,
-.transfer-ownership {
-  margin: 0px 4px;
-  background-color: var(--primary-color);
-  border-radius: 4px;
-  bordeR: none;
-  color: white;
-  padding: 4px 8px;
-  font-size: 0.9rem;
-}
-
-.delete-account {
-  background-color: rgb(205, 15, 15);
-}
-
 .add-user-form .input-field input {
   width: 100%;
   outline: none;
@@ -38,13 +22,15 @@ body {
   gap: 8px;
 }
 
-#add_user_modal .btn-container {
+#add_user_modal .btn-container, 
+#edit_user_modal .btn-container {
   margin-top: 12px;
   display: flex;
   gap: 8px;
 }
 
-#add_user_modal .btn-container button {
+#add_user_modal .btn-container button, 
+#edit_user_modal .btn-container button {
   font-size: 0.9rem;
   padding: 12px;
   width: 100%;
@@ -52,15 +38,18 @@ body {
   border: none;
 }
 
-#add_user_modal .btn-container button[type='button']:hover {
+#add_user_modal .btn-container button[type='button']:hover,
+#edit_user_modal .btn-container button[type='button']:hover {
   background-color: #c6c2c2;
 }
 
-#add_user_modal .btn-container button[type='submit'] {
+#add_user_modal .btn-container button[type='submit'],
+#edit_user_modal .btn-container button[type='submit'] {
   background-color: var(--primary-color);
   color: white;
 }
 
-#add_user_modal .btn-container button[type='submit']:hover {
+#add_user_modal .btn-container button[type='submit']:hover,
+#edit_user_modal .btn-container button[type='submit']:hover {
   background-color: var(--dark-primary-color);
 }

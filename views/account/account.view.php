@@ -18,8 +18,12 @@
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 
+
 <!-- MODALS -->
 <?php require(base_path('views/account/modals/add-user-modal.php')) ?>
+<?php require(base_path('views/account/modals/edit-user-modal.php')) ?>
+
+
 
 <main>
 
@@ -37,10 +41,11 @@
           <thead>
             <tr>
               <th>UID</th>
-              <th>Username</th>
               <th>Full Name</th>
               <th>Role</th>
-              <th width="320px"></th>
+              <th>Username</th>
+              <th>Email</th>
+              <th style="text-align: center;"></th>
             </tr>
           </thead>
           <tbody>
@@ -49,20 +54,24 @@
 
             <tr>
               <td><?= $user['user_id'] ?></td>
-              <td><?= $user['username'] ?></td>
               <td><?= $user['user_fullname'] ?></td>
               <td><?= $user['user_role'] ?></td>
-              <td style="text-align: left;">
+              <td><?= $user['username'] ?></td>
+              <td><?= $user['user_email'] ?></td></td>
+              <td style="text-align: right;">
                 
-                <button class="edit-account" data-user_id="<?= $user['user_id'] ?>">Edit</button>
+                <button class="btn primary edit-account" data-user_id="<?= $user['user_id'] ?>">Edit</button>
 
                 <?php if ($user['user_role'] == 'Employee') : ?>
 
-                  <button class="transfer-ownership">Transfer Ownership</button>
+                  <button class="btn secondary transfer-ownership" data-owner_id="<?= $_SESSION['user_id']; ?>" data-user_id="<?= $user['user_id'] ?>">
+                    Transfer Ownership
+                  </button>
+
                   <form action="/accounts" method="POST" style="display: inline;">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-                    <button class="delete-account">Delete</button>
+                    <button class="btn danger delete-account">Delete</button>
                   </form>
 
                 <?php endif ?>

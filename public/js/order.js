@@ -37,6 +37,8 @@
       processBtn.dataset.order_id = order.order_id;
       processBtn.dataset.order_size = order.order_size;
       processBtn.classList.add('process-order-btn');
+      processBtn.classList.add('btn');
+      processBtn.classList.add('primary');
       processBtn.textContent = "Process";
       divOperations.appendChild(processBtn);
     
@@ -45,6 +47,8 @@
       cancelBtn.dataset.order_id = order.order_id;
       cancelBtn.dataset.order_size = order.order_size;
       cancelBtn.classList.add('cancel-order-btn');
+      cancelBtn.classList.add('btn');
+      cancelBtn.classList.add('danger');
       divOperations.appendChild(cancelBtn);
 
       attachEvent(processBtn, processOrder);
@@ -52,12 +56,16 @@
     } else if (category == 'Ongoing') {
       let paymentBtn = document.createElement('button');
       paymentBtn.classList.add('payment-order-btn');
-      paymentBtn.textContent = "Update Payment";
+      paymentBtn.classList.add('btn');
+      paymentBtn.classList.add('primary');
+      paymentBtn.textContent = "Payment";
       paymentBtn.dataset.order_id = order.order_id;
       divOperations.appendChild(paymentBtn);
 
       let finishedBtn = document.createElement('button');
       finishedBtn.classList.add('finish-order-btn');
+      finishedBtn.classList.add('btn');
+      finishedBtn.classList.add('primary');
       finishedBtn.textContent = "Finish";
       finishedBtn.dataset.order_id = order.order_id;
       divOperations.appendChild(finishedBtn);
@@ -70,6 +78,8 @@
     } else if (category == 'Cancelled') {
       let reactivateBtn = document.createElement('button');
       reactivateBtn.classList.add('reactivate-order-btn');
+      reactivateBtn.classList.add('btn');
+      reactivateBtn.classList.add('primary');
       reactivateBtn.textContent = "Reactivate";
       reactivateBtn.dataset.order_id = order.order_id;
       reactivateBtn.dataset.order_size = order.order_size;
@@ -139,9 +149,12 @@
   async function processOrder(event) {
     const target = event.target;
 
+    let confirmed = await showConfirmationModal('Are you sure you want to process this order?');
+    if (!confirmed) return;
+
     // CHECK IF THE INGREDIENTS IS SUFFICIENT
     if (! await stockIsSufficient(target.dataset.order_size)) {
-      alert('Insufficient ingredients');
+      await showMessageModal('Not enough ingredients to process this order.');
       return;
     }
 
@@ -163,6 +176,9 @@
   async function cancelOrder(event) {
     const target = event.target;
 
+    let confirmed = await showConfirmationModal('Are you sure you want to cancel this order?');
+    if (!confirmed) return;
+
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('apis/order/cancel-order.php', {
       method: 'POST',
@@ -181,6 +197,9 @@
 
   async function reactivateOrder(event) {
     const target = event.target;
+
+    let confirmed = await showConfirmationModal('Are you sure you want to reactivate this order?');
+    if (!confirmed) return;
     
     document.querySelector('.orders-tbl tbody').removeChild(target.closest('tr'));
     const response = await fetch('apis/order/reactivate-order.php', {
@@ -199,12 +218,15 @@
 
   async function finishOrder(event) {
     const target = event.target;
+    
+    let confirmed = await showConfirmationModal('Are you sure you want to finish this order?');
+    if (!confirmed) return;
 
     let balance = target.closest('tr').querySelector('td:nth-child(11)').textContent;
     balance = parseFloat(balance.replace('₱', ''));
 
     if (balance != 0) {
-      alert(`Order #${target.dataset.order_id} requires full payment of ₱${balance} before completion.`)
+      showMessageModal(`Order #${target.dataset.order_id} requires full payment of ₱${balance} before completion.`);
       return;
     }
 
@@ -231,8 +253,6 @@
 
   const add_order_modal = document.getElementById('add_order_modal');
   let flavors = null;
-
-
 
   document.getElementById('show_add_order_modal').addEventListener('click', async () => {
     showDialog(add_order_modal);
@@ -276,13 +296,13 @@
 
     let price = add_order_form.querySelector('#size').value == 4 ? 1400 : 2700;
     if (order.initial_payment < 0 || order.initial_payment > price) {
-      alert('Invalid payment. Please check your payment details and try again.');
+      showMessageModal('Invalid payment. Please check your payment details and try again.');
       return;
     }
 
     let thereIsEmptyInfo = Object.values(order).some(value => value == null);
     if (thereIsEmptyInfo) {
-      alert('Some required fields are missing or contain invalid data.');
+      showMessageModal('Some required fields are missing or contain invalid data.');
       return;
     }
 
@@ -293,7 +313,7 @@
     let order_container = e.currentTarget.parentElement.previousElementSibling;
     
     if(e.currentTarget.parentElement.previousElementSibling.children.length == 0) {
-      alert('No orders to add.');
+      showMessageModal('No orders to add.');
       return;
     }
     
@@ -407,7 +427,7 @@
     balance = parseFloat(balance.replace('₱', ''));
 
     if (balance  <= 0) {
-      alert(`Order #${order_id} is fully paid. No additional payment needed.`);
+      showMessageModal(`Order #${order_id} is fully paid. No additional payment needed.`);
       return;
     }
 

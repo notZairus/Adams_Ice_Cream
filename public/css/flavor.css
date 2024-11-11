@@ -54,32 +54,6 @@ main .flavor-container .table-container .flavor-tbl {
   border-collapse:collapse;
 }
 
-.flavor-tbl thead tr {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.flavor-tbl thead tr:hover {
-  background-color: var(--dark-primary-color);
-}
-
-.flavor-tbl tbody tr:nth-child(even) {
-  background-color: #f1f1f1;
-}
-
-.flavor-tbl tbody tr:hover {
-  background-color: #c6c2c2;
-}
-
-.flavor-tbl tr th,
-.flavor-tbl tr td {
-  max-height: 40px;
-  padding: 8px 12px;
-  text-align: center;
-}
-
-
-
 
 dialog {
   background-color: white;
@@ -163,21 +137,6 @@ dialog > h2 {
 
 .add-flavor-form .btn-container button[type='submit']:hover {
   background-color: var(--dark-primary-color);
-}
-
-.edit-flavor-btn, 
-.delete-flavor-btn {
-  margin: 0px 4px;
-  background-color: var(--primary-color);
-  border-radius: 4px;
-  bordeR: none;
-  color: white;
-  padding: 4px 8px;
-  font-size: 0.9rem;
-}
-
-.delete-flavor-btn {
-  background-color: rgb(205, 15, 15);
 }
 
 .flavor-operation-container {
