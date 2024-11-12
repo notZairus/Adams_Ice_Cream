@@ -22,6 +22,11 @@ body {
   gap: 8px;
 }
 
+#add_user_modal,
+#edit_user_modal {
+  flex-direction: column;
+}
+
 #add_user_modal .btn-container, 
 #edit_user_modal .btn-container {
   margin-top: 12px;
@@ -52,4 +57,20 @@ body {
 #add_user_modal .btn-container button[type='submit']:hover,
 #edit_user_modal .btn-container button[type='submit']:hover {
   background-color: var(--dark-primary-color);
+}
+
+#confirm_password_modal {
+  width: 400px;
+}
+
+#confirm_password_modal h2 {
+  margin: 0px;
+}
+
+#confirm_password_modal .btn-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
 }

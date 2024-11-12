@@ -36,3 +36,4 @@ $router->get('/accounts/create', './controllers/account/create.php');
 $router->post('/accounts', './controllers/account/store.php');
 $router->patch('/accounts', './controllers/account/update.php');
 $router->delete('/accounts', './controllers/account/destroy.php');
+$router->patch('/accounts/transfer-ownership', './controllers/account/transfer-ownership.php');

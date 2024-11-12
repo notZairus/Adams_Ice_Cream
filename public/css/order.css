@@ -92,28 +92,6 @@
       gap: 8px;
     }
 
-    dialog::backdrop {
-      background-color: rgba(0, 0, 0, 0.15);
-    }
-
-    dialog.open {
-      display: flex;
-    }
-
-    dialog.showing {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
-
-    dialog.closing {
-      transform: translate(-50%, -60%);
-      opacity: 0;
-    }
-
-    dialog > h2 {
-      margin-bottom: 30px;
-    }
-
     dialog .add-order-form {
       width: 700px;
       display: flex;

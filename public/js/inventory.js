@@ -60,11 +60,14 @@ function createIngredientRow(ingredient) {
 
   let div = document.createElement('div');
   div.classList.add('ingredient-operation-container');
+  div.classList.add('gap8');
   d6.appendChild(div);
 
   let editBtn = document.createElement('button');
   editBtn.classList.add('edit-ingredient-btn');
   editBtn.classList.add('show_edit_ingredient_modal');
+  editBtn.classList.add('btn');
+  editBtn.classList.add('primary');
   editBtn.dataset.ingredient_id = ingredient.ingredient_id;
   editBtn.textContent = 'Edit';
   attachEvent(editBtn, editIngredient);
@@ -74,6 +77,11 @@ function createIngredientRow(ingredient) {
   form.setAttribute('action', '/inventory');
   form.setAttribute('method', 'POST');
   form.classList.add('delete_ingredient_form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let confirmed = await showConfirmationModal('Delete the selected ingredient? ');
+    if (confirmed) form.submit();
+  })
   div.appendChild(form);
 
   const methodInput = document.createElement('input');
@@ -90,6 +98,8 @@ function createIngredientRow(ingredient) {
 
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('delete-ingredient-btn');
+  deleteButton.classList.add('btn');
+  deleteButton.classList.add('danger');
   deleteButton.textContent = 'Delete';
   form.appendChild(deleteButton);
 
@@ -140,7 +150,7 @@ document.getElementById('close_new_ingredient_modal').onclick = () => {
 };
 
 document.querySelector('.new-ingredient-form').onsubmit = (event) => {
-  alert('Ingredient Added Successfully!');
+  showMessageModal('Ingredient Added Successfully!');
 }
 
 //ADD STOCK
@@ -167,7 +177,7 @@ document.getElementById('close_add_stock_modal').onclick = () => {
 };
 
 document.querySelector('.add-stock-form').onsubmit = (event) => {
-  alert("Stock Sucessfully Added!");
+  showMessageModal("Stock Sucessfully Added!");
 }
 
 
@@ -192,7 +202,7 @@ function editIngredient(event) {
 }
 
 document.querySelector('.edit-ingredient-form').onsubmit = (event) => {
-  alert('Ingredient Updated Successfully!');
+  showMessageModal('Ingredient Updated Successfully!');
 }
 
 document.querySelectorAll('.show_edit_ingredient_modal').forEach(btn => {
@@ -208,12 +218,3 @@ document.getElementById('close_edit_ingredient_modal').onclick = () => {
 //DELETE INGREDIENT
 //DELETE INGREDIENT
 //DELETE INGREDIENT
-
-let deleteForms = document.querySelectorAll('.delete_ingredient_form');
-
-Array.from(deleteForms).forEach(deleteForm => {
-  deleteForm.onsubmit = (event) => {
-    let confirmed = confirm("Delete the selected ingredient? ");
-    if (! confirmed) event.preventDefault();
-  }
-});

@@ -20,6 +20,10 @@
 
 
 <!-- MODALS -->
+<?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+<?php require(base_path('views/app/modals/message-modal.php')) ?>
+
+<?php require(base_path('views/account/modals/confirm-password-modal.php')) ?>
 <?php require(base_path('views/account/modals/add-user-modal.php')) ?>
 <?php require(base_path('views/account/modals/edit-user-modal.php')) ?>
 
@@ -64,15 +68,15 @@
 
                 <?php if ($user['user_role'] == 'Employee') : ?>
 
-                  <button class="btn secondary transfer-ownership" data-owner_id="<?= $_SESSION['user_id']; ?>" data-user_id="<?= $user['user_id'] ?>">
-                    Transfer Ownership
-                  </button>
-
-                  <form action="/accounts" method="POST" style="display: inline;">
+                  <form action="/accounts" method="POST" style="display: inline;" class="delete-user-form">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-                    <button class="btn danger delete-account">Delete</button>
+                    <button type="button" class="btn danger delete-account">Delete</button>
                   </form>
+
+                  <button class="btn secondary transfer-ownership" style="margin-left: 12px;" type="button" data-user_id = "<?= $user['user_id'] ?>">
+                    Transfer Ownership
+                  </button>
 
                 <?php endif ?>
 

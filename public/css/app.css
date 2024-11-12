@@ -112,8 +112,45 @@ section main {
   flex: 1;
 }
 
+dialog {
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 16px 32px 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  transition: all 0.3s ease-out;
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+dialog.open {
+  display: flex;
+}
+
+dialog.showing {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+dialog.closing {
+  transform: translate(-50%, -60%);
+  opacity: 0;
+}
+
+dialog > h2 {
+  margin-bottom: 30px;
+}
+
 .message-modal, 
 .confirmation-modal {
+  display: none;
   padding: 20px;
   z-index: 100;
   max-width: 500px;
@@ -122,6 +159,7 @@ section main {
   background-color: white;
   gap: 0px;
 } 
+
 .message-modal h1, 
 .confirmation-modal h1 {
   font-size: 1.7rem;
@@ -138,4 +176,30 @@ section main {
 .message-modal .close-button, 
 .confirmation-modal .confirm button {
   font-size: 1.4rem;
+}
+
+
+.confirmation-modal .btn-containerr {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.gap8 {
+  display: flex;
+  gap: 8px;
+}
+
+.text-field {
+  width: 100%;
+}
+
+.text-field input,
+.text-field select{
+  width: 100%;
+  outline: none;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
 }

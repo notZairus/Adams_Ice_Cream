@@ -92,8 +92,7 @@ function displayThisWeek(transactions) {
   let mappedTransactions = mapTransaction(transactionThisWeek);
 
   displayChart(mappedTransactions);
-
-  
+  displaySales(mappedTransactions);
 }
 
 function displayThisMonth(transactions) {
@@ -154,6 +153,8 @@ function displayThisMonth(transactions) {
   })
 
   displayChart(mappedTransactions);
+  displaySales(mappedTransactions);
+
 }
 
 function displayThisYear(transactions) {
@@ -204,6 +205,7 @@ function displayThisYear(transactions) {
   let mappedTransactions = mapTransaction(transactionThisYear);
 
   displayChart(mappedTransactions);
+  displaySales(mappedTransactions);
 }
 
 function displayChart(transactions) {
@@ -243,6 +245,27 @@ function displayChart(transactions) {
     }
   });
 
+}
+
+function displaySales(transactions) {
+  let cost = 0;
+  let revenue = 0;
+
+  Array.from(transactions.incomes.values()).forEach(income => {
+    revenue += parseFloat(income);
+  })
+
+  Array.from(transactions.expenses.values()).forEach(expenses => {
+    cost += parseFloat(expenses);
+  })
+
+  profit = revenue - cost; 
+
+  let sales_amount_container = document.querySelector('.sales-amount-container');
+
+  sales_amount_container.querySelector('.cost-container p').textContent = '₱' + cost; 
+  sales_amount_container.querySelector('.revenue-container p').textContent = '₱' + revenue; 
+  sales_amount_container.querySelector('.profit-container p').textContent = '₱' + profit; 
 }
 
 //======================================================================================================================================

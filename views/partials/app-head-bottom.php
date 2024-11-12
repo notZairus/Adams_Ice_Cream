@@ -38,6 +38,8 @@
             </p>
           </a>
 
+          <?php if($_SESSION['user_role'] == 'Owner') : ?>
+
           <a href="/flavors" class="navv-btn" style="<?= currentUrl('/flavors') ? 'background-color: #F3F3F8; color: #334259; font-weight: 600' : "" ?>">
             <div class="icon-container">
             <svg style="<?= currentUrl('/flavors') ? "fill: purple;" : "fill: white;" ?>" viewBox="0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -59,8 +61,6 @@
               Flavors
             </p>
           </a>
-
-          <?php if($_SESSION['user_role'] == 'Owner') : ?>
 
           <a href="/accounts" class="navv-btn" style="<?= currentUrl('/accounts') ||  currentUrl('/accounts/create') ? 'background-color: #F3F3F8; color: #334259; font-weight: 600' : "" ?>">
             <div class="icon-container">

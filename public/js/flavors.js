@@ -35,11 +35,22 @@ document.getElementById('close_edit_flavor_modal').addEventListener('click', () 
 
 
 
-let deleteForms = document.querySelectorAll('.delete_flavor_form');
+// let deleteForms = document.querySelectorAll('.delete_flavor_form');
 
-Array.from(deleteForms).forEach(deleteForm => {
-  deleteForm.onsubmit = (event) => {
-    let confirmed = confirm("Delete the selected ingredient? ");
-    if (! confirmed) event.preventDefault();
-  }
+// Array.from(deleteForms).forEach(deleteForm => {
+//   deleteForm.onsubmit = (event) => {
+//     let confirmed = showConfirmationModal("Delete the selected ingredient? ");
+//     if (! confirmed) event.preventDefault();
+// });
+
+let delete_flavor_btns = document.querySelectorAll('.delete-flavor-btn');
+
+delete_flavor_btns.forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    let confirmed = await showConfirmationModal('Are you sure you want to delete this flavor? By deleting this flavor, orders that selected this flavor will be deleted as well.');
+    if (! confirmed) return;
+
+    let form = e.target.parentElement;
+    form.submit();
+  })
 });

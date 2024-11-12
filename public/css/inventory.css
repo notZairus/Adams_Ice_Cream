@@ -97,6 +97,10 @@ dialog.open {
   display: block;
 }
 
+#confirmation_modal.open {
+  display: flex;
+}
+
 dialog.showing {
   transform: translate(-50%, -50%);
   opacity: 1;
@@ -196,22 +200,6 @@ dialog h2 {
 
 .edit-ingredient-form .text-field:nth-child(1) {
   grid-column: span 4;
-}
-
-
-.edit-ingredient-btn, 
-.delete-ingredient-btn {
-  margin: 0px 4px;
-  background-color: var(--primary-color);
-  border-radius: 4px;
-  bordeR: none;
-  color: white;
-  padding: 4px 8px;
-  font-size: 0.9rem;
-}
-
-.delete-ingredient-btn {
-  background-color: rgb(205, 15, 15);
 }
 
 .ingredient-operation-container {

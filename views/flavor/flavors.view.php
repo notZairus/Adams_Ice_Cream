@@ -14,6 +14,8 @@
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 <!-- MODALS -->
+<?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+
 <?php require(base_path('views/flavor/modals/add-flavor-modal.php')) ?>
 <?php require(base_path('views/flavor/modals/edit-flavor-modal.php')) ?>
 
@@ -54,7 +56,7 @@
                   </button>
                   <form action="/flavors" method="POST" class="delete_flavor_form" style="display:inline">
                     <input type="hidden" name="flavor_id" value="<?= $flavor['flavor_id'] ?>">
-                    <button class="btn danger delete-flavor-btn">
+                    <button type="button" class="btn danger delete-flavor-btn">
                       Delete
                     </button>
                     <input type="hidden" name="_method" value="DELETE">

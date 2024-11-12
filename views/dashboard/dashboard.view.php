@@ -35,8 +35,22 @@
     </div>
   </div>
 
-  <div class="grid-item amount-container">
+  <div class="grid-item sales-amount-container">
     <h1>Sales Amount</h1>
+    <div class="amount-container">
+      <div class="cost-container">
+        <h2>Cost</h2>
+        <p></p>
+      </div>
+      <div class="revenue-container">
+        <h2>Revenue</h2>
+        <p></p>
+      </div>
+      <div class="profit-container">
+        <h2>Profit</h2>
+        <p></p>
+      </div>
+    </div>
   </div>
 
   <div class="grid-item top-selling-flavor-container">
