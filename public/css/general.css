@@ -89,10 +89,13 @@ table tr td {
   text-align: center;
 }
 
+table th {
+  font-weight: 700;
+}
+
 table td {
   font-weight: 500;
 }
-
 
 .btn {
   font-size: 1.1rem;

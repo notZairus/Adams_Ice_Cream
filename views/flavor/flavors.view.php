@@ -48,7 +48,7 @@
             <tr>
               <td><?= $flavor['flavor_id'] ?></td>
               <td><?= $flavor['flavor_name'] ?></td> 
-              <td><?= $flavor['flavor_cost'] ?></td>
+              <td><?= "₱ ". $flavor['flavor_cost'] ?></td>
               <td>
                 <div class="order-operation-container">
                   <button class="btn primary edit-flavor-btn show_edit_flavor_modal" id="show_edit_flavor_modal">

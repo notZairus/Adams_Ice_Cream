@@ -44,15 +44,20 @@ function createIngredientRow(ingredient) {
   tr.appendChild(d2);
 
   let d3 = document.createElement('td');
-  d3.textContent = isNaN(parseInt(ingredient.ingredient_stock)) ? 0 : parseInt(ingredient.ingredient_stock);
+
+  if (ingredient.ingredient_unit == "kg") {
+    d3.textContent = isNaN(ingredient.ingredient_stock) ? 0 + " kg": ingredient.ingredient_stock + " kg";
+  } else {
+    d3.textContent = isNaN(ingredient.ingredient_stock) ? 0 + " pcs": ingredient.ingredient_stock + " pcs";
+  }
   tr.appendChild(d3);
 
   let d4 = document.createElement('td');
-  d4.textContent = "₱" + ingredient.ingredient_price;
+  d4.textContent = "₱ " + ingredient.ingredient_price;
   tr.appendChild(d4);
 
   let d5 = document.createElement('td');
-  d5.textContent = ingredient.ingredient_usage_per_4_gallons;
+  d5.textContent = ingredient.ingredient_unit == "kg" ? ingredient.ingredient_usage_per_4_gallons + " kg" : ingredient.ingredient_usage_per_4_gallons + " pcs";
   tr.appendChild(d5);
 
   let d6 = document.createElement('td');
@@ -121,11 +126,15 @@ function displayToRestocks(ingredients) {
       tr.appendChild(nameCell);
 
       const stockCell = document.createElement('td');
-      stockCell.textContent = isNaN(parseInt(ingredient.ingredient_stock)) ? 0 : parseInt(ingredient.ingredient_stock);
+      stockCell.textContent = ingredient.ingredient_unit == "kg" 
+        ? isNaN(ingredient.ingredient_stock) ? 0 + " kg": ingredient.ingredient_stock + " kg"
+        : isNaN(ingredient.ingredient_stock) ? 0 + " pcs": ingredient.ingredient_stock + " pcs";
       tr.appendChild(stockCell);
 
       const reminderCell = document.createElement('td');
-      reminderCell.textContent = ingredient.ingredient_reminder;
+      reminderCell.textContent = ingredient_unit == "kg" 
+        ? ingredient.ingredient_reminder.toFixed(2) + " kg" 
+        : ingredient.ingredient_reminder.toFixed(2) + " pcs" ;
       tr.appendChild(reminderCell);
 
       toRestock.appendChild(tr);
@@ -163,8 +172,8 @@ document.getElementById('show_add_stock_modal').addEventListener('click', () => 
   let select = document.getElementById('ingredient_id');
   
   ingredients.forEach(ingredient => {
-    const option = document.createElement('option'); // Create the option element
-    option.value = ingredient.ingredient_id; // Set the value attribute
+    const option = document.createElement('option');
+    option.value = ingredient.ingredient_id;
     option.textContent = ingredient.ingredient_name;
     select.appendChild(option);
   })
@@ -192,11 +201,17 @@ function editIngredient(event) {
 
   const row = target.closest('tr'); 
 
-  edit_ingredient_modal.querySelector('#ingredient_name').value = row.querySelector('td:nth-child(2)').textContent;
-  edit_ingredient_modal.querySelector('#ingredient_stock').value = row.querySelector('td:nth-child(3)').textContent;
-  edit_ingredient_modal.querySelector('#ingredient_price').value = row.querySelector('td:nth-child(4)').textContent;
-  edit_ingredient_modal.querySelector('#ingredient_unit').value = row.querySelector('td:nth-child(5)').textContent;
   edit_ingredient_modal.querySelector('#ingredient_id').value = row.querySelector('td:nth-child(1)').textContent;
+  edit_ingredient_modal.querySelector('#ingredient_name').value = row.querySelector('td:nth-child(2)').textContent;
+  edit_ingredient_modal.querySelector('#ingredient_price').value = row.querySelector('td:nth-child(4)').textContent.replace("₱ ", "");
+
+  edit_ingredient_modal.querySelector('#ingredient_stock').value = row.querySelector('td:nth-child(3)').textContent.endsWith(" kg") 
+  ? row.querySelector('td:nth-child(3)').textContent.replace(" kg", "") 
+  : row.querySelector('td:nth-child(3)').textContent.replace(" pcs", "");
+
+  edit_ingredient_modal.querySelector('#ingredient_usage_per_4_gallons').value = row.querySelector('td:nth-child(5)').textContent.endsWith(" kg") 
+  ? row.querySelector('td:nth-child(5)').textContent.replace(" kg", "") 
+  : row.querySelector('td:nth-child(5)').textContent.replace(" pcs", "");
 
   showDialog(edit_ingredient_modal);
 }

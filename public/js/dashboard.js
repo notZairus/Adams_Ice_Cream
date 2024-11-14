@@ -263,9 +263,9 @@ function displaySales(transactions) {
 
   let sales_amount_container = document.querySelector('.sales-amount-container');
 
-  sales_amount_container.querySelector('.cost-container p').textContent = '₱' + cost; 
-  sales_amount_container.querySelector('.revenue-container p').textContent = '₱' + revenue; 
-  sales_amount_container.querySelector('.profit-container p').textContent = profit > 0 ? '₱' + profit : '₱' + 0; 
+  sales_amount_container.querySelector('.cost-container p').textContent = '₱ ' + cost; 
+  sales_amount_container.querySelector('.revenue-container p').textContent = '₱ ' + revenue; 
+  sales_amount_container.querySelector('.profit-container p').textContent = profit > 0 ? '₱ ' + profit : '₱' + 0; 
 }
 
 //======================================================================================================================================
@@ -295,8 +295,7 @@ function displayTopSellingFlavors(flavors) {
   flavors.forEach(flavor => {
     let a = document.createElement('a');
     a.classList.add('flavor');
-    //a.href = `https://en.wikipedia.org/wiki/${flavor.flavor_name}`;
-    a.href = "https://fb.com";
+    a.href = `https://en.wikipedia.org/wiki/${flavor.flavor_name}`;
     a.target = "_blank";
     a.textContent = flavor.flavor_name;
 
@@ -342,13 +341,13 @@ function createIngredientRow(ingredient) {
   td1.textContent = ingredient.ingredient_name;
   tr.appendChild(td1);
   let td2 = document.createElement('td');
-  td2.textContent = ingredient.ingredient_stock;
+  td2.textContent = ingredient.ingredient_unit == "kg" ? ingredient.ingredient_stock + " kg" : ingredient.ingredient_stock + " pcs";
   tr.appendChild(td2);
   let td3 = document.createElement('td');
-  td3.textContent = ingredient.ingredient_reminder;
+  td3.textContent = ingredient.ingredient_unit == "kg" ? ingredient.ingredient_reminder.toFixed(2) + " kg" : ingredient.ingredient_reminder.toFixed(2) + " pcs";
   tr.appendChild(td3);
   let td4 = document.createElement('td');
-  td4.textContent = ingredient.ingredient_usage_per_4_gallons;
+  td4.textContent = ingredient.ingredient_unit == "kg" ? ingredient.ingredient_usage_per_4_gallons + " kg" : ingredient.ingredient_usage_per_4_gallons + " pcs";
   tr.appendChild(td4);
 
   return tr;

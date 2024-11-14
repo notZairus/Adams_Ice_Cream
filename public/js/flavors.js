@@ -23,7 +23,7 @@ function editFlavor(event) {
   const row = target.closest('tr'); 
 
   edit_flavor_modal.querySelector('#flavor_name').value = row.querySelector('td:nth-child(2)').textContent;
-  edit_flavor_modal.querySelector('#flavor_cost').value = row.querySelector('td:nth-child(3)').textContent;
+  edit_flavor_modal.querySelector('#flavor_cost').value = row.querySelector('td:nth-child(3)').textContent.replace("₱ ", "");
   edit_flavor_modal.querySelector('#flavor_id').value = row.querySelector('td:nth-child(1)').textContent;
 
   showDialog(edit_flavor_modal);
