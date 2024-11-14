@@ -78,7 +78,7 @@ sidebar .nav-container .navv-btn .icon-container svg {
 
 sidebar .nav-container .navv-btn.logout {
   margin-top: 32px;
-  font-weight: 700;
+  font-weight: 500;
   width: 100%;
   text-align: center;
   justify-content: center;
@@ -87,12 +87,12 @@ sidebar .nav-container .navv-btn.logout {
   border: none;
   cursor: pointer;
   
-  transform: all 0.2s;
+  transform: all 0.4s;
 }
 
 sidebar .nav-container .navv-btn.logout:hover {
-  background-color: #243041;
   color: #F3F3F8;
+  font-weight: 700;
 }
 
 section {

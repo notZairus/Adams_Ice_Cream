@@ -216,7 +216,7 @@ function displayChart(transactions) {
 
   const myChart = document.getElementById('myChart');
   currentChart1 = new Chart(myChart, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: Array.from(mappedTransactions.incomes.keys()),
       datasets: [
@@ -265,7 +265,7 @@ function displaySales(transactions) {
 
   sales_amount_container.querySelector('.cost-container p').textContent = '₱' + cost; 
   sales_amount_container.querySelector('.revenue-container p').textContent = '₱' + revenue; 
-  sales_amount_container.querySelector('.profit-container p').textContent = '₱' + profit; 
+  sales_amount_container.querySelector('.profit-container p').textContent = profit > 0 ? '₱' + profit : '₱' + 0; 
 }
 
 //======================================================================================================================================
