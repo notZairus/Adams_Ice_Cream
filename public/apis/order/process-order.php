@@ -85,9 +85,9 @@ $customer = $db->query('SELECT * FROM customer_tbl WHERE customer_id = :cid', [
 sendEmail([
     'email' => $customer['customer_email'],
     'name' => $customer['customer_name'],
-    'subject' => 'ADAM\'S ICE CREAM: Your order has been processed.',
-    'body' => 'Your order is now ongoing. Thank you for your order!'
-  ]);
+    'subject' => "ADAM'S ICE CREAM: Your order is ready for delivery! 🍦",
+    'body' => "Dear {$customer['customer_name']},<br><br>Your delicious ice cream order is now ready and will be on its way to you shortly! We've crafted your order with premium ingredients and lots of care.<br><br>Get ready to enjoy your ice cream treats!<br><br>Best regards,<br>ADAM'S ICE CREAM"
+]);
 
 
 echo json_encode([
