@@ -101,7 +101,7 @@
     tr.appendChild(createCell(order.order_id));
     tr.appendChild(createCell(order.customer_name));
     tr.appendChild(createCell(order.customer_contact));
-    tr.appendChild(createCell(order.order_size));
+    tr.appendChild(createCell(order.order_size + " gallons"));
     tr.appendChild(createCell(order.flavor_name));
     tr.appendChild(createCell(order.order_delivery_address));
     tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0]));

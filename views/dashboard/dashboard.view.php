@@ -21,6 +21,7 @@
 <?php require(base_path('views/app/modals/message-modal.php')) ?>
 <?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
 
+<?php require(base_path('views/dashboard/modals/show-recent-orders.php')) ?>
 <?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>
 <?php require(base_path('views/order/modals/add-order-modal.php')) ?>
 
@@ -75,7 +76,7 @@
 
   <div class="grid-item quick-controls-container">
     <h1>Quick Controls</h1>
-    <div class="quick-cotrols-btn-container">
+    <div class="quick-cotrols-btn-container" id="qc_show_recent_orders">
       <button class="quick-control-btn">
         <div class="icon-container">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-4.581 3.324a1 1 0 0 0-.525-1.313L13 12.341V6.5a1 1 0 0 0-2 0v6.17c0 .6.357 1.143.909 1.379l4.197 1.8a1 1 0 0 0 1.313-.525z" fill="white"/></svg>

@@ -56,8 +56,10 @@ button {
 }
 
 table {
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 table th {
@@ -143,3 +145,7 @@ table td {
 }
 
 
+.btn.fs-md {
+  font-size: 1.4rem;
+  padding: 8px 16px;
+}

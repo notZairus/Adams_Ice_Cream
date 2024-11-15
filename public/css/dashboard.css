@@ -449,3 +449,28 @@ dialog .add-order-form .order-info > div {
 .datetime-field input:nth-child(2) {
   flex: 1;
 }
+
+#recent_orders_modal {
+  width: fit-content;
+  max-height: 600px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#recent_orders_modal .table-container {
+  max-height: 500px;
+  overflow: auto;
+  padding-right: 8px;
+}
+
+#recent_orders_modal table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#recent_orders_modal .button-container {
+  display: flex;
+  justify-content: end;
+  margin-top: 8px;
+}

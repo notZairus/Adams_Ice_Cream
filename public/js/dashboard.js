@@ -2,6 +2,7 @@
 let transactions;
 let flavors;
 let ingredients;
+let orders;
 
 let currentChart1 = null;
 
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   transactions = await getAllTransactions();
   flavors = await getAllFlavors();
   ingredients = await getAllIngredients();
+  orders = await getAllOrders();
 
   displayThisWeek(transactions);
   displayTopSellingFlavors(flavors);
@@ -21,6 +23,18 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 // TRANSACTION STATS
 // TRANSACTION STATS
 // TRANSACTION STATS
+
+async function getAllOrders() {
+  let response = await fetch('apis/dashboard/get-all-orders.php', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  let result = await response.json();
+  return result;
+}
 
 async function getAllTransactions() {
   let response = await fetch('apis/dashboard/get-all-transactions.php', {
@@ -568,3 +582,44 @@ function createOrderDiv(data) {
 document.getElementById('close_add_order_modal').addEventListener('click', () => {
   closeDialog(add_order_modal);
 });
+
+
+// SHOW RECENT ORDERS
+let recent_orders_modal = document.getElementById('recent_orders_modal');
+  
+document.getElementById('qc_show_recent_orders').addEventListener('click', (e) => {
+  Array.from(orders).forEach(order => {
+    recent_orders_modal.querySelector('table tbody').appendChild(createOrderRow(order));
+  })
+  
+  showDialog(recent_orders_modal);
+})
+
+document.getElementById('close_recent_orders_modal').addEventListener('click', (e) => {
+  closeDialog(recent_orders_modal)
+})
+
+function createOrderRow(order) {
+  const tr = document.createElement('tr');
+  const deliveryDateTime = new Date(order.order_delivery_datetime);
+
+  function createCell(text) {
+    const td = document.createElement('td');
+    td.textContent = text;
+    return td;
+  }
+
+  tr.appendChild(createCell(order.order_id));
+  tr.appendChild(createCell(order.customer_name));
+  tr.appendChild(createCell(order.customer_contact));
+  tr.appendChild(createCell(order.order_size + " gallons"));
+  tr.appendChild(createCell(order.flavor_name));
+  tr.appendChild(createCell(order.order_delivery_address));
+  tr.appendChild(createCell(deliveryDateTime.toISOString().split('T')[0]));
+  tr.appendChild(createCell(deliveryDateTime.toTimeString().split(' ')[0]));
+  tr.appendChild(createCell(`₱${order.order_price}`));
+  tr.appendChild(createCell(`₱${order.order_payment}`));
+  tr.appendChild(createCell(`₱${order.order_price - order.order_payment}`));
+
+  return tr;
+}
