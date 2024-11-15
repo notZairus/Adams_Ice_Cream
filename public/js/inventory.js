@@ -169,7 +169,11 @@ document.querySelector('.new-ingredient-form').onsubmit = (event) => {
 let add_stock_modal = document.getElementById('add_stock_modal')
 
 document.getElementById('show_add_stock_modal').addEventListener('click', () => {
-  let select = document.getElementById('ingredient_id');
+  let select = add_stock_modal.querySelector('#ingredient_id');
+
+  while (select.firstChild) {
+    select.removeChild(select.firstChild);
+  }
   
   ingredients.forEach(ingredient => {
     const option = document.createElement('option');
@@ -177,6 +181,9 @@ document.getElementById('show_add_stock_modal').addEventListener('click', () => 
     option.textContent = ingredient.ingredient_name;
     select.appendChild(option);
   })
+
+  
+  add_stock_modal.querySelector('#request_from').value = "/inventory";
 
   showDialog(add_stock_modal);
 })

@@ -25,6 +25,8 @@
       <button type="submit">Confirm</button>
     </div>
 
+    <input type="hidden" name="request_from" id="request_from" value="inventory">
+
     <input type="hidden" name="action" value="add_stock">
   </form>
 </dialog>

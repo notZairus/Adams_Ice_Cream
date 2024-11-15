@@ -7,11 +7,23 @@
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/dashboard.css">
 
+
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/functions.js"></script>
 <script defer src="./js/dashboard.js"></script>
 
+
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
+
+
+<!-- MODALS -->
+<?php require(base_path('views/app/modals/message-modal.php')) ?>
+<?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+
+<?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>
+<?php require(base_path('views/order/modals/add-order-modal.php')) ?>
+
 
 <main>
 
@@ -64,22 +76,22 @@
   <div class="grid-item quick-controls-container">
     <h1>Quick Controls</h1>
     <div class="quick-cotrols-btn-container">
-      <div class="quick-control-btn">
+      <button class="quick-control-btn">
         <div class="icon-container">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-4.581 3.324a1 1 0 0 0-.525-1.313L13 12.341V6.5a1 1 0 0 0-2 0v6.17c0 .6.357 1.143.909 1.379l4.197 1.8a1 1 0 0 0 1.313-.525z" fill="white"/></svg>
         </div><div>
           <p>Show<br>Recent Orders</p>
         </div>
-      </div>
-      <div class="quick-control-btn">
+      </button>
+      <button class="quick-control-btn" id="qc_add_stock_btn">
         <div class="icon-container">
           <svg fill="white" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24"><path d="M11,9.401l-2.175,3.624c-.482,.804-1.458,1.165-2.347,.868l-5.081-1.694c-1.23-.41-1.764-1.854-1.097-2.965l1.7-2.834,9,3Zm2,0l2.175,3.624c.482,.804,1.458,1.165,2.347,.868l5.118-1.706c1.211-.404,1.737-1.825,1.08-2.92l-1.72-2.866-9,3Zm-2.46,4.654c-.742,1.236-2.044,1.945-3.415,1.945-.425,0-.856-.067-1.28-.209l-3.845-1.281v6.491l9,3V13.288l-.46,.766Zm7.615,1.736c-.424,.142-.855,.209-1.28,.209-1.371,0-2.673-.708-3.415-1.945l-.46-.766v10.712l9-3v-6.491l-3.845,1.282ZM12,7.627l6.386-2.129-3.912-3.912-5.15,5.149,2.676,.892Zm-4.798-1.599L11.86,1.371,10.525,.036,5.2,5.36l2.002,.667Z"/></svg>
         </div>
         <div>
           <p>Add<br>Stock</p>
         </div>
-      </div>
-      <div class="quick-control-btn">
+      </button>
+      <button class="quick-control-btn" id="qc_add_order_btn">
         <div class="icon-container">
           <svg fill="white" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24">
             <path d="M19,0c-2.761,0-5,2.239-5,5s2.239,5,5,5,5-2.239,5-5S21.761,0,19,0Zm1.293,7.707l-2.293-2.293V2h2v2.586l1.707,1.707-1.414,1.414Zm-11.293,14.293c0,1.105-.895,2-2,2s-2-.895-2-2,.895-2,2-2,2,.895,2,2Zm12.835-7H5.654l.131,1.116c.059,.504,.486,.884,.993,.884h13.222v2H6.778c-1.521,0-2.802-1.139-2.979-2.649L2.215,2.884c-.059-.504-.486-.884-.993-.884H0V0H1.222c1.521,0,2.802,1.139,2.979,2.649l.041,.351H12.294c-.189,.634-.294,1.305-.294,2,0,3.866,3.134,7,7,7,1.273,0,2.462-.345,3.49-.938l-.655,3.938Zm-2.835,7c0,1.105-.895,2-2,2s-2-.895-2-2,.895-2,2-2,2,.895,2,2Z"/>
@@ -88,11 +100,11 @@
         <div>
           <p>Add<br>Order</p>
         </div>
-      </div>
+      </button>
 
       <?php if($_SESSION['user_role'] == "Owner") : ?>
         
-        <div class="quick-control-btn">
+        <button class="quick-control-btn" id="qc_add_flavor_btn">
           <div class="icon-container">
             <svg fill="white" viewBox="0 0 32 32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <style type="text/css">
@@ -112,7 +124,7 @@
           <div>
             <p>Add<br>Flavor</p>
           </div>
-        </div>
+        </button>
 
       <?php endif ?>
 

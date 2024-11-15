@@ -70,7 +70,7 @@
 
           <div class="btn-container">
             <button type="button" id="close_add_order_modal">Close</button>
-            <button type="button" id="add_order_btn">Add Order</button>
+            <button type="submit" id="add_order_btn">Add Order</button>
           </div>
 
         </div>

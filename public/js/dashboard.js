@@ -376,3 +376,195 @@ document.getElementById('time-toggles').addEventListener('click', (e) => {
     displayThisYear(transactions);
   }
 })
+
+
+
+//======================================================================================================================================
+
+// QUICK CONTROLS
+// QUICK CONTROLS
+// QUICK CONTROLS
+
+
+// ADD STOCK
+
+let qc_add_stock_btn = document.getElementById('qc_add_stock_btn');
+
+qc_add_stock_btn.addEventListener('click', (e) => {
+  let add_stock_modal = document.getElementById('add_stock_modal');
+  
+  let select = add_stock_modal.querySelector('#ingredient_id');
+
+  while (select.firstChild) {
+    select.removeChild(select.firstChild);
+  }
+  
+  ingredients.forEach(ingredient => {
+    const option = document.createElement('option');
+    option.value = ingredient.ingredient_id;
+    option.textContent = ingredient.ingredient_name;
+    select.appendChild(option);
+  })
+
+  add_stock_modal.querySelector('#request_from').value = "/dashboard";
+
+  showDialog(add_stock_modal);
+});
+
+document.getElementById('close_add_stock_modal').onclick = () => {
+  closeDialog(add_stock_modal);
+};
+
+document.querySelector('.add-stock-form').onsubmit = (event) => {
+  showMessageModal("Stock Sucessfully Added!");
+}
+
+
+// ADD ORDER
+
+let qc_add_order = document.getElementById('qc_add_order_btn');
+
+qc_add_order.addEventListener('click', (e) => {  
+  let add_order_modal =  document.getElementById('add_order_modal');
+  showDialog(add_order_modal);
+})
+
+qc_add_order.addEventListener('click', async () => {
+  showDialog(add_order_modal);
+
+  const flavorSelect = add_order_modal.querySelector('#flavor');
+  while(flavorSelect.firstChild) {
+    flavorSelect.removeChild(flavorSelect.firstChild);
+  }
+
+  Array.from(flavors).forEach(flavor => {
+    const option = document.createElement('option');
+    option.value = flavor.flavor_id;
+    option.textContent = flavor.flavor_name;
+    flavorSelect.appendChild(option);
+  });
+
+});
+
+document.getElementById('add_order_form').addEventListener('submit', (e) => {
+  
+  e.preventDefault();
+
+  let add_order_form = document.getElementById('add_order_form');
+
+  let order = {
+    flavor: Array.from(flavors).filter(flavor => {
+      return flavor.flavor_id == add_order_form.querySelector('#flavor').value
+    })[0],
+    size: parseFloat(add_order_form.querySelector('#size').value) || null,
+    delivery_address: add_order_form.querySelector('#delivery_adress').value || null,
+    delivery_date: add_order_form.querySelector('#delivery_date').value || null,
+    delivery_time: add_order_form.querySelector('#delivery_time').value || null,
+    initial_payment: parseFloat(add_order_form.querySelector('#payment').value) || 0
+  }  
+
+  let price = add_order_form.querySelector('#size').value == 4 ? 1400 : 2700;
+  if (order.initial_payment < 0 || order.initial_payment > price) {
+    showMessageModal('Invalid payment. Please check your payment details and try again.');
+    return;
+  }
+
+  let thereIsEmptyInfo = Object.values(order).some(value => value == null);
+  if (thereIsEmptyInfo) {
+    showMessageModal('Some required fields are missing or contain invalid data.');
+    return;
+  }
+
+  document.querySelector('#add_order_modal #upcomming_order_container').appendChild(createOrderDiv(order));
+})
+
+document.getElementById('confirm_orders').addEventListener('click', async (e) => {
+  let order_container = e.currentTarget.parentElement.previousElementSibling;
+  
+  if(e.currentTarget.parentElement.previousElementSibling.children.length == 0) {
+    showMessageModal('No orders to add.');
+    return;
+  }
+  
+  let orders = [];
+  let customer = {
+    name: add_order_modal.querySelector('#name').value,
+    contact: add_order_modal.querySelector('#contact_info').value,
+    email: add_order_modal.querySelector('#email').value,
+  }
+
+  Array.from(order_container.children).forEach(order => {
+    orders.push(Object(order.dataset));
+  })
+
+  let response = await fetch('apis/order/add-order.php', {
+    method: 'POST',
+    header: {
+      'Content-type' : 'application/json'
+    },
+    body: JSON.stringify({
+      customer: customer,
+      orders: orders
+    })
+  })
+
+  console.log(await response.json());
+})
+
+function createOrderDiv(data) {
+  let order = document.createElement('div');
+  order.dataset.flavor = data.flavor.flavor_id;
+  order.dataset.size = data.size;
+  order.dataset.delivery_address = data.delivery_address;
+  order.dataset.delivery_date = data.delivery_date;
+  order.dataset.delivery_time = data.delivery_time;
+  order.dataset.initial_payment = data.initial_payment;
+  order.classList.add('order');
+
+  let order_info = document.createElement('div');
+  order_info.classList.add('order-info');
+  order.appendChild(order_info);
+
+  let flavor = document.createElement('p');
+  flavor.textContent = "Flavor: " + data.flavor.flavor_name;
+  order_info.appendChild(flavor);
+
+  let size = document.createElement('p');
+  size.textContent = "Size: " + data.size + " Gallons";
+  order_info.appendChild(size);
+
+  order_info.appendChild(document.createElement('br'));
+
+  let address = document.createElement('p');
+  address.textContent = "Address: \n" + data.delivery_address;
+  order_info.appendChild(address);
+
+  let date = document.createElement('p');
+  date.textContent = "Date: \n" + data.delivery_date;
+  order_info.appendChild(date);
+
+  let time = document.createElement('p');
+  time.textContent = "Time: \n" + data.delivery_time;
+  order_info.appendChild(time);
+
+  order_info.appendChild(document.createElement('br'));
+
+  let initial_payment = document.createElement('p');
+  initial_payment.textContent = "Initial Payment: ₱" + data.initial_payment;
+  order_info.appendChild(initial_payment);
+
+  let remove_order_btn = document.createElement('button');
+  remove_order_btn.classList.add('remove-order-btn');
+  remove_order_btn.textContent = "x";
+  order.appendChild(remove_order_btn);
+
+  remove_order_btn.addEventListener('click', () => {
+    order.remove();
+  });
+
+  return order;
+}
+
+document.getElementById('close_add_order_modal').addEventListener('click', () => {
+  closeDialog(add_order_modal);
+});

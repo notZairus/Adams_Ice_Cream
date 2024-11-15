@@ -25,5 +25,6 @@ else if ($_POST['action'] == 'add_stock') {
   
 }
 
-header('Location: /inventory');
+
+header('Location: ' . $_POST['request_from']);
 die();

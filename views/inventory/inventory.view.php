@@ -13,15 +13,15 @@
 <?php require(base_path('views/partials/app-head-bottom.php')) ?>
 
 
+<!-- MODALS -->
+<?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+
+<?php require(base_path('views/inventory/modals/new-ingredient-modal.php')) ?>
+<?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>
+<?php require(base_path('views/inventory/modals/edit-ingredient-modal.php')) ?>
+
 
 <main>
-  <!-- MODALS -->
-  <?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
-
-  <?php require(base_path('views/inventory/modals/new-ingredient-modal.php')) ?>
-  <?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>
-  <?php require(base_path('views/inventory/modals/edit-ingredient-modal.php')) ?>
-  
 
   <div class="btn-container">
     <button id="show_new_ingredient_modal">New Ingredient</button>

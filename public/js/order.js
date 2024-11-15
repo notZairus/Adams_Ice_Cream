@@ -277,10 +277,12 @@
       option.textContent = flavor.flavor_name;
       flavorSelect.appendChild(option);
     });
-
   });
 
-  document.getElementById('add_order_btn').addEventListener('click', (e) => {
+  document.getElementById('add_order_form').addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
     let add_order_form = document.getElementById('add_order_form');
 
     let order = {
@@ -398,7 +400,6 @@
   }
 
 
-    
   document.getElementById('close_add_order_modal').addEventListener('click', () => {
     closeDialog(add_order_modal);
   });
