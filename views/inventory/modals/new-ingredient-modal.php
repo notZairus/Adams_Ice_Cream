@@ -28,7 +28,7 @@
 
     <div class="text-field">
       <label for="ingredient_usage_per_4_gallons">4gals usage:</label><br>
-      <input type="number" name="ingredient_usage_per_4_gallons" id="ingredient_usage_per_4_gallons" required step="0.1" min="0">
+      <input type="number" name="ingredient_usage_per_4_gallons" id="ingredient_usage_per_4_gallons" required step="0.1" min="0.5">
     </div>
 
     <div class="btn-container">

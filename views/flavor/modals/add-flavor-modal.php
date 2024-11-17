@@ -5,7 +5,7 @@
     
     <div class="text-field">
       <label for="flavor_name">Flavor Name:</label><br>
-      <input type="text" name="flavor_name" id="flavor_name" required>
+      <input type="text" name="flavor_name" id="flavor_name" minlength="3" required>
     </div>
     
     <div class="text-field">
