@@ -435,11 +435,20 @@ document.querySelector('.add-stock-form').onsubmit = (event) => {
 
 
 // ADD ORDER
+// ADD ORDER
+// ADD ORDER
+// ADD ORDER
 
 let qc_add_order = document.getElementById('qc_add_order_btn');
 
 qc_add_order.addEventListener('click', (e) => {  
   let add_order_modal =  document.getElementById('add_order_modal');
+
+  let today = new Date(); 
+  today.setDate(today.getDate() + 1);
+  let tomorrow = today.toISOString().split('T')[0];
+  add_order_modal.querySelector('#delivery_date').setAttribute('min', tomorrow);
+
   showDialog(add_order_modal);
 })
 
@@ -495,8 +504,8 @@ document.getElementById('add_order_form').addEventListener('submit', (e) => {
 document.getElementById('confirm_orders').addEventListener('click', async (e) => {
   let order_container = e.currentTarget.parentElement.previousElementSibling;
   
-  if(e.currentTarget.parentElement.previousElementSibling.children.length == 0) {
-    showMessageModal('No orders to add.');
+  if(order_container.children.length == 0) {
+    showMessageModal('No orders found.');
     return;
   }
   
@@ -523,6 +532,10 @@ document.getElementById('confirm_orders').addEventListener('click', async (e) =>
   })
 
   console.log(await response.json());
+
+  while(order_container.firstChild) {
+    order_container.removeChild(order_container.firstChild);
+  }
 })
 
 function createOrderDiv(data) {
@@ -584,11 +597,24 @@ document.getElementById('close_add_order_modal').addEventListener('click', () =>
 });
 
 
-// SHOW RECENT ORDERS
+//SHOW UPCOMMING ORDERS
+//SHOW UPCOMMING ORDERS
+//SHOW UPCOMMING ORDERS
+//SHOW UPCOMMING ORDERS
+
 let recent_orders_modal = document.getElementById('recent_orders_modal');
   
 document.getElementById('qc_show_recent_orders').addEventListener('click', (e) => {
-  Array.from(orders).forEach(order => {
+
+  let ongoingOrders = orders.filter(order => {
+    return order.order_status == 'Upcomming';
+  })
+
+  while(recent_orders_modal.querySelector('table tbody').firstChild) {
+    recent_orders_modal.querySelector('table tbody').removeChild(recent_orders_modal.querySelector('table tbody').firstChild);
+  }
+
+  Array.from(ongoingOrders).forEach(order => {
     recent_orders_modal.querySelector('table tbody').appendChild(createOrderRow(order));
   })
   
@@ -602,13 +628,40 @@ document.getElementById('close_recent_orders_modal').addEventListener('click', (
 function createOrderRow(order) {
   const tr = document.createElement('tr');
   const deliveryDateTime = new Date(order.order_delivery_datetime);
+  const tdOperations = document.createElement('td');
+  const divOperations = document.createElement('div');
+  divOperations.classList.add('flex');
+  divOperations.classList.add('gap-8');
+
+  tdOperations.appendChild(divOperations);
+
+  let processBtn = document.createElement('button');
+  processBtn.dataset.order_id = order.order_id;
+  processBtn.dataset.order_size = order.order_size;
+  processBtn.classList.add('process-order-btn');
+  processBtn.classList.add('btn');
+  processBtn.classList.add('primary');
+  processBtn.textContent = "Process";
+  divOperations.appendChild(processBtn);
+
+  let cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'Cancel';
+  cancelBtn.dataset.order_id = order.order_id;
+  cancelBtn.dataset.order_size = order.order_size;
+  cancelBtn.classList.add('cancel-order-btn');
+  cancelBtn.classList.add('btn');
+  cancelBtn.classList.add('danger');
+  divOperations.appendChild(cancelBtn);
+
+  attachEvent(processBtn, processOrder);
+  attachEvent(cancelBtn, cancelOrder);
 
   function createCell(text) {
     const td = document.createElement('td');
     td.textContent = text;
     return td;
   }
-
+  
   tr.appendChild(createCell(order.order_id));
   tr.appendChild(createCell(order.customer_name));
   tr.appendChild(createCell(order.customer_contact));
@@ -620,6 +673,73 @@ function createOrderRow(order) {
   tr.appendChild(createCell(`₱${order.order_price}`));
   tr.appendChild(createCell(`₱${order.order_payment}`));
   tr.appendChild(createCell(`₱${order.order_price - order.order_payment}`));
+  tr.appendChild(tdOperations);
 
   return tr;
 }
+
+async function processOrder(event) {
+  const target = event.target;
+
+  let confirmed = await showConfirmationModal('Are you sure you want to process this order?');
+  if (!confirmed) return;
+
+  // CHECK IF THE INGREDIENTS IS SUFFICIENT
+  if (! await stockIsSufficient(target.dataset.order_size)) {
+    await showMessageModal('Not enough ingredients to process this order.');
+    return;
+  }
+
+  document.querySelector('#recent_orders_modal .table-container tbody').removeChild(target.closest('tr'));
+  const response = await fetch('apis/order/process-order.php', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id
+    })
+  });
+
+  const result = await response.json();
+  console.log(result);
+}
+
+async function cancelOrder(event) {
+  const target = event.target;
+
+  let confirmed = await showConfirmationModal('Are you sure you want to cancel this order?');
+  if (!confirmed) return;
+
+  document.querySelector('#recent_orders_modal .table-container tbody').removeChild(target.closest('tr'));
+  const response = await fetch('apis/order/cancel-order.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      order_id: target.dataset.order_id,
+      size: target.dataset.order_size
+    })
+  });
+
+  const result = await response.json();
+  console.log(result);
+}
+
+
+
+// ADD FLAVOR MODAL
+// ADD FLAVOR MODAL
+// ADD FLAVOR MODAL
+
+let add_flavor_modal = document.getElementById('add_flavor_modal');
+
+document.getElementById('qc_add_flavor_btn').addEventListener('click', (e) => {
+  add_flavor_modal.querySelector('#request_from').value = "/dashboard";
+  showDialog(add_flavor_modal);
+});
+
+document.getElementById('close_add_flavor_modal').addEventListener('click', (e) => {
+  closeDialog(add_flavor_modal);
+})

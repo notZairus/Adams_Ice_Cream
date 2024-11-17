@@ -183,12 +183,14 @@ main .low-stock-ingredients-container {
 }
 
 main .quick-controls-container {
-  grid-row: 1 / 2;
+  margin-top: 1.2rem;
+  grid-row: 3 / 4;
   grid-column: 1 / -1;
   max-height: 200px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-content: end;
 }
 
 .quick-controls-container .quick-cotrols-btn-container {
@@ -208,6 +210,7 @@ main .quick-controls-container {
   align-items: center;
   padding: 0px 20px;
   gap: 12px;
+  text-align: left;
 }
 
 .quick-cotrols-btn-container .quick-control-btn:hover {
@@ -473,4 +476,60 @@ dialog .add-order-form .order-info > div {
   display: flex;
   justify-content: end;
   margin-top: 8px;
+}
+
+#add_flavor_modal {
+  flex-direction: column;
+}
+
+.add-flavor-form .text-field input,
+.add-flavor-form .text-field select{
+  width: 100%;
+  outline: none;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+.add-flavor-form {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 16px;
+}
+
+.add-flavor-form .text-field:nth-child(1) {
+  grid-column: span 2;
+}
+
+.add-flavor-form .btn-container {
+  padding-top: 16px;
+  width: 100%;
+  grid-column: 2 / -1;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  gap: 8px;
+}
+
+.add-flavor-form .btn-container button {
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.add-flavor-form .btn-container button[type='submit'] {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.add-flavor-form .btn-container button[type='submit']:hover {
+  background-color: var(--dark-primary-color);
+}
+
+.add_flavor_modal > h2 {
+  margin-bottom: 12px;
 }

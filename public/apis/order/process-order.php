@@ -85,9 +85,82 @@ $customer = $db->query('SELECT * FROM customer_tbl WHERE customer_id = :cid', [
 sendEmail([
     'email' => $customer['customer_email'],
     'name' => $customer['customer_name'],
-    'subject' => "ADAM'S ICE CREAM: Your order is ready for delivery! 🍦",
-    'body' => "Dear {$customer['customer_name']},<br><br>Your delicious ice cream order is now ready and will be on its way to you shortly! We've crafted your order with premium ingredients and lots of care.<br><br>Get ready to enjoy your ice cream treats!<br><br>Best regards,<br>ADAM'S ICE CREAM"
-]);
+    'subject' => "ADAM'S ICE CREAM: Thanks for being our valued customer! 🍦",
+    'body' => "<html>
+                <head>
+                  <style>
+                      body {
+                          font-family: Arial, sans-serif;
+                          margin: 0;
+                          padding: 0;
+                          background-color: #f9f9f9;
+                      }
+                      .container {
+                          width: 90%;
+                          max-width: 600px;
+                          margin: 20px auto;
+                          background: #ffffff;
+                          border-radius: 8px;
+                          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                          overflow: hidden;
+                      }
+                      .header {
+                          background: #334259;
+                          color: #ffffff;
+                          text-align: center;
+                          padding: 20px;
+                      }
+                      .header h1 {
+                          margin: 0;
+                          font-size: 24px;
+                      }
+                      .content {
+                          padding: 20px;
+                          color: #333333;
+                      }
+                      .content p {
+                          margin: 8px 0;
+                      }
+                      .content .order-table {
+                          width: 100%;
+                          border-collapse: collapse;
+                          margin: 20px 0;
+                      }
+                      .order-table th, .order-table td {
+                          border: 1px solid #dddddd;
+                          text-align: left;
+                          padding: 8px;
+                      }
+                      .order-table th {
+                          background: #334259;
+                          color: #ffffff;
+                      }
+                      .footer {
+                          text-align: center;
+                          background: #334259;
+                          color: #ffffff;
+                          padding: 10px;
+                          font-size: 14px;
+                      }
+                      .footer a {
+                          color: #ffffff;
+                          text-decoration: underline;
+                      }
+                  </style>
+              </head>
+              <body>
+                  <div class='container'>
+                      <div class='header'>
+                          <h1>ADAM'S ICE CREAM</h1>
+                          <p>Thanks for being our valued customer! 🍦</p>
+                      </div>
+                      <div class='content'>
+                          Dear {$customer['customer_name']},<br><br>Your delicious ice cream order is now ready and will be on its way to you shortly! We've crafted your order with premium ingredients and lots of care.<br><br>Get ready to enjoy your ice cream treats!<br><br>Best regards,<br>ADAM'S ICE CREAM
+                      </div>
+                  </div>
+              </body>
+              </html>"
+  ]);
 
 
 echo json_encode([

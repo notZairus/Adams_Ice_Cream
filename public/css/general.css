@@ -149,3 +149,16 @@ table td {
   font-size: 1.4rem;
   padding: 8px 16px;
 }
+
+.btn.fs-lg {
+  font-size: 1.4rem;
+  padding: 12px 24px;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-8 {
+  gap: 8px;
+}

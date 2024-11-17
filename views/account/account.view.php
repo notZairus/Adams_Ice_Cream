@@ -32,7 +32,7 @@
 <main>
 
     <div class="btn-container">
-      <button class="add-flavor-btn" id="show_add_user_modal">
+      <button class="btn primary fs-lg" id="show_add_user_modal">
         Add User
       </button> 
     </div>

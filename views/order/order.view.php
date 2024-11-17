@@ -25,13 +25,13 @@
   <div class="btn-container">
     <div>
       
-      <button class="add-order-btn" id="show_add_order_modal" style="margin-right: 8px;">
+      <button class="btn primary fs-lg" id="show_add_order_modal" style="margin-right: 8px;">
         Add Order
       </button>
 
     </div>
     <div>
-      <div class="category-btns-container">
+      <div class="category-btns-container grid-item">
         <button class="upcomming-btn selected">Upcomming</button>
         <button class="ongoing-btn">Ongoing</button>
         <button class="finished-btn">Finished</button>

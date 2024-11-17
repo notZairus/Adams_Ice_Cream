@@ -255,7 +255,14 @@
   let flavors = null;
 
   document.getElementById('show_add_order_modal').addEventListener('click', async () => {
+
+    let today = new Date(); 
+    today.setDate(today.getDate() + 1);
+    let tomorrow = today.toISOString().split('T')[0];
+    add_order_modal.querySelector('#delivery_date').setAttribute('min', tomorrow);
+
     showDialog(add_order_modal);
+    
     flavors = await (async () => {
       const res = await fetch('apis/order/get-flavors.php', {
         method: 'POST',
@@ -315,7 +322,7 @@
     let order_container = e.currentTarget.parentElement.previousElementSibling;
     
     if(e.currentTarget.parentElement.previousElementSibling.children.length == 0) {
-      showMessageModal('No orders to add.');
+      showMessageModal('No orders found.');
       return;
     }
     

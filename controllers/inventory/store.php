@@ -13,7 +13,9 @@ if ($_POST['action'] == 'add_ingredient') {
     'ingredient_reminder' => $_POST['ingredient_reminder'],
     'ingredient_usage_per_4_gallons' => $_POST['ingredient_usage_per_4_gallons'],
   ]);
-  
+
+  header('Location: /inventory');
+  die();
 } 
 else if ($_POST['action'] == 'add_stock') {
 
@@ -22,9 +24,9 @@ else if ($_POST['action'] == 'add_stock') {
     'stock' => $_POST['new_stocks'],
     'id' => $_POST['ingredient_id']
   ]);
-  
+
+  header('Location: ' . $_POST['request_from']);
+  die();
 }
 
 
-header('Location: ' . $_POST['request_from']);
-die();

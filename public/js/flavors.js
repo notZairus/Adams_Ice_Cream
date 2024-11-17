@@ -3,6 +3,7 @@
 let add_flavor_modal = document.getElementById('add_flavor_modal');
 
 document.getElementById('show_add_flavor_modal').addEventListener('click', () => {
+  add_flavor_modal.querySelector('#request_from').value = "/flavors";
   showDialog(add_flavor_modal);
 })
 

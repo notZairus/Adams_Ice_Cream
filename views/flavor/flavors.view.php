@@ -22,7 +22,7 @@
 <main>
   <div class="btn-container">
     <div>
-      <button class="add-flavor-btn" id="show_add_flavor_modal">
+      <button class="btn primary fs-lg" id="show_add_flavor_modal">
         Add Flavor
       </button> 
     </div>

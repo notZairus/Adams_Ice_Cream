@@ -17,13 +17,13 @@
           <div class="input-field">
             <label for="contact_info">Contact Info: </label>
             <br>
-            <input type="number" id="contact_info" name="contact_info" pattern="/^\d+$/" required>
+            <input type="text" id="contact_info" name="contact_info" pattern="^(09\d{9})$" required placeholder="09XXXXXXXXX">
           </div>
 
           <div class="input-field">
             <label for="email">Email: </label>
             <br>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
             <br>
             <div class="datetime-field">
               <input type="date" id="delivery_date" name="delivery_date" required>
-              <input type="time" id="delivery_time" name="delivery_time" required>
+              <input type="time" id="delivery_time" name="delivery_time" min="06:00" max="19:00" required>
             </div>
           </div>
 
