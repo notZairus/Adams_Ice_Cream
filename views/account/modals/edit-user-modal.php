@@ -4,7 +4,7 @@
 
 <dialog id="edit_user_modal" class="edit_user_modal modal">
   <h2>Edit User</h2>
-  <form class="add-user-form" action="/accounts" method="POST">
+  <form class="add-user-form" id="edit_user_form" action="/accounts" method="POST">
     <div class="input-field">
       <label for="name">Email: </label>
       <br>
@@ -20,7 +20,7 @@
     <div class="input-field">
       <label for="username">Username: </label>
       <br>
-      <input type="text" id="edusername" name="username" required>
+      <input type="text" id="edusername" name="username" minlength="4" required>
     </div>
 
     <br>
@@ -28,7 +28,7 @@
     <div class="input-field">
       <label for="password">Password: </label>
       <br>
-      <input type="password" id="edpassword" name="password" required>
+      <input type="password" id="edpassword" name="password" minlength="8" required>
     </div>
 
     <input type="hidden" name="_method" value="PATCH">

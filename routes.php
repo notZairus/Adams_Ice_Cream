@@ -5,6 +5,7 @@ $router->get('/login', './controllers/user/index.php');
 $router->get('/', './controllers/user/index.php');
 $router->post('/login', './controllers/user/show.php');
 $router->post('/logout', './controllers/user/logout.php');
+$router->get('/yuwdaskjdbsamrmscusaijdscmasd21eeyuwqhd', './controllers/user/reset-password.php');
 
 //DASHBOARD
 $router->get('/dashboard', './controllers/dashboard/index.php');

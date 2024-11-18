@@ -79,3 +79,22 @@ async function showConfirmationModal(message, heading = 'Confirmation') {
 
   return confirmed;
 }
+
+async function isKeyAvailable(table, column, value) {
+  
+  let response = await fetch('apis/app/available.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      table: table,
+      column: column,
+      value: value
+    })
+  })
+
+  let available = await response.json();
+
+  return available;
+}

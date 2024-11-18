@@ -4,6 +4,32 @@ document.getElementById('show_add_user_modal').addEventListener('click', (e) => 
   showDialog(add_user_modal);
 })
 
+add_user_modal.querySelector('#add_user_form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let form = e.target;
+  let formData = new FormData(form);
+
+  let email = formData.get('email');
+  let emailAvailable = await isKeyAvailable('user_tbl', 'user_email', email);
+
+  let username = formData.get('username');
+  let usernameAvailable = await isKeyAvailable('user_tbl', 'username', username);
+
+  if (! emailAvailable) {
+    await showMessageModal('Email is already taken.');
+    return;
+  }
+
+  if (! usernameAvailable) {
+    await showMessageModal('Username is already taken.');
+    return;
+  }
+
+  await showMessageModal('User added successfully.');
+  form.submit();
+}) 
+
 document.getElementById('close_add_user_modal').addEventListener('click', (e) => {
   closeDialog(add_user_modal);
 })
@@ -17,11 +43,43 @@ document.querySelectorAll('.edit-account').forEach(btn => {
     edit_user_modal.querySelector('#user_id_holder').value = row.querySelector('td:nth-child(1)').textContent;
     edit_user_modal.querySelector('#edfullname').value = row.querySelector('td:nth-child(2)').textContent;
     edit_user_modal.querySelector('#edusername').value = row.querySelector('td:nth-child(4)').textContent;
+    edit_user_modal.querySelector('#edusername').dataset.username = row.querySelector('td:nth-child(4)').textContent;
     edit_user_modal.querySelector('#edemail').value = row.querySelector('td:nth-child(5)').textContent;
+    edit_user_modal.querySelector('#edemail').dataset.email = row.querySelector('td:nth-child(5)').textContent;
 
     showDialog(edit_user_modal);
   })
 })
+
+edit_user_modal.querySelector('#edit_user_form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let form = e.target;
+  let formData = new FormData(form);
+
+  let email = formData.get('email');
+  let emailAvailable = await isKeyAvailable('user_tbl', 'user_email', email);
+
+  let username = formData.get('username');
+  let usernameAvailable = await isKeyAvailable('user_tbl', 'username', username);
+
+  if (edit_user_modal.querySelector('#edemail').dataset.email != email) {
+    if (! emailAvailable) {
+      await showMessageModal('Email is already taken.');
+      return;
+    }
+  }
+
+  if (edit_user_modal.querySelector('#edusername').dataset.username != username) {
+    if (! usernameAvailable) {
+      await showMessageModal('Username is already taken.');
+      return;
+    }
+  }
+
+  await showMessageModal('User info updated successfully.');
+  form.submit();
+});
 
 document.getElementById('close_edit_user_modal').addEventListener('click', () => {
   closeDialog(edit_user_modal);

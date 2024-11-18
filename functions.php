@@ -37,14 +37,14 @@ function sendEmail($data) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'notZairus@gmail.com'; // Replace with your Gmail address
-    $mail->Password = $keys['GMAIL_APP_PASSWORD']; // Replace with the generated app password
+    $mail->Username = 'notZairus@gmail.com'; 
+    $mail->Password = $keys['GMAIL_APP_PASSWORD']; 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
     // Recipients
-    $mail->setFrom('notZairus@gmail.com', 'Adam\'s Ice Cream'); // Your email
-    $mail->addAddress($data['email'], $data['name']); // Recipient's email
+    $mail->setFrom('notZairus@gmail.com', 'Adam\'s Ice Cream'); 
+    $mail->addAddress($data['email'], $data['name']); 
 
     // Content
     $mail->isHTML(true);

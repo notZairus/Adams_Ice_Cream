@@ -2,7 +2,7 @@
 
 <dialog id="add_user_modal" class="add_user_modal modal">
   <h2>Add User</h2>
-  <form class="add-user-form" action="/accounts" method="POST">
+  <form class="add-user-form" id="add_user_form" action="/accounts" method="POST">
     <div class="input-field">
       <label for="name">Email: </label>
       <br>
@@ -18,7 +18,7 @@
     <div class="input-field">
       <label for="username">Username: </label>
       <br>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" name="username" minlength="4" required>
     </div>
 
     <br>
@@ -26,7 +26,7 @@
     <div class="input-field">
       <label for="password">Password: </label>
       <br>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" minlength="8" required>
     </div>
 
     

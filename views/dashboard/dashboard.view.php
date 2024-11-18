@@ -68,7 +68,7 @@
   </div>
 
   <div class="grid-item top-selling-flavor-container">
-    <h1>Top Selling Flavors</h1>
+    <h1>Available Flavors</h1>
     <div class="flavor-container" id="flavor_container">
       <!-- DATASSSSS -->
 
