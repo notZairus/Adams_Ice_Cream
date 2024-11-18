@@ -85,6 +85,7 @@ function createIngredientRow(ingredient) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let confirmed = await showConfirmationModal('Delete the selected ingredient? ');
+    await showMessageModal('Ingredient deleted successfully.');
     if (confirmed) form.submit();
   })
   div.appendChild(form);
@@ -158,9 +159,34 @@ document.getElementById('close_new_ingredient_modal').onclick = () => {
   closeDialog(new_ingredient_modal);
 };
 
-document.querySelector('.new-ingredient-form').onsubmit = (event) => {
-  showMessageModal('Ingredient Added Successfully!');
-}
+new_ingredient_modal.querySelector('.new-ingredient-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let form = e.target;
+  let formData = new FormData(form);
+
+  closeDialog(new_ingredient_modal);
+
+  let dataToSend = {
+    ingredient_name: formData.get('ingredient_name'),
+    ingredient_price: formData.get('ingredient_price'),
+    ingredient_reminder: formData.get('ingredient_reminder'),
+    ingredient_unit: formData.get('ingredient_unit'),
+    ingredient_usage_per_4_gallons: formData.get('ingredient_usage_per_4_gallons'),
+  }
+
+  await fetch('apis/inventory/add-new-ingredient.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(dataToSend),
+  });
+
+  await showMessageModal('New ingredient added successfully!');
+
+  location.reload();
+})
 
 //ADD STOCK
 //ADD STOCK
@@ -223,20 +249,42 @@ function editIngredient(event) {
   showDialog(edit_ingredient_modal);
 }
 
-document.querySelector('.edit-ingredient-form').onsubmit = (event) => {
-  showMessageModal('Ingredient Updated Successfully!');
-}
-
 document.querySelectorAll('.show_edit_ingredient_modal').forEach(btn => {
   btn.addEventListener('click', editIngredient);
 })
+
+edit_ingredient_modal.querySelector('.edit-ingredient-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let form = e.target;
+  let formData = new FormData(form);
+
+  closeDialog(edit_ingredient_modal);
+
+  let dataToSend = {
+    ingredient_id: formData.get('ingredient_id'),
+    ingredient_name: formData.get('ingredient_name'),
+    ingredient_stock: formData.get('ingredient_stock'),
+    ingredient_price: formData.get('ingredient_price'),
+    ingredient_unit: formData.get('ingredient_unit'),
+    ingredient_usage_per_4_gallons: formData.get('ingredient_usage_per_4_gallons'),
+  }
+
+  await fetch('apis/inventory/edit-ingredient.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(dataToSend),
+  });
+
+  await showMessageModal('Ingredient updated successfully !');
+
+  location.reload();
+});
 
 document.getElementById('close_edit_ingredient_modal').onclick = () => {
   closeDialog(edit_ingredient_modal);
 }
 
 
-
-//DELETE INGREDIENT
-//DELETE INGREDIENT
-//DELETE INGREDIENT

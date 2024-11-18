@@ -15,6 +15,7 @@
 
 <!-- MODALS -->
 <?php require(base_path('views/app/modals/confirmation-modal.php')) ?>
+<?php require(base_path('views/app/modals/message-modal.php')) ?>
 
 <?php require(base_path('views/inventory/modals/new-ingredient-modal.php')) ?>
 <?php require(base_path('views/inventory/modals/add-stock-modal.php')) ?>

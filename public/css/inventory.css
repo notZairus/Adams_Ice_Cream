@@ -97,6 +97,10 @@ dialog.open {
   display: block;
 }
 
+#message_modal.open {
+  display: flex;
+}
+
 #confirmation_modal.open {
   display: flex;
 }
