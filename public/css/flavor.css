@@ -149,3 +149,127 @@ dialog > h2 {
   align-items: center;
   justify-content: center;
 }
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.flavor-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.flavor-tbl th,
+.flavor-tbl td {
+  padding: 8px;
+}
+
+.flavor-tbl th {
+  font-weight: bold;
+}
+
+/* Hover effect */
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Responsive design for 425px */
+@media (max-width: 569px) {
+  .table-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .flavor-tbl {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: none;
+  }
+
+  .flavor-tbl thead {
+    display: none; /* Hide table header */
+  }
+
+  .flavor-tbl tbody {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .flavor-tbl tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    border: 0.5px solid var(--primary-color);
+    border-radius: 8px;
+  }
+
+  .flavor-tbl td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  .flavor-tbl td:first-child {
+    font-weight: bold;
+  }
+
+  .order-operation-container {
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-between;
+  }
+}
+
+/* Responsive design for 375px */
+@media (max-width: 375px) {
+  .table-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .flavor-tbl {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: none;
+  }
+
+  .flavor-tbl thead {
+    display: none; /* Hide table header */
+  }
+
+  .flavor-tbl tbody {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .flavor-tbl tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 0.5px solid var(--primary-color);
+    padding: 8px;
+  }
+
+  .flavor-tbl td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: none;
+  }
+
+  .flavor-tbl td:first-child {
+    font-weight: bold;
+  }
+
+  .order-operation-container {
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-between;
+  }
+}

@@ -33,13 +33,7 @@ main .btn-container {
   display: flex;
   gap: 12px;
   padding: 16px 0px 0px;
-}
-
-main > .btn-container button {
-  flex: 1;
-  background-color: var(--primary-color);
-  border-radius: 8px;
-  color: white;
+  margin: 0px;
 }
 
 main .ingredients-container, 
@@ -210,4 +204,122 @@ dialog h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ingredients-container,
+.restock-container {
+  margin-top: 20px;
+}
+
+.tables {
+  display: grid;
+  gap: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.ingredients-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ingredients-tbl thead {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.ingredients-tbl th,
+.ingredients-tbl td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Responsive Design for 1024px */
+@media (max-width: 1024px) {
+  main {
+    padding: 15px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .tables {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredients-container h2,
+  .restock-container h2 {
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 800px) {
+  main {
+    padding: 5px;
+  }
+
+  .ingredients-container .table-container {
+    max-height: 250px;
+    border: 1px solid var(--primary-color);
+  }
+
+  .ingredients-tbl {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ingredients-tbl thead {
+    display: none;
+  }
+
+  .ingredients-tbl tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .ingredients-tbl tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: white;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .ingredients-tbl td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+  }
+
+  .ingredients-tbl td:first-child {
+    font-weight: bold;
+  }
+
+  .restock-container {
+    margin-bottom: 30px;
+  }
+}
+
+/* Responsive Design for 375px */
+@media (max-width: 375px) {
+  .ingredients-tbl td {
+    font-size: 12px;
+    padding: 5px;
+  }
 }

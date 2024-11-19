@@ -3,6 +3,8 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+date_default_timezone_set('Asia/Manila');
+
 
 function dd($data) {
   echo "<pre>";

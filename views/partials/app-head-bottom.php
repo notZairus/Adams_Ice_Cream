@@ -2,6 +2,19 @@
 </head>
   <body>
     <div class="wrapper">
+
+      <header class="phone-header">
+        <div class="logo-holder">
+          AIC
+        </div>
+        <div class="hamburger-menu">
+          <svg viewBox="0 0 24 24" stroke ="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 18L20 18" stroke-width="3" stroke-linecap="round"/>
+            <path d="M4 12L20 12" stroke-width="3" stroke-linecap="round"/>
+            <path d="M4 6L20 6" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </header>
       <sidebar>
         <h1>ADAM'S<br>ICE CREAM</h1>
         <div class="line"></div>
@@ -87,5 +100,6 @@
 
         </div>
       </sidebar>
+
       <section>
         <h1><?= $heading ?></h1>

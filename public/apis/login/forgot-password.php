@@ -11,7 +11,17 @@ $owner = $db->query('SELECT * FROM user_tbl WHERE user_role = :role', [
   'role' => 'Owner'
 ])->fetch();
 
-$link = 'localhost:8080/yuwdaskjdbsamrmscusaijdscmasd21eeyuwqhd';
+
+$token = bin2hex(random_bytes(32));
+$expiration = date('Y-m-d H:i:s', strtotime('+10 minutes'));
+
+$db->query('INSERT INTO reset_password_token_tbl (email, token, expiration_datetime) VALUES (:email, :token, :expi)', [
+    'email' => $owner['user_email'],
+    'token' => $token,
+    'expi' => $expiration
+]);
+
+$link = 'localhost:8080/reset-password?token=' . $token;
 
 sendEmail([
   'email' => $owner['user_email'],
@@ -88,9 +98,9 @@ sendEmail([
                           <p>Hi {$owner['user_fullname']},</p>
                           <p>We received a request to reset your password for your ADAM'S ICE CREAM account. If you didn't request a password reset, please ignore this email.</p>
                           <p>To reset your password, click the button below:</p>
-                          <a href='{$keys['RESET_PASSWORD_LINK']}' class='btn-reset'>Reset My Password</a>
+                          <a href='$link' class='btn-reset'>Reset My Password</a>
                           <p>If the button doesn't work, you can copy and paste the link below into your browser:</p>
-                          <p><a href='{{$keys['RESET_PASSWORD_LINK']}}'>{$keys['RESET_PASSWORD_LINK']}</a></p>
+                          <p><a href='$link'>$link</a></p>
                           <p>Best regards,<br>ADAM'S ICE CREAM</p>
                       </div>
                       <div class='footer'>

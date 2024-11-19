@@ -101,6 +101,7 @@ section {
   display: flex;
   flex-direction: column;
   padding: 20px 0px 40px;
+  position: relative;
 }
 
 section > h1 {
@@ -203,3 +204,53 @@ dialog > h2 {
   font-size: 0.9rem;
   padding: 8px 12px;
 }
+
+
+.phone-header {
+  background-color: var(--primary-color);
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  display: none;
+  padding: 12px;
+}
+
+.phone-header .logo-holder {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.phone-header .navigations {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phone-header .hamburger-menu {
+  width: 30px;
+}
+
+
+
+@media(max-width: 1024px) {
+
+  .wrapper {
+    padding: 0px 30px;
+  }
+
+  section {
+    margin-top: 50px;
+  }
+
+  sidebar {
+    display: none;
+  }
+
+  .phone-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+

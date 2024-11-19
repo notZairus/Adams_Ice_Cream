@@ -63,22 +63,26 @@
               <td><?= $user['username'] ?></td>
               <td><?= $user['user_email'] ?></td></td>
               <td style="text-align: right;">
+
+                <div class="actions-container">
                 
-                <button class="btn primary edit-account" data-user_id="<?= $user['user_id'] ?>">Edit</button>
+                  <button class="btn primary edit-account" data-user_id="<?= $user['user_id'] ?>">Edit</button>
 
-                <?php if ($user['user_role'] == 'Employee') : ?>
+                  <?php if ($user['user_role'] == 'Employee') : ?>
 
-                  <form action="/accounts" method="POST" style="display: inline;" class="delete-user-form">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
-                    <button type="button" class="btn danger delete-account">Delete</button>
-                  </form>
+                    <form action="/accounts" method="POST" style="display: inline;" class="delete-user-form">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
+                      <button type="button" class="btn danger delete-account">Delete</button>
+                    </form>
 
-                  <button class="btn secondary transfer-ownership" style="margin-left: 12px;" type="button" data-user_id = "<?= $user['user_id'] ?>">
-                    Transfer Ownership
-                  </button>
+                    <button class="btn secondary transfer-ownership" style="margin-left: 12px;" type="button" data-user_id = "<?= $user['user_id'] ?>">
+                      Transfer Ownership
+                    </button>
 
-                <?php endif ?>
+                  <?php endif ?>
+                
+                </div>
 
               </td>
             </tr>

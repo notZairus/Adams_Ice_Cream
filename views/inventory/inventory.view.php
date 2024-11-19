@@ -25,8 +25,8 @@
 <main>
 
   <div class="btn-container">
-    <button id="show_new_ingredient_modal">New Ingredient</button>
-    <button id="show_add_stock_modal">Add Stock</button>
+    <button id="show_new_ingredient_modal" class="btn primary fs-md">New Ingredient</button>
+    <button id="show_add_stock_modal" class="btn primary fs-md">Add Stock</button>
   </div>
 
   <div class="ingredients-container grid-item">
@@ -93,6 +93,7 @@
         </tbody>
       </table>
     </div>  
+  </div>
 
 </main>
 
