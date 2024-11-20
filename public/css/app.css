@@ -208,7 +208,7 @@ dialog > h2 {
 
 .phone-header {
   background-color: var(--primary-color);
-  position: absolute;
+  position: fixed;
   left: 0px;
   right: 0px;
   z-index: 100;
@@ -222,14 +222,49 @@ dialog > h2 {
   color: white;
 }
 
-.phone-header .navigations {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .phone-header .hamburger-menu {
   width: 30px;
+  cursor: pointer;
+}
+
+#mobile_navigation {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  flex-direction: column;
+  display: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#mobile_navigation a {
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  transform: all 0.3s;
+  font-weight: 500;
+}
+
+#mobile_navigation a:hover {
+  background-color: var(--dark-primary-color);
+}
+
+#mobile_navigation.open {
+  display: flex;
+}
+
+#mobile_navigation.show {
+  opacity: 1;
+}
+
+#mobile_navigation.hide {
+  opacity: 0;
 }
 
 

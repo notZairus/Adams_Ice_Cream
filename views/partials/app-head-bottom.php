@@ -1,20 +1,32 @@
 
+  <script defer src="/js/app.js"></script>
 </head>
   <body>
     <div class="wrapper">
 
       <header class="phone-header">
         <div class="logo-holder">
-          AIC
+          ADAM'S ICE CREAM
         </div>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburger_menu">
           <svg viewBox="0 0 24 24" stroke ="white" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 18L20 18" stroke-width="3" stroke-linecap="round"/>
             <path d="M4 12L20 12" stroke-width="3" stroke-linecap="round"/>
             <path d="M4 6L20 6" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
+        <div class="navigation-container" id="mobile_navigation">
+          <a href="/dashboard" style="<?= currentUrl('/dashboard') ? 'background-color: #F3F3F8; color: #334259; font-weight: 700' : "" ?>">Dashboard</a>
+          <a href="/inventory" style="<?= currentUrl('/inventory') ? 'background-color: #F3F3F8; color: #334259; font-weight: 700' : "" ?>">Inventory</a>
+          <a href="/orders" style="<?= currentUrl('/orders') ? 'background-color: #F3F3F8; color: #334259; font-weight: 700' : "" ?>">Orders</a>
+
+          <?php if ($_SESSION['user_role'] == "Owner") : ?>
+          <a href="/flavors" style="<?= currentUrl('/flavors') ? 'background-color: #F3F3F8; color: #334259; font-weight: 700' : "" ?>">Flavors</a>
+          <a href="/accounts" style="<?= currentUrl('/accounts') ? 'background-color: #F3F3F8; color: #334259; font-weight: 700' : "" ?>">Accounts</a>
+          <?php endif ?>
+        </div>
       </header>
+      
       <sidebar>
         <h1>ADAM'S<br>ICE CREAM</h1>
         <div class="line"></div>
