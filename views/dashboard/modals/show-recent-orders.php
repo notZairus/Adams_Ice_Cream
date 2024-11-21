@@ -2,7 +2,7 @@
 
 <dialog class="recent_orders_modal" id="recent_orders_modal">
   
-  <h1>Upcomming Orders</h1>
+  <h1>Upcoming Orders</h1>
 
   <div class="table-container">
     <table>

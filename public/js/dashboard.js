@@ -235,14 +235,14 @@ function displayChart(transactions) {
       labels: Array.from(mappedTransactions.incomes.keys()),
       datasets: [
         {
-          label: "Incomes",
+          label: "Revenue",
           data: Array.from(mappedTransactions.incomes.values()),
           borderWidth: 1,
           borderColor: '#334259',
           backgroundColor: '#334259'
         },
         {
-          label: "Expenses",
+          label: "Cost",
           data: Array.from(mappedTransactions.expenses.values()),
           borderWidth: 1,
           borderColor: 'red',
@@ -607,7 +607,7 @@ let recent_orders_modal = document.getElementById('recent_orders_modal');
 document.getElementById('qc_show_recent_orders').addEventListener('click', (e) => {
 
   let ongoingOrders = orders.filter(order => {
-    return order.order_status == 'Upcomming';
+    return order.order_status == 'Upcoming';
   })
 
   while(recent_orders_modal.querySelector('table tbody').firstChild) {

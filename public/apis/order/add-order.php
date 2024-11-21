@@ -40,7 +40,7 @@ foreach($orders as $order) {
     'sizee' => $order['size'],
     'addresss' => $order['delivery_address'],
     'datetimee' => $order['delivery_date'] . ' ' . $order['delivery_time'],
-    'statuss' => 'Upcomming',
+    'statuss' => 'Upcoming',
     'pdatetime' => date('Y-m-d H:i')
   ]);
 

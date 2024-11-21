@@ -533,3 +533,37 @@ dialog .add-order-form .order-info > div {
 .add_flavor_modal > h2 {
   margin-bottom: 12px;
 }
+
+@media (max-width: 1040px) {
+
+  main {
+    grid-template-rows: repeat(7, 250px);
+  }
+
+  main .grid-item {
+    grid-column: 1 / -1;
+  }
+
+  main .sales-stats-container {
+    grid-row: span 1;
+  }
+
+  main .sales-amount-container {
+    grid-row: 2 / 3;
+    max-height: 200px;
+  }
+
+  main .sales-amount-container .amount-container {
+    flex-direction: row;
+    align-items: start;
+  }
+
+  main .sales-amount-container .amount-container > div {
+    flex: 1;
+    height: 100%;
+  }
+
+  main .quick-controls-container {
+    grid-row: 5 / 6;
+  }
+}

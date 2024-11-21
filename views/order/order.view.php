@@ -32,7 +32,7 @@
     </div>
     <div>
       <div class="category-btns-container grid-item">
-        <button class="upcomming-btn selected">Upcomming</button>
+        <button class="upcomming-btn selected">Upcoming</button>
         <button class="ongoing-btn">Ongoing</button>
         <button class="finished-btn">Finished</button>
         <button class="cancelled-btn">Cancelled</button>
@@ -41,7 +41,7 @@
   </div>
 
   <div class="orders-container grid-item">
-    <h2 class="category-h2">Upcomming Orders</h2>
+    <h2 class="category-h2">Upcoming Orders</h2>
 
     <div class="table-container">
       <table class="orders-tbl">

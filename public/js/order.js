@@ -2,7 +2,7 @@
 
   document.addEventListener('DOMContentLoaded', async () => {
     orders = await getAllOrders();
-    displayOrdersByCategory(orders, "Upcomming");
+    displayOrdersByCategory(orders, "Upcoming");
   });
 
   async function getAllOrders() {
@@ -32,7 +32,7 @@
     const divOperations = document.createElement('div');
     divOperations.classList.add('order-operations');
 
-    if (category == 'Upcomming') {
+    if (category == 'Upcoming') {
       let processBtn = document.createElement('button');
       processBtn.dataset.order_id = order.order_id;
       processBtn.dataset.order_size = order.order_size;
