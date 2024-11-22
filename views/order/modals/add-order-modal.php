@@ -42,8 +42,8 @@
             <label for="size">Size: </label>
             <br>
             <select name="size" id="size" required>
-              <option value="4">4 gallons</option>
-              <option value="8">8 gallons</option>
+              <option value="4">4 gallons (₱ 1400)</option>
+              <option value="8">8 gallons (₱ 2700)</option>
             </select>
           </div>
 

@@ -15,6 +15,6 @@ if($token) {
   ]);
 } else {
   return view('login.view.php', [
-    'error' => 'Expired token.'
+    'error' => 'Expired link.'
   ]);
 }

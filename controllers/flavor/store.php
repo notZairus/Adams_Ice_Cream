@@ -14,4 +14,4 @@ $db->query('INSERT INTO flavor_tbl (flavor_name, flavor_cost, flavor_order_count
 
 
 
-header('Location: /flavors');
+header('Location: ' . $_POST['request_from']);

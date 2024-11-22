@@ -536,6 +536,10 @@ document.getElementById('confirm_orders').addEventListener('click', async (e) =>
   while(order_container.firstChild) {
     order_container.removeChild(order_container.firstChild);
   }
+
+  await showMessageModal('Order(s) successfully added!');
+
+  location.reload();
 })
 
 function createOrderDiv(data) {
@@ -703,6 +707,10 @@ async function processOrder(event) {
 
   const result = await response.json();
   console.log(result);
+
+  await showMessageModal('Order processed.');
+
+  location.reload();
 }
 
 async function cancelOrder(event) {
@@ -725,6 +733,10 @@ async function cancelOrder(event) {
 
   const result = await response.json();
   console.log(result);
+
+  await showMessageModal('Order cancelled.');
+  
+  location.reload();
 }
 
 
