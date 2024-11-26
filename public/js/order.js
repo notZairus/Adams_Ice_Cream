@@ -1,12 +1,32 @@
   let orders;
+  let ingredients;
 
   document.addEventListener('DOMContentLoaded', async () => {
     orders = await getAllOrders();
+    ingredients = await getAllIngredients();
+
+    let ingredientCount = ingredients.length;
+
+    if (ingredientCount < 1) {
+      await showMessageModal('No ingredients found.');
+      window.location = "/inventory";
+    }
+
     displayOrdersByCategory(orders, "Upcoming");
   });
 
   async function getAllOrders() {
     let response = await fetch('apis/order/get-orders.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.json();
+  }
+
+  async function getAllIngredients() {
+    const response = await fetch('apis/order/get-ingredients.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

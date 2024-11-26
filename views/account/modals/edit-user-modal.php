@@ -36,7 +36,7 @@
 
     <div class="btn-container">
       <button type="button" id="close_edit_user_modal">Cancel</button>
-      <button type="submit">Add User</button>
+      <button type="submit">Update</button>
     </div>
 
   </form>

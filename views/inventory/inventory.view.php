@@ -25,7 +25,9 @@
 <main>
 
   <div class="btn-container">
+    <?php if ($_SESSION['user_role'] == 'Owner'): ?>
     <button id="show_new_ingredient_modal" class="btn primary fs-md">New Ingredient</button>
+    <?php endif; ?>
     <button id="show_add_stock_modal" class="btn primary fs-md">Add Stock</button>
   </div>
 
